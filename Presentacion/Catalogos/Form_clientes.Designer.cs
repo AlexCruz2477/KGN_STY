@@ -211,7 +211,7 @@
             guna2Button5.FillColor = Color.FromArgb(110, 18, 32);
             guna2Button5.Font = new Font("Segoe UI", 9F);
             guna2Button5.ForeColor = Color.White;
-            guna2Button5.Image = Properties.Resources.icons8_añadir_24__1_;
+
             guna2Button5.Location = new Point(26, 748);
             guna2Button5.Name = "guna2Button5";
             guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges6;
@@ -232,7 +232,7 @@
             guna2Button1.FillColor = Color.FromArgb(110, 18, 32);
             guna2Button1.Font = new Font("Segoe UI", 9F);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Image = Properties.Resources.icons8_guardar_24__1_;
+
             guna2Button1.Location = new Point(630, 152);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges8;
@@ -357,7 +357,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.icons8_lista_24;
+
             pictureBox2.Location = new Point(30, 14);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(22, 23);
@@ -413,7 +413,7 @@
             guna2CircleButton2.FillColor = Color.White;
             guna2CircleButton2.Font = new Font("Segoe UI", 9F);
             guna2CircleButton2.ForeColor = Color.White;
-            guna2CircleButton2.Image = Properties.Resources.icons8_ayuda_24__2_;
+
             guna2CircleButton2.Location = new Point(1285, 62);
             guna2CircleButton2.Name = "guna2CircleButton2";
             guna2CircleButton2.ShadowDecoration.CustomizableEdges = customizableEdges11;
@@ -424,7 +424,7 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.Image = Properties.Resources.icons8_usuario_24__1_;
+
             pictureBox3.Location = new Point(1052, 11);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(33, 28);
@@ -445,7 +445,7 @@
             // guna2CirclePictureBox1
             // 
             guna2CirclePictureBox1.BackColor = Color.Transparent;
-            guna2CirclePictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
+
             guna2CirclePictureBox1.ImageRotate = 0F;
             guna2CirclePictureBox1.Location = new Point(14, 3);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";

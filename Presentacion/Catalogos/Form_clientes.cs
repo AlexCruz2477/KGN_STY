@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Nk_Colletion_New
 {
+    //modulo catalogo clientes  
     public partial class Form_clientes : Form
     {
         public Form_clientes()
