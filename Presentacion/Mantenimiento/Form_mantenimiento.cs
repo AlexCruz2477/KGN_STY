@@ -36,13 +36,13 @@ namespace Nk_Colletion_New
             if (guardar.ShowDialog() == DialogResult.OK)
             {
                 string pgDump =
-                    @"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe";
+                    @"C:\Program Files\PostgreSQL\18\bin\pg_dump.exe";
 
                 string host = "localhost";
                 string port = "5432";
-                string database = "NK STYLE POINT";
+                string database = "NK_STYLE_POINT";
                 string username = "postgres";
-                string password = "20102008";
+                string password = "131007";
 
                 ProcessStartInfo proceso = new ProcessStartInfo();
 
@@ -112,13 +112,13 @@ namespace Nk_Colletion_New
                 }
 
                 string pgRestore =
-                    @"C:\Program Files\PostgreSQL\16\bin\pg_restore.exe";
+                    @"C:\Program Files\PostgreSQL\18\bin\pg_restore.exe";
 
                 string host = "localhost";
                 string port = "5432";
-                string database = "NK STYLE POINT";
+                string database = "NK_STYLE_POINT";
                 string username = "postgres";
-                string password = "20102008";
+                string password = "131007";
 
                 ProcessStartInfo proceso = new ProcessStartInfo();
 

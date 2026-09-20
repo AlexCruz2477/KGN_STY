@@ -459,8 +459,7 @@
             txtproducto.ShadowDecoration.CustomizableEdges = customizableEdges49;
             txtproducto.Size = new Size(185, 33);
             txtproducto.TabIndex = 58;
-            txtproducto.TextChanged += txtproducto_TextChanged;
-            // 
+             // 
             // cmbbuscarpor
             // 
             cmbbuscarpor.BackColor = Color.Transparent;

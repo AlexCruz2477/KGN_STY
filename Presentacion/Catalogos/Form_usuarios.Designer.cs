@@ -51,12 +51,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
             pictureBox3 = new PictureBox();
@@ -84,17 +78,6 @@
             pictureBox1 = new PictureBox();
             label3 = new Label();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            guna2TextBox5 = new Guna.UI2.WinForms.Guna2TextBox();
-            dgv_usuarios = new Guna.UI2.WinForms.Guna2DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
-            pictureBox2 = new PictureBox();
-            label11 = new Label();
             panel1 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
@@ -104,9 +87,6 @@
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
             guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            guna2ShadowPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_usuarios).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // guna2Panel1
@@ -325,7 +305,7 @@
             btn_limpiar.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btn_limpiar.Size = new Size(144, 38);
             btn_limpiar.TabIndex = 48;
-            btn_limpiar.Text = "Limpiar ";
+            btn_limpiar.Text = "Cancelar";
             // 
             // btn_guardar
             // 
@@ -539,154 +519,6 @@
             guna2Separator2.Size = new Size(1340, 3);
             guna2Separator2.TabIndex = 32;
             // 
-            // guna2CircleButton1
-            // 
-            guna2CircleButton1.DisabledState.BorderColor = Color.DarkGray;
-            guna2CircleButton1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2CircleButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2CircleButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton1.FillColor = Color.White;
-            guna2CircleButton1.Font = new Font("Segoe UI", 9F);
-            guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Image = Properties.Resources.icons8_búsqueda_24;
-            guna2CircleButton1.Location = new Point(791, 5);
-            guna2CircleButton1.Margin = new Padding(4, 5, 4, 5);
-            guna2CircleButton1.Name = "guna2CircleButton1";
-            guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges23;
-            guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CircleButton1.Size = new Size(43, 50);
-            guna2CircleButton1.TabIndex = 52;
-            // 
-            // guna2ShadowPanel2
-            // 
-            guna2ShadowPanel2.BackColor = Color.Transparent;
-            guna2ShadowPanel2.Controls.Add(guna2TextBox5);
-            guna2ShadowPanel2.Controls.Add(guna2CircleButton1);
-            guna2ShadowPanel2.Controls.Add(dgv_usuarios);
-            guna2ShadowPanel2.Controls.Add(pictureBox2);
-            guna2ShadowPanel2.Controls.Add(label11);
-            guna2ShadowPanel2.FillColor = Color.White;
-            guna2ShadowPanel2.ForeColor = Color.FromArgb(110, 18, 32);
-            guna2ShadowPanel2.Location = new Point(24, 513);
-            guna2ShadowPanel2.Margin = new Padding(4, 5, 4, 5);
-            guna2ShadowPanel2.Name = "guna2ShadowPanel2";
-            guna2ShadowPanel2.Radius = 12;
-            guna2ShadowPanel2.ShadowColor = Color.Black;
-            guna2ShadowPanel2.Size = new Size(1124, 240);
-            guna2ShadowPanel2.TabIndex = 33;
-            // 
-            // guna2TextBox5
-            // 
-            guna2TextBox5.BorderColor = Color.FromArgb(216, 216, 216);
-            guna2TextBox5.BorderRadius = 8;
-            guna2TextBox5.CustomizableEdges = customizableEdges24;
-            guna2TextBox5.DefaultText = "";
-            guna2TextBox5.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox5.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox5.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox5.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox5.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox5.Font = new Font("Segoe UI", 9F);
-            guna2TextBox5.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox5.Location = new Point(406, 13);
-            guna2TextBox5.Margin = new Padding(6, 8, 6, 8);
-            guna2TextBox5.Name = "guna2TextBox5";
-            guna2TextBox5.PlaceholderText = "Buscar...";
-            guna2TextBox5.SelectedText = "";
-            guna2TextBox5.ShadowDecoration.CustomizableEdges = customizableEdges25;
-            guna2TextBox5.Size = new Size(376, 42);
-            guna2TextBox5.TabIndex = 56;
-            // 
-            // dgv_usuarios
-            // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dgv_usuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(110, 18, 32);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_usuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgv_usuarios.ColumnHeadersHeight = 27;
-            dgv_usuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv_usuarios.Columns.AddRange(new DataGridViewColumn[] { Column1, Column4, Column2, Column3, Estado });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(110, 18, 32);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgv_usuarios.DefaultCellStyle = dataGridViewCellStyle3;
-            dgv_usuarios.GridColor = Color.White;
-            dgv_usuarios.Location = new Point(17, 68);
-            dgv_usuarios.Margin = new Padding(4, 5, 4, 5);
-            dgv_usuarios.Name = "dgv_usuarios";
-            dgv_usuarios.RowHeadersVisible = false;
-            dgv_usuarios.RowHeadersWidth = 62;
-            dgv_usuarios.RowTemplate.Height = 22;
-            dgv_usuarios.Size = new Size(1087, 149);
-            dgv_usuarios.TabIndex = 55;
-            dgv_usuarios.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            dgv_usuarios.ThemeStyle.GridColor = Color.White;
-            dgv_usuarios.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(110, 18, 32);
-            dgv_usuarios.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            dgv_usuarios.ThemeStyle.HeaderStyle.Height = 27;
-            dgv_usuarios.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            dgv_usuarios.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(110, 18, 32);
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Nombre";
-            Column1.MinimumWidth = 8;
-            Column1.Name = "Column1";
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Correo electrónico";
-            Column4.MinimumWidth = 8;
-            Column4.Name = "Column4";
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Usuario";
-            Column2.MinimumWidth = 8;
-            Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Rol";
-            Column3.MinimumWidth = 8;
-            Column3.Name = "Column3";
-            // 
-            // Estado
-            // 
-            Estado.HeaderText = "Estado ";
-            Estado.MinimumWidth = 8;
-            Estado.Name = "Estado";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.icons8_lista_24;
-            pictureBox2.Location = new Point(36, 13);
-            pictureBox2.Margin = new Padding(4, 5, 4, 5);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 25);
-            pictureBox2.TabIndex = 54;
-            pictureBox2.TabStop = false;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(71, 13);
-            label11.Margin = new Padding(4, 0, 4, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(145, 25);
-            label11.TabIndex = 53;
-            label11.Text = "Lista de Usuarios";
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(64, 0, 0);
@@ -732,7 +564,6 @@
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel1);
-            Controls.Add(guna2ShadowPanel2);
             Controls.Add(guna2ShadowPanel1);
             Controls.Add(guna2Panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -746,10 +577,6 @@
             guna2ShadowPanel1.ResumeLayout(false);
             guna2ShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            guna2ShadowPanel2.ResumeLayout(false);
-            guna2ShadowPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_usuarios).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -760,7 +587,6 @@
         private Label label2;
         private Label label1;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private Guna.UI2.WinForms.Guna2ComboBox cmb_rol;
         private Label label10;
         private Guna.UI2.WinForms.Guna2Button btn_limpiar;
@@ -778,18 +604,8 @@
         private PictureBox pictureBox1;
         private Label label3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
-        protected internal Guna.UI2.WinForms.Guna2DataGridView dgv_usuarios;
-        private PictureBox pictureBox2;
-        private Label label11;
         private Label label9;
         private Guna.UI2.WinForms.Guna2ComboBox cmb_estado;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox5;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Estado;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
         private PictureBox pictureBox3;
         private Label label13;

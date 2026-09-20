@@ -7,52 +7,27 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("caja")]
+[Index("IdUsuario", Name = "caja_id_usuario_key", IsUnique = true)]
 public partial class Caja
 {
     [Key]
-    [Column("id_movimiento")]
-    public int IdMovimiento { get; set; }
+    [Column("id_caja")]
+    public int IdCaja { get; set; }
 
-    [Column("id_venta")]
-    public int? IdVenta { get; set; }
+    [Column("id_usuario")]
+    public int IdUsuario { get; set; }
 
-    [Column("id_compra")]
-    public int? IdCompra { get; set; }
+    [Column("numero_caja")]
+    [StringLength(50)]
+    public string NumeroCaja { get; set; } = null!;
 
-    [Column("id_detalle_pago_credito")]
-    public int? IdDetallePagoCredito { get; set; }
+    [Column("estado")]
+    public bool? Estado { get; set; }
 
-    [Column("tipo_movimiento")]
-    [StringLength(100)]
-    public string? TipoMovimiento { get; set; }
+    [InverseProperty("IdCajaNavigation")]
+    public virtual ICollection<AperturaCaja> AperturaCajas { get; set; } = new List<AperturaCaja>();
 
-    [Column("monto")]
-    [Precision(10, 2)]
-    public decimal? Monto { get; set; }
-
-    [Column("ingresos")]
-    [Precision(10, 2)]
-    public decimal? Ingresos { get; set; }
-
-    [Column("egresos")]
-    [Precision(10, 2)]
-    public decimal? Egresos { get; set; }
-
-    [Column("descripcion")]
-    public string? Descripcion { get; set; }
-
-    [Column("fecha", TypeName = "timestamp without time zone")]
-    public DateTime? Fecha { get; set; }
-
-    [ForeignKey("IdCompra")]
-    [InverseProperty("Cajas")]
-    public virtual Compra? IdCompraNavigation { get; set; }
-
-    [ForeignKey("IdDetallePagoCredito")]
-    [InverseProperty("Cajas")]
-    public virtual DetallePagoCredito? IdDetallePagoCreditoNavigation { get; set; }
-
-    [ForeignKey("IdVenta")]
-    [InverseProperty("Cajas")]
-    public virtual Ventum? IdVentaNavigation { get; set; }
+    [ForeignKey("IdUsuario")]
+    [InverseProperty("Caja")]
+    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 }

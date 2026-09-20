@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("categoria")]
+[Index("NombreCategoria", Name = "categoria_nombre_categoria_key", IsUnique = true)]
 public partial class Categorium
 {
     [Key]
@@ -15,15 +16,15 @@ public partial class Categorium
 
     [Column("nombre_categoria")]
     [StringLength(100)]
-    public string? NombreCategoria { get; set; }
+    public string NombreCategoria { get; set; } = null!;
 
-    [Column("decripcion")]
-    [StringLength(100)]
-    public string? Decripcion { get; set; }
+    [Column("descripcion")]
+    [StringLength(200)]
+    public string? Descripcion { get; set; }
+
+    [Column("estado")]
+    public bool? Estado { get; set; }
 
     [InverseProperty("IdCategoriaNavigation")]
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
-
-    [InverseProperty("IdCategoriaNavigation")]
-    public virtual ICollection<TipoProducto> TipoProductos { get; set; } = new List<TipoProducto>();
 }

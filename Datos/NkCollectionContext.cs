@@ -12,37 +12,48 @@ public partial class NkCollectionContext : DbContext
     {
     }
 
+    public virtual DbSet<AperturaCaja> AperturaCajas { get; set; }
+
+    public virtual DbSet<ArqueoCaja> ArqueoCajas { get; set; }
+
     public virtual DbSet<Caja> Cajas { get; set; }
 
     public virtual DbSet<Categorium> Categoria { get; set; }
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
+
     public virtual DbSet<Compra> Compras { get; set; }
 
-    public virtual DbSet<Credito> Creditos { get; set; }
+    public virtual DbSet<DetalleArqueo> DetalleArqueos { get; set; }
 
     public virtual DbSet<DetalleCompra> DetalleCompras { get; set; }
 
-    public virtual DbSet<DetalleDevolucionVentum> DetalleDevolucionVenta { get; set; }
-
-    public virtual DbSet<DetallePagoCredito> DetallePagoCreditos { get; set; }
-
     public virtual DbSet<DetalleVentum> DetalleVenta { get; set; }
 
-    public virtual DbSet<DevolucionVentum> DevolucionVenta { get; set; }
-
-    public virtual DbSet<Inventario> Inventarios { get; set; }
+    public virtual DbSet<Egreso> Egresos { get; set; }
 
     public virtual DbSet<Marca> Marcas { get; set; }
 
+    public virtual DbSet<MetodoPago> MetodoPagos { get; set; }
+
+    public virtual DbSet<Monedum> Moneda { get; set; }
+
+    public virtual DbSet<PagoVentum> PagoVenta { get; set; }
+
     public virtual DbSet<Producto> Productos { get; set; }
+
+    public virtual DbSet<ProductoVariante> ProductoVariantes { get; set; }
 
     public virtual DbSet<Proveedor> Proveedors { get; set; }
 
     public virtual DbSet<Rol> Rols { get; set; }
 
-    public virtual DbSet<TipoProducto> TipoProductos { get; set; }
+    public virtual DbSet<Talla> Tallas { get; set; }
+
+    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
+
+    public virtual DbSet<TipoEgreso> TipoEgresos { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -50,22 +61,48 @@ public partial class NkCollectionContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AperturaCaja>(entity =>
+        {
+            entity.HasKey(e => e.IdAperturaCaja).HasName("apertura_caja_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.FechaApertura).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.MontoAperturaCordoba).HasDefaultValueSql("0");
+            entity.Property(e => e.MontoAperturaDolar).HasDefaultValueSql("0");
+
+            entity.HasOne(d => d.IdCajaNavigation).WithMany(p => p.AperturaCajas)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_apertura_caja");
+        });
+
+        modelBuilder.Entity<ArqueoCaja>(entity =>
+        {
+            entity.HasKey(e => e.IdArqueo).HasName("arqueo_caja_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.FechaArqueo).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            entity.HasOne(d => d.IdAperturaCajaNavigation).WithMany(p => p.ArqueoCajas)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_arqueo_apertura_caja");
+        });
+
         modelBuilder.Entity<Caja>(entity =>
         {
-            entity.HasKey(e => e.IdMovimiento).HasName("caja_pkey");
+            entity.HasKey(e => e.IdCaja).HasName("caja_pkey");
 
-            entity.Property(e => e.Fecha).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.Estado).HasDefaultValue(true);
 
-            entity.HasOne(d => d.IdCompraNavigation).WithMany(p => p.Cajas).HasConstraintName("caja_id_compra_fkey");
-
-            entity.HasOne(d => d.IdDetallePagoCreditoNavigation).WithMany(p => p.Cajas).HasConstraintName("caja_id_detalle_pago_credito_fkey");
-
-            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.Cajas).HasConstraintName("caja_id_venta_fkey");
+            entity.HasOne(d => d.IdUsuarioNavigation).WithOne(p => p.Caja)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_caja_usuario");
         });
 
         modelBuilder.Entity<Categorium>(entity =>
         {
             entity.HasKey(e => e.IdCategoria).HasName("categoria_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Cliente>(entity =>
@@ -76,85 +113,80 @@ public partial class NkCollectionContext : DbContext
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
 
+
         modelBuilder.Entity<Compra>(entity =>
         {
             entity.HasKey(e => e.IdCompra).HasName("compra_pkey");
 
+            entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaCompra).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            entity.Property(e => e.Impuesto).HasDefaultValueSql("0");
-            entity.Property(e => e.Subtotal).HasDefaultValueSql("0");
-            entity.Property(e => e.Total).HasDefaultValueSql("0");
 
-            entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.Compras).HasConstraintName("compra_id_proveedor_fkey");
+            entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.Compras)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_compra_proveedor");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Compras).HasConstraintName("compra_id_usuario_fkey");
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Compras)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_compra_usuario");
         });
 
-        modelBuilder.Entity<Credito>(entity =>
+        modelBuilder.Entity<DetalleArqueo>(entity =>
         {
-            entity.HasKey(e => e.IdCredito).HasName("credito_pkey");
+            entity.HasKey(e => e.IdDetalleArqueo).HasName("detalle_arqueo_pkey");
 
-            entity.Property(e => e.Estado).HasDefaultValue(true);
-            entity.Property(e => e.FechaSolicitud).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            entity.Property(e => e.FechaVencimiento).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.HasOne(d => d.IdArqueoNavigation).WithMany(p => p.DetalleArqueos).HasConstraintName("fk_detalle_arqueo_arqueo");
 
-            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.Creditos).HasConstraintName("credito_id_venta_fkey");
+            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.DetalleArqueos)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_detalle_arqueo_moneda");
         });
 
         modelBuilder.Entity<DetalleCompra>(entity =>
         {
             entity.HasKey(e => e.IdDetalleCompra).HasName("detalle_compra_pkey");
 
-            entity.HasOne(d => d.IdCompraNavigation).WithMany(p => p.DetalleCompras).HasConstraintName("detalle_compra_id_compra_fkey");
+            entity.Property(e => e.Subtotal).HasComputedColumnSql("((cantidad)::numeric * precio_unitario)", true);
 
-            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.DetalleCompras).HasConstraintName("detalle_compra_id_producto_fkey");
-        });
+            entity.HasOne(d => d.IdCompraNavigation).WithMany(p => p.DetalleCompras).HasConstraintName("fk_detalle_compra_compra");
 
-        modelBuilder.Entity<DetalleDevolucionVentum>(entity =>
-        {
-            entity.HasKey(e => e.IdDetalleDevVenta).HasName("detalle_devolucion_venta_pkey");
-
-            entity.HasOne(d => d.IdDevolucionVentaNavigation).WithMany(p => p.DetalleDevolucionVenta).HasConstraintName("detalle_devolucion_venta_id_devolucion_venta_fkey");
-
-            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.DetalleDevolucionVenta).HasConstraintName("detalle_devolucion_venta_id_producto_fkey");
-        });
-
-        modelBuilder.Entity<DetallePagoCredito>(entity =>
-        {
-            entity.HasKey(e => e.IdDetallePagoCredito).HasName("detalle_pago_credito_pkey");
-
-            entity.Property(e => e.FechaPago).HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-            entity.HasOne(d => d.IdCreditoNavigation).WithMany(p => p.DetallePagoCreditos).HasConstraintName("detalle_pago_credito_id_credito_fkey");
+            entity.HasOne(d => d.IdVarianteNavigation).WithMany(p => p.DetalleCompras)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_detalle_compra_variante");
         });
 
         modelBuilder.Entity<DetalleVentum>(entity =>
         {
             entity.HasKey(e => e.IdDetalleVenta).HasName("detalle_venta_pkey");
 
-            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.DetalleVenta).HasConstraintName("detalle_venta_id_producto_fkey");
+            entity.Property(e => e.Subtotal).HasComputedColumnSql("((cantidad)::numeric * precio_unitario)", true);
 
-            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.DetalleVenta).HasConstraintName("detalle_venta_id_venta_fkey");
+            entity.HasOne(d => d.IdVarianteNavigation).WithMany(p => p.DetalleVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_detalle_venta_variante");
+
+            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.DetalleVenta).HasConstraintName("fk_detalle_venta_venta");
         });
 
-        modelBuilder.Entity<DevolucionVentum>(entity =>
+        modelBuilder.Entity<Egreso>(entity =>
         {
-            entity.HasKey(e => e.IdDevolucionVenta).HasName("devolucion_venta_pkey");
+            entity.HasKey(e => e.IdEgreso).HasName("egreso_pkey");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.FechaEgreso).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.DevolucionVenta).HasConstraintName("devolucion_venta_id_cliente_fkey");
+            entity.HasOne(d => d.IdAperturaCajaNavigation).WithMany(p => p.Egresos).HasConstraintName("fk_egreso_apertura_caja");
 
-            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.DevolucionVenta).HasConstraintName("devolucion_venta_id_venta_fkey");
-        });
+            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.Egresos)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_egreso_moneda");
 
-        modelBuilder.Entity<Inventario>(entity =>
-        {
-            entity.HasKey(e => e.IdInventario).HasName("inventario_pkey");
+            entity.HasOne(d => d.IdTipoCambioNavigation).WithMany(p => p.Egresos)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_egreso_tipo_cambio");
 
-            entity.Property(e => e.Estado).HasDefaultValue(true);
-
-            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.Inventarios).HasConstraintName("inventario_id_producto_fkey");
+            entity.HasOne(d => d.IdTipoEgresoNavigation).WithMany(p => p.Egresos)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_egreso_tipo");
         });
 
         modelBuilder.Entity<Marca>(entity =>
@@ -164,18 +196,69 @@ public partial class NkCollectionContext : DbContext
             entity.Property(e => e.Estado).HasDefaultValue(true);
         });
 
+        modelBuilder.Entity<MetodoPago>(entity =>
+        {
+            entity.HasKey(e => e.IdMetodoPago).HasName("metodo_pago_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<Monedum>(entity =>
+        {
+            entity.HasKey(e => e.IdMoneda).HasName("moneda_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<PagoVentum>(entity =>
+        {
+            entity.HasKey(e => e.IdPagoVenta).HasName("pago_venta_pkey");
+
+            entity.Property(e => e.FechaPago).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            entity.HasOne(d => d.IdMetodoPagoNavigation).WithMany(p => p.PagoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_pago_venta_metodo");
+
+            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.PagoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_pago_venta_moneda");
+
+            entity.HasOne(d => d.IdTipoCambioNavigation).WithMany(p => p.PagoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_pago_venta_tipo_cambio");
+
+            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.PagoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_pago_venta_venta");
+        });
+
         modelBuilder.Entity<Producto>(entity =>
         {
             entity.HasKey(e => e.IdProducto).HasName("producto_pkey");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
-            entity.Property(e => e.Fecha).HasDefaultValueSql("CURRENT_DATE");
 
-            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos).HasConstraintName("producto_id_categoria_fkey");
+            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos).HasConstraintName("fk_producto_categoria");
 
-            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Productos).HasConstraintName("producto_id_marca_fkey");
+            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Productos).HasConstraintName("fk_producto_marca");
+        });
 
-            entity.HasOne(d => d.IdTipoProductoNavigation).WithMany(p => p.Productos).HasConstraintName("producto_id_tipo_producto_fkey");
+        modelBuilder.Entity<ProductoVariante>(entity =>
+        {
+            entity.HasKey(e => e.IdVariante).HasName("producto_variante_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.StockActual).HasDefaultValue(0);
+            entity.Property(e => e.StockMinimo).HasDefaultValue(0);
+
+            entity.HasOne(d => d.IdColorNavigation).WithMany(p => p.ProductoVariantes).HasConstraintName("fk_variante_color");
+
+            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.ProductoVariantes)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_variante_producto");
+
+            entity.HasOne(d => d.IdTallaNavigation).WithMany(p => p.ProductoVariantes).HasConstraintName("fk_variante_talla");
         });
 
         modelBuilder.Entity<Proveedor>(entity =>
@@ -191,11 +274,26 @@ public partial class NkCollectionContext : DbContext
             entity.HasKey(e => e.IdRol).HasName("rol_pkey");
         });
 
-        modelBuilder.Entity<TipoProducto>(entity =>
+        modelBuilder.Entity<Talla>(entity =>
         {
-            entity.HasKey(e => e.IdTipoProducto).HasName("tipo_producto_pkey");
+            entity.HasKey(e => e.IdTalla).HasName("talla_pkey");
 
-            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.TipoProductos).HasConstraintName("tipo_producto_id_categoria_fkey");
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<TipoCambio>(entity =>
+        {
+            entity.HasKey(e => e.IdTipoCambio).HasName("tipo_cambio_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
+        });
+
+        modelBuilder.Entity<TipoEgreso>(entity =>
+        {
+            entity.HasKey(e => e.IdTipoEgreso).HasName("tipo_egreso_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Usuario>(entity =>
@@ -204,16 +302,23 @@ public partial class NkCollectionContext : DbContext
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
 
-            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios).HasConstraintName("usuario_id_rol_fkey");
+            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_usuario_rol");
         });
 
         modelBuilder.Entity<Ventum>(entity =>
         {
             entity.HasKey(e => e.IdVenta).HasName("venta_pkey");
 
-            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Venta).HasConstraintName("venta_id_cliente_fkey");
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+            entity.Property(e => e.FechaVenta).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Venta).HasConstraintName("venta_id_usuario_fkey");
+            entity.HasOne(d => d.IdAperturaCajaNavigation).WithMany(p => p.Venta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_venta_apertura_caja");
+
+            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Venta).HasConstraintName("fk_venta_cliente");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -378,6 +378,7 @@
             guna2Button1.Size = new Size(211, 42);
             guna2Button1.TabIndex = 235;
             guna2Button1.Text = "Guardar";
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2Button2
             // 
@@ -504,6 +505,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form_usuario_principal";
             Text = "Form_usuario_principal";
+            Load += Form_usuario_principal_Load;
             guna2ShadowPanel2.ResumeLayout(false);
             guna2ShadowPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();

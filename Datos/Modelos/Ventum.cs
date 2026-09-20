@@ -13,52 +13,49 @@ public partial class Ventum
     [Column("id_venta")]
     public int IdVenta { get; set; }
 
-    [Column("id_usuario")]
-    public int? IdUsuario { get; set; }
+    [Column("id_apertura_caja")]
+    public int IdAperturaCaja { get; set; }
 
     [Column("id_cliente")]
     public int? IdCliente { get; set; }
 
-    [Column("fecha_venta")]
-    public DateOnly? FechaVenta { get; set; }
+    [Column("fecha_venta", TypeName = "timestamp without time zone")]
+    public DateTime? FechaVenta { get; set; }
 
     [Column("numero_comprobante")]
+    [StringLength(50)]
+    public string? NumeroComprobante { get; set; }
+
+    [Column("subtotal")]
     [Precision(12, 2)]
-    public decimal? NumeroComprobante { get; set; }
+    public decimal Subtotal { get; set; }
 
     [Column("iva")]
-    [Precision(10, 2)]
-    public decimal? Iva { get; set; }
-
-    [Column("total_venta")]
     [Precision(12, 2)]
-    public decimal? TotalVenta { get; set; }
-
-    [Column("metodo_pago")]
-    [StringLength(76)]
-    public string? MetodoPago { get; set; }
+    public decimal Iva { get; set; }
 
     [Column("descuento")]
     [Precision(12, 2)]
-    public decimal? Descuento { get; set; }
+    public decimal Descuento { get; set; }
 
-    [InverseProperty("IdVentaNavigation")]
-    public virtual ICollection<Caja> Cajas { get; set; } = new List<Caja>();
+    [Column("total_venta")]
+    [Precision(12, 2)]
+    public decimal TotalVenta { get; set; }
 
-    [InverseProperty("IdVentaNavigation")]
-    public virtual ICollection<Credito> Creditos { get; set; } = new List<Credito>();
+    [Column("estado")]
+    public bool? Estado { get; set; }
 
     [InverseProperty("IdVentaNavigation")]
     public virtual ICollection<DetalleVentum> DetalleVenta { get; set; } = new List<DetalleVentum>();
 
-    [InverseProperty("IdVentaNavigation")]
-    public virtual ICollection<DevolucionVentum> DevolucionVenta { get; set; } = new List<DevolucionVentum>();
+    [ForeignKey("IdAperturaCaja")]
+    [InverseProperty("Venta")]
+    public virtual AperturaCaja IdAperturaCajaNavigation { get; set; } = null!;
 
     [ForeignKey("IdCliente")]
     [InverseProperty("Venta")]
     public virtual Cliente? IdClienteNavigation { get; set; }
 
-    [ForeignKey("IdUsuario")]
-    [InverseProperty("Venta")]
-    public virtual Usuario? IdUsuarioNavigation { get; set; }
+    [InverseProperty("IdVentaNavigation")]
+    public virtual ICollection<PagoVentum> PagoVenta { get; set; } = new List<PagoVentum>();
 }

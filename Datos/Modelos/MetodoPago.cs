@@ -6,13 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Nk_Colletion_New.Datos.Modelos;
 
-[Table("marca")]
-[Index("Nombre", Name = "marca_nombre_key", IsUnique = true)]
-public partial class Marca
+[Table("metodo_pago")]
+public partial class MetodoPago
 {
     [Key]
-    [Column("id_marca")]
-    public int IdMarca { get; set; }
+    [Column("id_metodo_pago")]
+    public int IdMetodoPago { get; set; }
 
     [Column("nombre")]
     [StringLength(100)]
@@ -21,6 +20,6 @@ public partial class Marca
     [Column("estado")]
     public bool? Estado { get; set; }
 
-    [InverseProperty("IdMarcaNavigation")]
-    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
+    [InverseProperty("IdMetodoPagoNavigation")]
+    public virtual ICollection<PagoVentum> PagoVenta { get; set; } = new List<PagoVentum>();
 }

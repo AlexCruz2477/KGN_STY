@@ -17,8 +17,8 @@ namespace Nk_Colletion_New
                     "Host=localhost;" +
                     "Port=5432;" +
                     "Database=NK_STYLE_POINT;" +
-                    "Username=Ari;" +
-                    "Password=12345"
+                    "Username=postgres;" +
+                    "Password=131007"
                 )
                 .Options;
 

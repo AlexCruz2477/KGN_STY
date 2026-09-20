@@ -14,14 +14,13 @@ public partial class DetalleCompra
     public int IdDetalleCompra { get; set; }
 
     [Column("id_compra")]
-    public int? IdCompra { get; set; }
+    public int IdCompra { get; set; }
 
-    [Column("id_producto")]
-    public int? IdProducto { get; set; }
+    [Column("id_variante")]
+    public int IdVariante { get; set; }
 
     [Column("cantidad")]
-    [Precision(10, 2)]
-    public decimal Cantidad { get; set; }
+    public int Cantidad { get; set; }
 
     [Column("precio_unitario")]
     [Precision(12, 2)]
@@ -29,13 +28,13 @@ public partial class DetalleCompra
 
     [Column("subtotal")]
     [Precision(12, 2)]
-    public decimal Subtotal { get; set; }
+    public decimal? Subtotal { get; set; }
 
     [ForeignKey("IdCompra")]
     [InverseProperty("DetalleCompras")]
-    public virtual Compra? IdCompraNavigation { get; set; }
+    public virtual Compra IdCompraNavigation { get; set; } = null!;
 
-    [ForeignKey("IdProducto")]
+    [ForeignKey("IdVariante")]
     [InverseProperty("DetalleCompras")]
-    public virtual Producto? IdProductoNavigation { get; set; }
+    public virtual ProductoVariante IdVarianteNavigation { get; set; } = null!;
 }
