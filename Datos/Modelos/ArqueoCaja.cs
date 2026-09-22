@@ -19,45 +19,25 @@ public partial class ArqueoCaja
     [Column("fecha_arqueo", TypeName = "timestamp without time zone")]
     public DateTime? FechaArqueo { get; set; }
 
-    [Column("total_ventas_cordoba")]
+    [Column("total_ventas")]
     [Precision(12, 2)]
-    public decimal TotalVentasCordoba { get; set; }
+    public decimal TotalVentas { get; set; }
 
-    [Column("total_ventas_dolar")]
+    [Column("total_egresos")]
     [Precision(12, 2)]
-    public decimal TotalVentasDolar { get; set; }
+    public decimal TotalEgresos { get; set; }
 
-    [Column("total_egresos_cordoba")]
+    [Column("saldo_esperado")]
     [Precision(12, 2)]
-    public decimal TotalEgresosCordoba { get; set; }
+    public decimal SaldoEsperado { get; set; }
 
-    [Column("total_egresos_dolar")]
+    [Column("saldo_contado")]
     [Precision(12, 2)]
-    public decimal TotalEgresosDolar { get; set; }
+    public decimal SaldoContado { get; set; }
 
-    [Column("saldo_esperado_cordoba")]
+    [Column("diferencia")]
     [Precision(12, 2)]
-    public decimal SaldoEsperadoCordoba { get; set; }
-
-    [Column("saldo_esperado_dolar")]
-    [Precision(12, 2)]
-    public decimal SaldoEsperadoDolar { get; set; }
-
-    [Column("saldo_contado_cordoba")]
-    [Precision(12, 2)]
-    public decimal SaldoContadoCordoba { get; set; }
-
-    [Column("saldo_contado_dolar")]
-    [Precision(12, 2)]
-    public decimal SaldoContadoDolar { get; set; }
-
-    [Column("diferencia_cordoba")]
-    [Precision(12, 2)]
-    public decimal DiferenciaCordoba { get; set; }
-
-    [Column("diferencia_dolar")]
-    [Precision(12, 2)]
-    public decimal DiferenciaDolar { get; set; }
+    public decimal Diferencia { get; set; }
 
     [Column("observacion")]
     [StringLength(250)]

@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Forms;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Negocios;
 using Nk_Colletion_New.Presentacion.Autenticacion;
+using System.Windows.Forms;
+using Nk_Colletion_New.Negocios.Autenticacion;
 
 namespace Nk_Colletion_New
 {
@@ -22,10 +25,10 @@ namespace Nk_Colletion_New
                 )
                 .Options;
 
-            var servicioAuth = new ServicioAuth(options);
+            var autenticacionUsuario = new AutenticacionUsuario(options);
 
             Application.Run(
-                new Frm_Login(servicioAuth)
+                new Frm_Login(autenticacionUsuario)
             );
         }
     }

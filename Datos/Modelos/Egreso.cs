@@ -19,12 +19,6 @@ public partial class Egreso
     [Column("id_tipo_egreso")]
     public int IdTipoEgreso { get; set; }
 
-    [Column("id_moneda")]
-    public int IdMoneda { get; set; }
-
-    [Column("id_tipo_cambio")]
-    public int IdTipoCambio { get; set; }
-
     [Column("monto")]
     [Precision(12, 2)]
     public decimal Monto { get; set; }
@@ -42,14 +36,6 @@ public partial class Egreso
     [ForeignKey("IdAperturaCaja")]
     [InverseProperty("Egresos")]
     public virtual AperturaCaja IdAperturaCajaNavigation { get; set; } = null!;
-
-    [ForeignKey("IdMoneda")]
-    [InverseProperty("Egresos")]
-    public virtual Monedum IdMonedaNavigation { get; set; } = null!;
-
-    [ForeignKey("IdTipoCambio")]
-    [InverseProperty("Egresos")]
-    public virtual TipoCambio IdTipoCambioNavigation { get; set; } = null!;
 
     [ForeignKey("IdTipoEgreso")]
     [InverseProperty("Egresos")]

@@ -36,16 +36,16 @@
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
             panel2 = new Panel();
+            panel5 = new Panel();
+            pictureBox1 = new PictureBox();
             label2 = new Label();
             panel3 = new Panel();
             panel4 = new Panel();
             txt_Usuario = new TextBox();
-            pictureBox1 = new PictureBox();
-            panel5 = new Panel();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // guna2ContextMenuStrip1
@@ -104,6 +104,7 @@
             linkLabel1.TabIndex = 4;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "¿Olvidaste tu contraseña?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -132,6 +133,25 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(511, 518);
             panel2.TabIndex = 6;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(64, 0, 0);
+            panel5.Dock = DockStyle.Left;
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(10, 518);
+            panel5.TabIndex = 9;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
+            pictureBox1.Location = new Point(194, 21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 125);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -169,25 +189,6 @@
             txt_Usuario.Size = new Size(373, 63);
             txt_Usuario.TabIndex = 4;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
-            pictureBox1.Location = new Point(194, 21);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(131, 125);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(64, 0, 0);
-            panel5.Dock = DockStyle.Left;
-            panel5.Location = new Point(0, 0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(10, 518);
-            panel5.TabIndex = 9;
-            // 
             // Frm_Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -202,11 +203,11 @@
             Load += Frm_Login_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 

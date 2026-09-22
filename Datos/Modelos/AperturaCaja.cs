@@ -22,13 +22,9 @@ public partial class AperturaCaja
     [Column("fecha_cierre", TypeName = "timestamp without time zone")]
     public DateTime? FechaCierre { get; set; }
 
-    [Column("monto_apertura_cordoba")]
+    [Column("monto_apertura")]
     [Precision(12, 2)]
-    public decimal? MontoAperturaCordoba { get; set; }
-
-    [Column("monto_apertura_dolar")]
-    [Precision(12, 2)]
-    public decimal? MontoAperturaDolar { get; set; }
+    public decimal? MontoApertura { get; set; }
 
     [Column("estado")]
     public bool? Estado { get; set; }

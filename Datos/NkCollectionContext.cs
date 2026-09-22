@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos.Modelos;
+using ColorModel = Nk_Colletion_New.Datos.Modelos.Color;
 
 namespace Nk_Colletion_New.Datos;
 
@@ -22,6 +23,7 @@ public partial class NkCollectionContext : DbContext
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
+    public virtual DbSet<ColorModel> Colors { get; set; }
 
     public virtual DbSet<Compra> Compras { get; set; }
 
@@ -37,8 +39,6 @@ public partial class NkCollectionContext : DbContext
 
     public virtual DbSet<MetodoPago> MetodoPagos { get; set; }
 
-    public virtual DbSet<Monedum> Moneda { get; set; }
-
     public virtual DbSet<PagoVentum> PagoVenta { get; set; }
 
     public virtual DbSet<Producto> Productos { get; set; }
@@ -50,8 +50,6 @@ public partial class NkCollectionContext : DbContext
     public virtual DbSet<Rol> Rols { get; set; }
 
     public virtual DbSet<Talla> Tallas { get; set; }
-
-    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
 
     public virtual DbSet<TipoEgreso> TipoEgresos { get; set; }
 
@@ -67,8 +65,7 @@ public partial class NkCollectionContext : DbContext
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaApertura).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            entity.Property(e => e.MontoAperturaCordoba).HasDefaultValueSql("0");
-            entity.Property(e => e.MontoAperturaDolar).HasDefaultValueSql("0");
+            entity.Property(e => e.MontoApertura).HasDefaultValueSql("0");
 
             entity.HasOne(d => d.IdCajaNavigation).WithMany(p => p.AperturaCajas)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -113,6 +110,12 @@ public partial class NkCollectionContext : DbContext
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
 
+        modelBuilder.Entity<ColorModel>(entity =>
+        {
+            entity.HasKey(e => e.IdColor).HasName("color_pkey");
+
+            entity.Property(e => e.Estado).HasDefaultValue(true);
+        });
 
         modelBuilder.Entity<Compra>(entity =>
         {
@@ -135,10 +138,6 @@ public partial class NkCollectionContext : DbContext
             entity.HasKey(e => e.IdDetalleArqueo).HasName("detalle_arqueo_pkey");
 
             entity.HasOne(d => d.IdArqueoNavigation).WithMany(p => p.DetalleArqueos).HasConstraintName("fk_detalle_arqueo_arqueo");
-
-            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.DetalleArqueos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_detalle_arqueo_moneda");
         });
 
         modelBuilder.Entity<DetalleCompra>(entity =>
@@ -176,14 +175,6 @@ public partial class NkCollectionContext : DbContext
 
             entity.HasOne(d => d.IdAperturaCajaNavigation).WithMany(p => p.Egresos).HasConstraintName("fk_egreso_apertura_caja");
 
-            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.Egresos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_egreso_moneda");
-
-            entity.HasOne(d => d.IdTipoCambioNavigation).WithMany(p => p.Egresos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_egreso_tipo_cambio");
-
             entity.HasOne(d => d.IdTipoEgresoNavigation).WithMany(p => p.Egresos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_egreso_tipo");
@@ -203,13 +194,6 @@ public partial class NkCollectionContext : DbContext
             entity.Property(e => e.Estado).HasDefaultValue(true);
         });
 
-        modelBuilder.Entity<Monedum>(entity =>
-        {
-            entity.HasKey(e => e.IdMoneda).HasName("moneda_pkey");
-
-            entity.Property(e => e.Estado).HasDefaultValue(true);
-        });
-
         modelBuilder.Entity<PagoVentum>(entity =>
         {
             entity.HasKey(e => e.IdPagoVenta).HasName("pago_venta_pkey");
@@ -219,14 +203,6 @@ public partial class NkCollectionContext : DbContext
             entity.HasOne(d => d.IdMetodoPagoNavigation).WithMany(p => p.PagoVenta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_pago_venta_metodo");
-
-            entity.HasOne(d => d.IdMonedaNavigation).WithMany(p => p.PagoVenta)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_pago_venta_moneda");
-
-            entity.HasOne(d => d.IdTipoCambioNavigation).WithMany(p => p.PagoVenta)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_pago_venta_tipo_cambio");
 
             entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.PagoVenta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -279,14 +255,6 @@ public partial class NkCollectionContext : DbContext
             entity.HasKey(e => e.IdTalla).HasName("talla_pkey");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
-        });
-
-        modelBuilder.Entity<TipoCambio>(entity =>
-        {
-            entity.HasKey(e => e.IdTipoCambio).HasName("tipo_cambio_pkey");
-
-            entity.Property(e => e.Estado).HasDefaultValue(true);
-            entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
 
         modelBuilder.Entity<TipoEgreso>(entity =>

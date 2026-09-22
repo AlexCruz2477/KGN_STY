@@ -46,6 +46,13 @@ public partial class Usuario
     [Column("estado")]
     public bool Estado { get; set; }
 
+    [Column("token_recuperacion")]
+    [StringLength(255)]
+    public string? TokenRecuperacion { get; set; }
+
+    [Column("fecha_hora_recuperacion", TypeName = "timestamp without time zone")]
+    public DateTime? FechaHoraRecuperacion { get; set; }
+
     [InverseProperty("IdUsuarioNavigation")]
     public virtual Caja? Caja { get; set; }
 

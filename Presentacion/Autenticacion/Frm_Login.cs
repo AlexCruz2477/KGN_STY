@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using Nk_Colletion_New.Negocios;
+using Nk_Colletion_New.Negocios.Autenticacion;
 
 namespace Nk_Colletion_New.Presentacion.Autenticacion
 {
     public partial class Frm_Login : Form
     {
-        private readonly ServicioAuth? _servicioAuth;
+        private readonly LoginServicio? _loginServicio;
+        private readonly AutenticacionUsuario? _autenticacionUsuario;
 
         // Constructor para el diseñador
         public Frm_Login()
@@ -15,11 +17,11 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
         }
 
         // Constructor usado al ejecutar el programa
-        public Frm_Login(ServicioAuth servicioAuth) : this()
+        public Frm_Login(AutenticacionUsuario autenticacionUsuario, LoginServicio loginServicio) : this()
         {
-            _servicioAuth = servicioAuth;
+            _autenticacionUsuario = autenticacionUsuario;
+            _loginServicio = loginServicio;
         }
-
         private void Frm_Login_Load(object sender, EventArgs e)
         {
 
@@ -45,7 +47,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             }
 
             // Comprobar que el servicio existe
-            if (_servicioAuth == null)
+            if (_autenticacionUsuario == null)
             {
                 MessageBox.Show(
                     "El servicio de autenticación no está configurado.",
@@ -61,12 +63,12 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             {
                 btn_Ingresar.Enabled = false;
 
-                var resultado = await _servicioAuth.IniciarSesionAsync(
+                var usuarioEncontrado = _autenticacionUsuario.ValidarCredenciales(
                     usuario,
                     contrasena
                 );
 
-                if (resultado == null)
+                if (usuarioEncontrado == null)
                 {
                     MessageBox.Show(
                         "Usuario o contraseña incorrectos.",
@@ -82,8 +84,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
                 }
 
                 MessageBox.Show(
-                    $"Bienvenido/a {resultado.Nombre} {resultado.Apellido}\n" +
-                    $"Rol: {resultado.Rol}",
+                    $"Bienvenido/a {usuarioEncontrado.Nombre} {usuarioEncontrado.Apellido}",
                     "Acceso correcto",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -114,6 +115,12 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             {
                 btn_Ingresar.Enabled = true;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form_recuperacion Form = new Form_recuperacion();
+            Form.Show();
         }
     }
 }

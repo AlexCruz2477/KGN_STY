@@ -16,9 +16,6 @@ public partial class DetalleArqueo
     [Column("id_arqueo")]
     public int IdArqueo { get; set; }
 
-    [Column("id_moneda")]
-    public int IdMoneda { get; set; }
-
     [Column("denominacion")]
     [Precision(12, 2)]
     public decimal Denominacion { get; set; }
@@ -33,8 +30,4 @@ public partial class DetalleArqueo
     [ForeignKey("IdArqueo")]
     [InverseProperty("DetalleArqueos")]
     public virtual ArqueoCaja IdArqueoNavigation { get; set; } = null!;
-
-    [ForeignKey("IdMoneda")]
-    [InverseProperty("DetalleArqueos")]
-    public virtual Monedum IdMonedaNavigation { get; set; } = null!;
 }
