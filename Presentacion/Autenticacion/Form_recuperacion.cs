@@ -65,7 +65,7 @@ namespace Nk_Colletion_New
                 }
 
                 MessageBox.Show("El código de recuperación fue enviado a su correo.", "Recuperación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new Form_restablecer(correo, _loginServicio, _autenticacionUsuario).Show();
+               // new Form_restablecer(correo, _loginServicio, _autenticacionUsuario).Show();
                 Hide();
             }
             finally
@@ -73,5 +73,7 @@ namespace Nk_Colletion_New
                 btn_continuar.Enabled = true;
             }
         }
+
+
     }
 }

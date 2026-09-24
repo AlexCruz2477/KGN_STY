@@ -24,11 +24,12 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
         }
 
         // Constructor que acepta correo y codigo (para prellenar el formulario)
-        public Form_restablecer(string correo, string codigo) : this()
+        public Form_restablecer(string correo, LoginServicio loginServicio, string codigo) : this()
         {
             // Si los controles ya están inicializados, prellenar el campo de código
             if (textBox2 != null)
                 textBox2.Text = codigo;
+            _loginServicio = loginServicio;
         }
 
     }

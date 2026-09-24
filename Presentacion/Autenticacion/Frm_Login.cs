@@ -119,8 +119,14 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form_recuperacion Form = new Form_recuperacion();
-            Form.Show();
+            if (_loginServicio is null)
+            {
+                MessageBox.Show("El servicio de recuperación no está configurado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            new Form_recuperacion(_loginServicio, _autenticacionUsuario).Show();
+            Hide();
         }
     }
 }

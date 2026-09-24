@@ -19,16 +19,17 @@ namespace Nk_Colletion_New
                 .UseNpgsql(
                     "Host=localhost;" +
                     "Port=5432;" +
-                    "Database=NK_STYLE_POINT;" +
+                    "Database=NK_ARI;" +
                     "Username=postgres;" +
-                    "Password=131007"
+                    "Password=061123"
                 )
                 .Options;
 
             var autenticacionUsuario = new AutenticacionUsuario(options);
+            var loginServicio = new LoginServicio(options);
 
             Application.Run(
-                new Frm_Login(autenticacionUsuario)
+                new Frm_Login(autenticacionUsuario, loginServicio)
             );
         }
     }

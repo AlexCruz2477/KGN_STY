@@ -45,22 +45,20 @@ namespace Nk_Colletion_New.Negocios.Autenticacion
 
             // Enviar el correo. Si falla, revertir el token y devolver false.
             if (EnviarCorreo(correoNormalizado, codigo))
-            {
-                usuario.TokenRecuperacion = null;
-                usuario.FechaHoraRecuperacion = null;
-                contexto.Usuarios.Update(usuario);
-                contexto.SaveChanges();
-                return false;
-            }
+                return true;
 
-            return true;
+            usuario.TokenRecuperacion = null;
+            usuario.FechaHoraRecuperacion = null;
+            contexto.Usuarios.Update(usuario);
+            contexto.SaveChanges();
+            return false;
         }
 
         public bool EnviarCorreo(string correoDestino, string codigo)
         {
             try
             {
-                string correoZoho = "nk_collection@gmail.com";
+                string correoZoho = "nk_collection@zohomail.com";
                 string contrasenaZoho = "MG4ihpbHWj7H";
 
                 using var smtp = new SmtpClient("smtp.zoho.com")
