@@ -19,11 +19,15 @@ namespace Nk_Colletion_New
                 .UseNpgsql(
                     "Host=localhost;" +
                     "Port=5432;" +
-                    "Database=NK_ARI;" +
+                    "Database=NK_STYLE_POINT;" +
                     "Username=postgres;" +
-                    "Password=061123"
+                    "Password=131007"
                 )
                 .Options;
+
+            // Store options globally so WinForms constructors that rely on AppConfig.DbOptions
+            // receive the same configured DbContextOptions (provider, connection string).
+            Nk_Colletion_New.Datos.AppConfig.DbOptions = options;
 
             var autenticacionUsuario = new AutenticacionUsuario(options);
             var loginServicio = new LoginServicio(options);

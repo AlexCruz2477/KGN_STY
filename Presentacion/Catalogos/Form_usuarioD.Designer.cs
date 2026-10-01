@@ -1,6 +1,6 @@
-﻿namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New.Presentacion.Catalogos
 {
-    partial class Form_usuarios
+    partial class Form_usuarioD
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_usuarios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_usuarioD));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -64,11 +64,11 @@
             label1 = new Label();
             guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             label9 = new Label();
-            cmbEstado = new Guna.UI2.WinForms.Guna2ComboBox();
+            cmbestado = new Guna.UI2.WinForms.Guna2ComboBox();
             cmbRol = new Guna.UI2.WinForms.Guna2ComboBox();
             label10 = new Label();
             btn_limpiar = new Guna.UI2.WinForms.Guna2Button();
-            btnGuardar = new Guna.UI2.WinForms.Guna2Button();
+            btn_guardar = new Guna.UI2.WinForms.Guna2Button();
             label8 = new Label();
             label11 = new Label();
             label7 = new Label();
@@ -77,19 +77,19 @@
             label5 = new Label();
             label4 = new Label();
             dtpFecha = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            txtcedula = new Guna.UI2.WinForms.Guna2TextBox();
-            txtapellido = new Guna.UI2.WinForms.Guna2TextBox();
+            txtcorreo = new Guna.UI2.WinForms.Guna2TextBox();
             txtusuario = new Guna.UI2.WinForms.Guna2TextBox();
+            txtapellido = new Guna.UI2.WinForms.Guna2TextBox();
+            txtcedula = new Guna.UI2.WinForms.Guna2TextBox();
             txtcontrasena = new Guna.UI2.WinForms.Guna2TextBox();
             txtnombre = new Guna.UI2.WinForms.Guna2TextBox();
             pictureBox1 = new PictureBox();
             label3 = new Label();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
+            panel2 = new Panel();
             panel1 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
-            panel2 = new Panel();
             guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
@@ -109,12 +109,12 @@
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.CustomizableEdges = customizableEdges3;
             guna2Panel1.FillColor = Color.White;
-            guna2Panel1.Location = new Point(24, 18);
+            guna2Panel1.Location = new Point(13, 14);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Panel1.Size = new Size(1124, 90);
-            guna2Panel1.TabIndex = 31;
+            guna2Panel1.TabIndex = 32;
             // 
             // guna2CircleButton2
             // 
@@ -202,11 +202,11 @@
             // 
             guna2ShadowPanel1.BackColor = Color.Transparent;
             guna2ShadowPanel1.Controls.Add(label9);
-            guna2ShadowPanel1.Controls.Add(cmbEstado);
+            guna2ShadowPanel1.Controls.Add(cmbestado);
             guna2ShadowPanel1.Controls.Add(cmbRol);
             guna2ShadowPanel1.Controls.Add(label10);
             guna2ShadowPanel1.Controls.Add(btn_limpiar);
-            guna2ShadowPanel1.Controls.Add(btnGuardar);
+            guna2ShadowPanel1.Controls.Add(btn_guardar);
             guna2ShadowPanel1.Controls.Add(label8);
             guna2ShadowPanel1.Controls.Add(label11);
             guna2ShadowPanel1.Controls.Add(label7);
@@ -215,10 +215,10 @@
             guna2ShadowPanel1.Controls.Add(label5);
             guna2ShadowPanel1.Controls.Add(label4);
             guna2ShadowPanel1.Controls.Add(dtpFecha);
-            guna2ShadowPanel1.Controls.Add(guna2TextBox1);
-            guna2ShadowPanel1.Controls.Add(txtcedula);
-            guna2ShadowPanel1.Controls.Add(txtapellido);
+            guna2ShadowPanel1.Controls.Add(txtcorreo);
             guna2ShadowPanel1.Controls.Add(txtusuario);
+            guna2ShadowPanel1.Controls.Add(txtapellido);
+            guna2ShadowPanel1.Controls.Add(txtcedula);
             guna2ShadowPanel1.Controls.Add(txtcontrasena);
             guna2ShadowPanel1.Controls.Add(txtnombre);
             guna2ShadowPanel1.Controls.Add(pictureBox1);
@@ -226,7 +226,7 @@
             guna2ShadowPanel1.Controls.Add(guna2Separator2);
             guna2ShadowPanel1.FillColor = Color.White;
             guna2ShadowPanel1.ForeColor = Color.FromArgb(110, 18, 32);
-            guna2ShadowPanel1.Location = new Point(24, 118);
+            guna2ShadowPanel1.Location = new Point(13, 107);
             guna2ShadowPanel1.Margin = new Padding(4, 5, 4, 5);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             guna2ShadowPanel1.Radius = 12;
@@ -234,38 +234,39 @@
             guna2ShadowPanel1.ShadowDepth = 20;
             guna2ShadowPanel1.ShadowShift = 3;
             guna2ShadowPanel1.Size = new Size(1124, 385);
-            guna2ShadowPanel1.TabIndex = 32;
+            guna2ShadowPanel1.TabIndex = 33;
+            guna2ShadowPanel1.Paint += guna2ShadowPanel1_Paint;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("PMingLiU-ExtB", 10F);
-            label9.Location = new Point(732, 248);
+            label9.Location = new Point(759, 248);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(63, 20);
             label9.TabIndex = 52;
             label9.Text = "Estado:";
             // 
-            // cmbEstado
+            // cmbestado
             // 
-            cmbEstado.BackColor = Color.Transparent;
-            cmbEstado.BorderRadius = 8;
-            cmbEstado.CustomizableEdges = customizableEdges5;
-            cmbEstado.DrawMode = DrawMode.OwnerDrawFixed;
-            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEstado.FocusedColor = Color.FromArgb(94, 148, 255);
-            cmbEstado.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cmbEstado.Font = new Font("Segoe UI", 10F);
-            cmbEstado.ForeColor = Color.FromArgb(68, 88, 112);
-            cmbEstado.ItemHeight = 30;
-            cmbEstado.Location = new Point(803, 248);
-            cmbEstado.Margin = new Padding(4, 5, 4, 5);
-            cmbEstado.Name = "cmbEstado";
-            cmbEstado.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            cmbEstado.Size = new Size(197, 36);
-            cmbEstado.TabIndex = 51;
-            cmbEstado.SelectedIndexChanged += cmbEstado_SelectedIndexChanged;
+            cmbestado.BackColor = Color.Transparent;
+            cmbestado.BorderRadius = 8;
+            cmbestado.CustomizableEdges = customizableEdges5;
+            cmbestado.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbestado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbestado.FocusedColor = Color.FromArgb(94, 148, 255);
+            cmbestado.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cmbestado.Font = new Font("Segoe UI", 10F);
+            cmbestado.ForeColor = Color.FromArgb(68, 88, 112);
+            cmbestado.ItemHeight = 30;
+            cmbestado.Location = new Point(830, 248);
+            cmbestado.Margin = new Padding(4, 5, 4, 5);
+            cmbestado.Name = "cmbestado";
+            cmbestado.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            cmbestado.Size = new Size(197, 36);
+            cmbestado.TabIndex = 51;
+            cmbestado.SelectedIndexChanged += cmb_estado_SelectedIndexChanged;
             // 
             // cmbRol
             // 
@@ -321,27 +322,27 @@
             btn_limpiar.Text = "Cancelar";
             btn_limpiar.Click += btn_limpiar_Click;
             // 
-            // btnGuardar
+            // btn_guardar
             // 
-            btnGuardar.BorderColor = Color.White;
-            btnGuardar.BorderRadius = 8;
-            btnGuardar.CustomizableEdges = customizableEdges11;
-            btnGuardar.DisabledState.BorderColor = Color.DarkGray;
-            btnGuardar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnGuardar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnGuardar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnGuardar.FillColor = Color.FromArgb(110, 18, 32);
-            btnGuardar.Font = new Font("Segoe UI", 9F);
-            btnGuardar.ForeColor = Color.White;
-            btnGuardar.Image = Properties.Resources.icons8_guardar_24__1_;
-            btnGuardar.Location = new Point(39, 329);
-            btnGuardar.Margin = new Padding(4, 5, 4, 5);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnGuardar.Size = new Size(150, 38);
-            btnGuardar.TabIndex = 47;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.Click += btn_guardar_Click;
+            btn_guardar.BorderColor = Color.White;
+            btn_guardar.BorderRadius = 8;
+            btn_guardar.CustomizableEdges = customizableEdges11;
+            btn_guardar.DisabledState.BorderColor = Color.DarkGray;
+            btn_guardar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_guardar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_guardar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_guardar.FillColor = Color.FromArgb(110, 18, 32);
+            btn_guardar.Font = new Font("Segoe UI", 9F);
+            btn_guardar.ForeColor = Color.White;
+            btn_guardar.Image = Properties.Resources.icons8_guardar_24__1_;
+            btn_guardar.Location = new Point(39, 329);
+            btn_guardar.Margin = new Padding(4, 5, 4, 5);
+            btn_guardar.Name = "btn_guardar";
+            btn_guardar.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btn_guardar.Size = new Size(150, 38);
+            btn_guardar.TabIndex = 47;
+            btn_guardar.Text = "Guardar";
+            btn_guardar.Click += btn_guardar_Click;
             // 
             // label8
             // 
@@ -358,29 +359,29 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("PMingLiU-ExtB", 10F);
-            label11.Location = new Point(803, 57);
+            label11.Location = new Point(14, 147);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(66, 20);
+            label11.Size = new Size(72, 20);
             label11.TabIndex = 44;
-            label11.Text = "Cedula:";
+            label11.Text = "Usuario:";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 10F);
-            label7.Location = new Point(18, 137);
+            label7.Location = new Point(793, 55);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(72, 20);
+            label7.Size = new Size(66, 20);
             label7.TabIndex = 44;
-            label7.Text = "Usuario:";
+            label7.Text = "Cedula:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("PMingLiU-ExtB", 10F);
-            label6.Location = new Point(511, 304);
+            label6.Location = new Point(455, 302);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(57, 20);
@@ -391,7 +392,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("PMingLiU-ExtB", 10F);
-            label12.Location = new Point(22, 235);
+            label12.Location = new Point(14, 234);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(153, 20);
@@ -402,7 +403,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("PMingLiU-ExtB", 10F);
-            label5.Location = new Point(415, 57);
+            label5.Location = new Point(415, 39);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(78, 20);
@@ -428,7 +429,7 @@
             dtpFecha.FillColor = Color.White;
             dtpFecha.Font = new Font("Segoe UI", 9F);
             dtpFecha.Format = DateTimePickerFormat.Long;
-            dtpFecha.Location = new Point(511, 329);
+            dtpFecha.Location = new Point(455, 327);
             dtpFecha.Margin = new Padding(4, 5, 4, 5);
             dtpFecha.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpFecha.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -438,49 +439,50 @@
             dtpFecha.TabIndex = 39;
             dtpFecha.Value = new DateTime(2026, 7, 9, 19, 23, 26, 643);
             // 
-            // guna2TextBox1
+            // txtcorreo
             // 
-            guna2TextBox1.BorderColor = Color.FromArgb(216, 216, 216);
-            guna2TextBox1.BorderRadius = 8;
-            guna2TextBox1.CustomizableEdges = customizableEdges15;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(26, 263);
-            guna2TextBox1.Margin = new Padding(6, 8, 6, 8);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "Ingrese su correo electrónico";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2TextBox1.Size = new Size(363, 42);
-            guna2TextBox1.TabIndex = 38;
+            txtcorreo.BorderColor = Color.FromArgb(216, 216, 216);
+            txtcorreo.BorderRadius = 8;
+            txtcorreo.CustomizableEdges = customizableEdges15;
+            txtcorreo.DefaultText = "";
+            txtcorreo.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtcorreo.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtcorreo.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtcorreo.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtcorreo.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtcorreo.Font = new Font("Segoe UI", 9F);
+            txtcorreo.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtcorreo.Location = new Point(18, 262);
+            txtcorreo.Margin = new Padding(6, 8, 6, 8);
+            txtcorreo.Name = "txtcorreo";
+            txtcorreo.PlaceholderText = "Ingrese su correo electrónico";
+            txtcorreo.SelectedText = "";
+            txtcorreo.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtcorreo.Size = new Size(363, 42);
+            txtcorreo.TabIndex = 38;
             // 
-            // txtcedula
+            // txtusuario
             // 
-            txtcedula.BorderColor = Color.FromArgb(216, 216, 216);
-            txtcedula.BorderRadius = 8;
-            txtcedula.CustomizableEdges = customizableEdges17;
-            txtcedula.DefaultText = "";
-            txtcedula.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtcedula.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtcedula.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtcedula.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtcedula.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtcedula.Font = new Font("Segoe UI", 9F);
-            txtcedula.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtcedula.Location = new Point(807, 85);
-            txtcedula.Margin = new Padding(6, 8, 6, 8);
-            txtcedula.Name = "txtcedula";
-            txtcedula.PlaceholderText = "Ingrese cedula";
-            txtcedula.SelectedText = "";
-            txtcedula.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtcedula.Size = new Size(269, 42);
-            txtcedula.TabIndex = 37;
+            txtusuario.BorderColor = Color.FromArgb(216, 216, 216);
+            txtusuario.BorderRadius = 8;
+            txtusuario.CustomizableEdges = customizableEdges17;
+            txtusuario.DefaultText = "";
+            txtusuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtusuario.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtusuario.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtusuario.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtusuario.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtusuario.Font = new Font("Segoe UI", 9F);
+            txtusuario.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtusuario.Location = new Point(18, 175);
+            txtusuario.Margin = new Padding(6, 8, 6, 8);
+            txtusuario.Name = "txtusuario";
+            txtusuario.PlaceholderText = "Ingrese usuario";
+            txtusuario.SelectedText = "";
+            txtusuario.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtusuario.Size = new Size(343, 42);
+            txtusuario.TabIndex = 37;
+            txtusuario.TextChanged += txt_usuario_TextChanged;
             // 
             // txtapellido
             // 
@@ -495,7 +497,7 @@
             txtapellido.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtapellido.Font = new Font("Segoe UI", 9F);
             txtapellido.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtapellido.Location = new Point(419, 85);
+            txtapellido.Location = new Point(419, 67);
             txtapellido.Margin = new Padding(6, 8, 6, 8);
             txtapellido.Name = "txtapellido";
             txtapellido.PlaceholderText = "Ingrese su apellido";
@@ -504,27 +506,28 @@
             txtapellido.Size = new Size(363, 42);
             txtapellido.TabIndex = 38;
             // 
-            // txtusuario
+            // txtcedula
             // 
-            txtusuario.BorderColor = Color.FromArgb(216, 216, 216);
-            txtusuario.BorderRadius = 8;
-            txtusuario.CustomizableEdges = customizableEdges21;
-            txtusuario.DefaultText = "";
-            txtusuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtusuario.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtusuario.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtusuario.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtusuario.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtusuario.Font = new Font("Segoe UI", 9F);
-            txtusuario.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtusuario.Location = new Point(22, 165);
-            txtusuario.Margin = new Padding(6, 8, 6, 8);
-            txtusuario.Name = "txtusuario";
-            txtusuario.PlaceholderText = "Ingrese usuario";
-            txtusuario.SelectedText = "";
-            txtusuario.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            txtusuario.Size = new Size(343, 42);
-            txtusuario.TabIndex = 37;
+            txtcedula.BorderColor = Color.FromArgb(216, 216, 216);
+            txtcedula.BorderRadius = 8;
+            txtcedula.CustomizableEdges = customizableEdges21;
+            txtcedula.DefaultText = "";
+            txtcedula.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtcedula.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtcedula.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtcedula.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtcedula.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtcedula.Font = new Font("Segoe UI", 9F);
+            txtcedula.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtcedula.Location = new Point(797, 83);
+            txtcedula.Margin = new Padding(6, 8, 6, 8);
+            txtcedula.Name = "txtcedula";
+            txtcedula.PlaceholderText = "Ingrese Cedula";
+            txtcedula.SelectedText = "";
+            txtcedula.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            txtcedula.Size = new Size(307, 42);
+            txtcedula.TabIndex = 37;
+            txtcedula.TextChanged += txt_usuario_TextChanged;
             // 
             // txtcontrasena
             // 
@@ -564,7 +567,7 @@
             txtnombre.Location = new Point(13, 85);
             txtnombre.Margin = new Padding(6, 8, 6, 8);
             txtnombre.Name = "txtnombre";
-            txtnombre.PlaceholderText = "Ingrese el nombre";
+            txtnombre.PlaceholderText = "Ingrese el nombre ";
             txtnombre.SelectedText = "";
             txtnombre.ShadowDecoration.CustomizableEdges = customizableEdges26;
             txtnombre.Size = new Size(343, 42);
@@ -586,9 +589,9 @@
             label3.Location = new Point(51, 16);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(129, 25);
+            label3.Size = new Size(124, 25);
             label3.TabIndex = 33;
-            label3.Text = "Nuevo Usuario";
+            label3.Text = "Datos Usuario";
             // 
             // guna2Separator2
             // 
@@ -599,14 +602,23 @@
             guna2Separator2.Size = new Size(1340, 3);
             guna2Separator2.TabIndex = 32;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(64, 0, 0);
+            panel2.Dock = DockStyle.Right;
+            panel2.Location = new Point(1147, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 511);
+            panel2.TabIndex = 159;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(64, 0, 0);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1179, 10);
-            panel1.TabIndex = 153;
+            panel1.Size = new Size(1147, 10);
+            panel1.TabIndex = 160;
             // 
             // panel3
             // 
@@ -614,42 +626,33 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 10);
             panel3.Name = "panel3";
-            panel3.Size = new Size(10, 526);
-            panel3.TabIndex = 155;
+            panel3.Size = new Size(10, 501);
+            panel3.TabIndex = 161;
             // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(64, 0, 0);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(10, 526);
+            panel4.Location = new Point(10, 501);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1169, 10);
-            panel4.TabIndex = 157;
+            panel4.Size = new Size(1137, 10);
+            panel4.TabIndex = 162;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(64, 0, 0);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1169, 10);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(10, 516);
-            panel2.TabIndex = 158;
-            // 
-            // Form_usuarios
+            // Form_usuarioD
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1179, 536);
-            Controls.Add(panel2);
+            ClientSize = new Size(1157, 511);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Controls.Add(guna2ShadowPanel1);
             Controls.Add(guna2Panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Form_usuarios";
-            Text = "Form_usuarios";
-            Load += Form_usuarios_Load;
+            Name = "Form_usuarioD";
+            Text = "Form_usuarioD";
+            Load += Form_usuarioD_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -663,14 +666,19 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
+        private PictureBox pictureBox3;
+        private Label label13;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Label label2;
         private Label label1;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private Label label9;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbestado;
         private Guna.UI2.WinForms.Guna2ComboBox cmbRol;
         private Label label10;
         private Guna.UI2.WinForms.Guna2Button btn_limpiar;
-        private Guna.UI2.WinForms.Guna2Button btnGuardar;
+        private Guna.UI2.WinForms.Guna2Button btn_guardar;
         private Label label8;
         private Label label7;
         private Label label6;
@@ -678,24 +686,19 @@
         private Label label4;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpFecha;
         private Guna.UI2.WinForms.Guna2TextBox txtapellido;
-        private Guna.UI2.WinForms.Guna2TextBox txtusuario;
+        private Guna.UI2.WinForms.Guna2TextBox txtcedula;
         private Guna.UI2.WinForms.Guna2TextBox txtcontrasena;
         private Guna.UI2.WinForms.Guna2TextBox txtnombre;
         private PictureBox pictureBox1;
         private Label label3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Label label9;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbEstado;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
-        private PictureBox pictureBox3;
-        private Label label13;
+        private Panel panel2;
         private Panel panel1;
         private Panel panel3;
         private Panel panel4;
-        private Panel panel2;
         private Label label11;
+        private Guna.UI2.WinForms.Guna2TextBox txtusuario;
         private Label label12;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2TextBox txtcedula;
+        private Guna.UI2.WinForms.Guna2TextBox txtcorreo;
     }
 }

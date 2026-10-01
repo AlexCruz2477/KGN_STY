@@ -153,7 +153,7 @@ namespace Nk_Colletion_New.Negocios.Catalogos
                 );
         }
 
-        // EDITAR USUARIO
+        //Editar usuario
         public async Task EditarAsync(
             int idUsuario,
             int idRol,
@@ -162,6 +162,7 @@ namespace Nk_Colletion_New.Negocios.Catalogos
             string apellido,
             string nombreUsuario,
             string? correo,
+            bool estado,
             string? nuevaContrasena = null)
         {
             if (idUsuario <= 0)
@@ -185,9 +186,7 @@ namespace Nk_Colletion_New.Negocios.Catalogos
             await using var contexto = new NkCollectionContext(_options);
 
             var usuario = await contexto.Usuarios
-                .FirstOrDefaultAsync(u =>
-                    u.IdUsuario == idUsuario
-                );
+                .FirstOrDefaultAsync(u => u.IdUsuario == idUsuario);
 
             if (usuario == null)
                 throw new Exception("El usuario no existe.");
@@ -245,14 +244,14 @@ namespace Nk_Colletion_New.Negocios.Catalogos
                 ? null
                 : correo.Trim().ToLower();
 
+            usuario.Estado = estado;
+
+            // Si la contraseña está vacía, se conserva la actual.
             if (!string.IsNullOrWhiteSpace(nuevaContrasena))
             {
                 if (nuevaContrasena.Length < 6)
-                {
                     throw new Exception(
-                        "La contraseña debe tener al menos 6 caracteres."
-                    );
-                }
+                        "La contraseña debe tener al menos 6 caracteres.");
 
                 usuario.Contrasena =
                     ContrasenaHelper.CrearHash(nuevaContrasena);
@@ -261,42 +260,6 @@ namespace Nk_Colletion_New.Negocios.Catalogos
             await contexto.SaveChangesAsync();
         }
 
-        // CAMBIAR ESTADO
-        public async Task CambiarEstadoAsync(
-            int idUsuario,
-            bool estado)
-        {
-            await using var contexto = new NkCollectionContext(_options);
-
-            var usuario = await contexto.Usuarios
-                .FirstOrDefaultAsync(u =>
-                    u.IdUsuario == idUsuario
-                );
-
-            if (usuario == null)
-                throw new Exception("El usuario no existe.");
-
-            usuario.Estado = estado;
-
-            await contexto.SaveChangesAsync();
-        }
-        // DESACTIVAR USUARIO
-        public async Task DesactivarAsync(int idUsuario)
-        {
-            await CambiarEstadoAsync(
-                idUsuario,
-                false
-            );
-        }
-
-        // ACTIVAR USUARIO
-        public async Task ActivarAsync(int idUsuario)
-        {
-            await CambiarEstadoAsync(
-                idUsuario,
-                true
-            );
-        }
         // LISTAR ROLES
         public async Task<List<Rol>> ListarRolesAsync()
         {

@@ -129,7 +129,7 @@ namespace Nk_Colletion_New
 
         private void btn_clientes_Click_1(object sender, EventArgs e)
         {
-
+            AbrirFormularioEnPanel(new Form_clientes());
         }
 
         private void btn_usuarios_Click(object sender, EventArgs e)
