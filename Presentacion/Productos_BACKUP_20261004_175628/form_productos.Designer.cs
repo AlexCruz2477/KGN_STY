@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class form_Productos
     {
@@ -182,7 +182,8 @@ namespace Nk_Colletion_New
             grpRegistrar.TabIndex = 7;
             grpRegistrar.TabStop = false;
             grpRegistrar.Text = "Registrar producto";
-// 
+            grpRegistrar.Enter += grpRegistrar_Enter;
+            // 
             // txtNombreProducto
             // 
             txtNombreProducto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;

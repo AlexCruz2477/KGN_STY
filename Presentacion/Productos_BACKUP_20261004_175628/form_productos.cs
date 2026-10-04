@@ -1,4 +1,4 @@
-using Npgsql;
+﻿using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,10 +40,6 @@ namespace Nk_Colletion_New
         public form_Productos()
         {
             InitializeComponent();
-            // AUTO_FIX_PRODUCTOS
-            button1.Click += btnAgregarVariantesExistente_Click;
-            dgvProductos.SelectionChanged += dgvResumen_SelectionChanged;
-            dgvProductos.CellDoubleClick += dgvResumen_CellDoubleClick;
 
             if (System.ComponentModel.LicenseManager.UsageMode != System.ComponentModel.LicenseUsageMode.Designtime)
             {
@@ -380,9 +376,9 @@ namespace Nk_Colletion_New
             cmbCategoria.Enabled = true;
             cmbMarca.Enabled = true;
 
-            grpRegistrar.Text = "Registrar producto";
-            lblSubtitle.Text = "Completa los datos del producto y define su primera combinación de talla y color.";
-            grpVariante.Text = "Variante inicial del producto";
+            lblRegistrar.Text = "Registrar producto";
+            lblRegistrarAyuda.Text = "Completa los datos del producto y define su primera combinación de talla y color.";
+            lblVariante.Text = "Variante inicial del producto";
 
             btnGuardarProducto.Visible = true;
             btnGuardarProducto.Enabled = true;
@@ -468,10 +464,10 @@ namespace Nk_Colletion_New
                 cmbCategoria.Enabled = false;
                 cmbMarca.Enabled = false;
 
-                grpRegistrar.Text = $"Agregar variantes al producto #{producto.IdProducto}";
-                lblSubtitle.Text = $"Producto: {producto.NombreProducto}. Selecciona talla, color, stock y precios.";
+                lblRegistrar.Text = $"Agregar variantes al producto #{producto.IdProducto}";
+                lblRegistrarAyuda.Text = $"Producto: {producto.NombreProducto}. Selecciona talla, color, stock y precios.";
 
-                grpVariante.Text = "Nueva variante del producto";
+                lblVariante.Text = "Nueva variante del producto";
 
                 btnGuardarProducto.Visible = false;
                 btnAgregarVariante.Visible = true;
@@ -494,11 +490,11 @@ namespace Nk_Colletion_New
             cmbTalla.SelectedIndex = -1;
             cmbColor.SelectedIndex = -1;
 
-            numStock.Value = 0;
-            numStockMin.Value = 0;
+            nudStock.Value = 0;
+            nudStockMinimo.Value = 0;
 
-            numPrecioCompra.Value = 0;
-            numPrecioVenta.Value = 0;
+            nudPrecioCompra.Value = 0;
+            nudPrecioVenta.Value = 0;
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
@@ -537,7 +533,7 @@ namespace Nk_Colletion_New
         {
             NavegacionPanel.Abrir(
                 this,
-                new Nk_Colletion_New.form_Listado_Producto()
+                new Frm_producto_listado(this)
             );
         }
 
@@ -557,12 +553,12 @@ namespace Nk_Colletion_New
 
         private void dgvResumen_SelectionChanged(object sender, EventArgs e)
         {
-            button1.Enabled = dgvProductos.SelectedRows.Count > 0;
+            btnAgregarVariantesExistente.Enabled = dgvResumen.SelectedRows.Count > 0;
         }
 
         private async void btnAgregarVariantesExistente_Click(object sender, EventArgs e)
         {
-            if (dgvProductos.SelectedRows.Count == 0)
+            if (dgvResumen.SelectedRows.Count == 0)
             {
                 MessageBox.Show(
                     "Seleccione un producto.",
@@ -574,7 +570,7 @@ namespace Nk_Colletion_New
                 return;
             }
 
-            int idProducto = Convert.ToInt32(dgvProductos.SelectedRows[0].Cells[0].Value);
+            int idProducto = Convert.ToInt32(dgvResumen.SelectedRows[0].Cells[0].Value);
 
             await ActivarModoAgregarVariantesAsync(idProducto);
         }
@@ -586,7 +582,7 @@ namespace Nk_Colletion_New
                 return;
             }
 
-            int idProducto = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells[0].Value);
+            int idProducto = Convert.ToInt32(dgvResumen.Rows[e.RowIndex].Cells[0].Value);
 
             await ActivarModoAgregarVariantesAsync(idProducto);
         }
