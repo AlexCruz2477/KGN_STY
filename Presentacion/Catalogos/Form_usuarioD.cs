@@ -94,6 +94,42 @@ namespace Nk_Colletion_New.Presentacion.Catalogos
                 return false;
             }
 
+            // Validaciones adicionales usando helper
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidCedula(txtcedula.Text))
+            {
+                MessageBox.Show("La cédula debe contener sólo dígitos (6-15).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtcedula.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtnombre.Text))
+            {
+                MessageBox.Show("Ingrese un nombre válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtnombre.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtapellido.Text))
+            {
+                MessageBox.Show("Ingrese un apellido válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtapellido.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidUsername(txtusuario.Text))
+            {
+                MessageBox.Show("El nombre de usuario sólo puede contener letras, números, guion bajo o punto (4-30).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtusuario.Focus();
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtcorreo.Text) && !Nk_Colletion_New.Helpers.FormValidators.IsValidEmail(txtcorreo.Text))
+            {
+                MessageBox.Show("Ingrese un correo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtcorreo.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -123,7 +159,8 @@ namespace Nk_Colletion_New.Presentacion.Catalogos
                 txtnombre.Text = usuario.Nombre;
                 txtapellido.Text = usuario.Apellido;
                 txtusuario.Text = usuario.Usuario1;
-                txtapellido.Text = usuario.Correo ?? string.Empty;
+                // correo debe ir al control txtcorreo (no a txtapellido)
+                txtcorreo.Text = usuario.Correo ?? string.Empty;
 
                 cmbRol.SelectedValue = usuario.IdRol;
 

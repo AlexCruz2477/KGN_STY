@@ -41,14 +41,6 @@ namespace Nk_Colletion_New
         private async void Form_clientes_Load(object sender, EventArgs e)
         {
             await CargarClientesAsync();
-
-            // Inicializar combo de búsqueda (permitir texto libre)
-            CBbuscarpor.Items.Clear();
-            CBbuscarpor.Items.Add("Nombre");
-            CBbuscarpor.Items.Add("Apellido");
-            CBbuscarpor.Items.Add("Cédula");
-            CBbuscarpor.Items.Add("Correo");
-            CBbuscarpor.SelectedIndex = -1;
         }
 
         private async Task CargarClientesAsync()
@@ -187,7 +179,7 @@ namespace Nk_Colletion_New
         {
             try
             {
-                string texto = CBbuscarpor.Text.Trim();
+                string texto = txtbuscar.Text.Trim();
 
                 var clientes = await _clienteService.BuscarAsync(texto);
 

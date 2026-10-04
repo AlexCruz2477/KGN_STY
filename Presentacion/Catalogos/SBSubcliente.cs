@@ -64,22 +64,22 @@ namespace Nk_Colletion_New
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtnombre.Text))
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtnombre.Text))
             {
-                MessageBox.Show("Ingrese el nombre.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese un nombre válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtnombre.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtapellido.Text))
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtapellido.Text))
             {
-                MessageBox.Show("Ingrese el apellido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese un apellido válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtapellido.Focus();
                 return false;
             }
 
-            // Si hay correo, validar formato básico
-            if (!string.IsNullOrWhiteSpace(txtcorreo.Text) && !txtcorreo.Text.Contains("@"))
+            // Si hay correo, validar formato
+            if (!string.IsNullOrWhiteSpace(txtcorreo.Text) && !Nk_Colletion_New.Helpers.FormValidators.IsValidEmail(txtcorreo.Text))
             {
                 MessageBox.Show("Ingrese un correo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtcorreo.Focus();

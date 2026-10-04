@@ -72,28 +72,25 @@ namespace Nk_Colletion_New
         private bool ValidarFormulario()
         {
             // Cédula obligatorio al crear cliente
-            if (string.IsNullOrWhiteSpace(guna2TextBox6.Text))
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidCedula(guna2TextBox6.Text))
             {
-                MessageBox.Show("Ingrese la cédula.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese una cédula válida (sólo números, 6-15 dígitos).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 guna2TextBox6.Focus();
                 return false;
             }
 
             // Nombre completo (puede contener apellido). Si sólo se escribe un nombre
             // intentamos obtener apellido desde un control llamado "txtapellido" si existe.
-            var fullName = txtnombre.Text?.Trim() ?? string.Empty;
-            if (string.IsNullOrWhiteSpace(fullName))
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtnombre.Text))
             {
-                MessageBox.Show("Ingrese el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese un nombre válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtnombre.Focus();
                 return false;
             }
 
-            var parts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            // El apellido debe estar en el control txtapellido
-            if (string.IsNullOrWhiteSpace(txtapellido.Text))
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtapellido.Text))
             {
-                MessageBox.Show("Ingrese el apellido del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese un apellido válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtapellido.Focus();
                 return false;
             }

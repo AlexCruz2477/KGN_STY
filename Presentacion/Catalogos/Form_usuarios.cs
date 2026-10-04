@@ -99,6 +99,42 @@ namespace Nk_Colletion_New
                 return false;
             }
 
+            // Validaciones adicionales usando helpers
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidCedula(txtcedula.Text))
+            {
+                MessageBox.Show("La cédula debe contener sólo dígitos (6-15).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtcedula.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtnombre.Text))
+            {
+                MessageBox.Show("Ingrese un nombre válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtnombre.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidName(txtapellido.Text))
+            {
+                MessageBox.Show("Ingrese un apellido válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtapellido.Focus();
+                return false;
+            }
+
+            if (!Nk_Colletion_New.Helpers.FormValidators.IsValidUsername(txtusuario.Text))
+            {
+                MessageBox.Show("El nombre de usuario sólo puede contener letras, números, guion bajo o punto (4-30).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtusuario.Focus();
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(guna2TextBox1.Text) && !Nk_Colletion_New.Helpers.FormValidators.IsValidEmail(guna2TextBox1.Text))
+            {
+                MessageBox.Show("Ingrese un correo válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                guna2TextBox1.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -153,9 +189,9 @@ namespace Nk_Colletion_New
                 string nombreUsuario = txtusuario.Text.Trim();
                 string contrasena = txtcontrasena.Text;
 
-                string? correo = string.IsNullOrWhiteSpace(txtapellido.Text)
+                string? correo = string.IsNullOrWhiteSpace(guna2TextBox1.Text)
                     ? null
-                    : txtapellido.Text.Trim();
+                    : guna2TextBox1.Text.Trim().ToLower();
                 await _usuarioService.GuardarAsync(
                     idRol,
                     cedula,

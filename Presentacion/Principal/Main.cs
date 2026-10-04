@@ -119,12 +119,11 @@ namespace Nk_Colletion_New
 
         private void btnproductos_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new Form_productos());
+            AbrirFormularioEnPanel(new form_Listado_Producto());
         }
 
         private void btncategoria_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new form_categoria());
         }
 
         private void btn_clientes_Click_1(object sender, EventArgs e)

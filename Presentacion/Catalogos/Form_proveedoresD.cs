@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Nk_Colletion_New
+namespace Nk_Colletion_New.Presentacion.Catalogos
 {
-    public partial class form_categoria : Form
+    public partial class Form_proveedoresD : Form
     {
-        public form_categoria()
+        public Form_proveedoresD()
         {
             InitializeComponent();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form4_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
