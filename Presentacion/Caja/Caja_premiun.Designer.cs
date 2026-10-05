@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New
+namespace Nk_Colletion_New
 {
     partial class Caja_premiun
     {

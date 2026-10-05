@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +12,16 @@ namespace Nk_Colletion_New
 {
     public partial class Main : Form
     {
-        public Main()
+        private readonly int _idUsuario;
+
+        public Main() : this(0)
+        {
+        }
+
+        public Main(int idUsuario)
         {
             InitializeComponent();
+            _idUsuario = idUsuario;
         }
 
 
@@ -39,7 +46,7 @@ namespace Nk_Colletion_New
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new Form_ventas());
+            AbrirFormularioEnPanel(new Form_ventas(_idUsuario));
         }
 
         private void btn_Clientes_Click(object sender, EventArgs e)
@@ -54,7 +61,7 @@ namespace Nk_Colletion_New
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new Caja_premiun());
+            AbrirFormularioEnPanel(new Formapertura(_idUsuario));
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -109,17 +116,17 @@ namespace Nk_Colletion_New
 
         private void btnventas_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new Form_ventas());
+            AbrirFormularioEnPanel(new Form_ventas(_idUsuario));
         }
 
         private void btncompras_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new form_compras());
+            AbrirFormularioEnPanel(new form_compras(_idUsuario));
         }
 
         private void btnproductos_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanel(new form_Listado_Producto());
+            AbrirFormularioEnPanel(new Presentacion.Productos.Frm_producto());
         }
 
         private void btncategoria_Click(object sender, EventArgs e)

@@ -1,23 +1,13 @@
-using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
 using Nk_Colletion_New.Negocios.Metodos_Ordenamiento;
 using Nk_Colletion_New.Negocios.Servicios.Productos;
-using Nk_Colletion_New.Presentacion.Productos;
 
-namespace Nk_Colletion_New
+namespace Nk_Colletion_New.Presentacion.Productos
 {
-    public partial class form_Productos : Form
+    public partial class Frm_producto : Form
     {
+
         private readonly Producto_Service _productoService = new(AppConfig.DbOptions!);
 
         private readonly Categoria_Service _categoriaService = new(AppConfig.DbOptions!);
@@ -34,78 +24,29 @@ namespace Nk_Colletion_New
         {
             Interval = 250
         };
-
         private int? _idProductoParaVariantes;
 
-        public form_Productos()
+        public Frm_producto()
         {
             InitializeComponent();
-            // AUTO_FIX_PRODUCTOS
-            button1.Click += btnAgregarVariantesExistente_Click;
-            dgvProductos.SelectionChanged += dgvResumen_SelectionChanged;
-            dgvProductos.CellDoubleClick += dgvResumen_CellDoubleClick;
-
+            // El estilo dinámico solo se aplica al ejecutar. En el Designer se usan
+            // las propiedades ya guardadas en InitializeComponent para que sea editable.
             if (System.ComponentModel.LicenseManager.UsageMode != System.ComponentModel.LicenseUsageMode.Designtime)
             {
-            }
+}
 
-            // Configure order combo (guna2ComboBox3 in Designer)
-            guna2ComboBox3.Items.Clear();
-            guna2ComboBox3.Items.Add("A - Z");
-            guna2ComboBox3.Items.Add("Z - A");
-            guna2ComboBox3.SelectedIndex = 0;
-
-            // wire runtime events not set in Designer
-            guna2TextBox2.TextChanged += (_, _) =>
-            {
-                _timerBusqueda.Stop();
-                _timerBusqueda.Start();
-            };
-
-            guna2ComboBox3.SelectedIndexChanged += (_, _) =>
-            {
-                if (IsHandleCreated)
-                    AplicarBusquedaResumen();
-            };
-
-            dgvProductos.SelectionChanged += (_, _) => button1.Enabled = dgvProductos.SelectedRows.Count > 0;
-            dgvProductos.CellDoubleClick += async (_, e) =>
-            {
-                if (e.RowIndex < 0) return;
-                int idProducto = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells[0].Value);
-                await ActivarModoAgregarVariantesAsync(idProducto);
-            };
-
-            btnAgregarVariante.Click += btnAgregarVariante_Click;
-            btnGuardarProducto.Click += btnGuardarProducto_Click;
-            btnLimpiar.Click += btnLimpiar_Click;
-            btnNuevaCategoria.Click += btnCategorias_Click;
-            btnNuevaMarca.Click += btnMarcas_Click;
-            btnNuevaTalla.Click += btnTallas_Click;
-            btnNuevoColor.Click += btnColores_Click;
-            btnVerTodos.Click += btnVerTodos_Click;
-            button1.Click += async (_, _) =>
-            {
-                if (dgvProductos.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Seleccione un producto.", "Productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                int idProducto = Convert.ToInt32(dgvProductos.SelectedRows[0].Cells[0].Value);
-                await ActivarModoAgregarVariantesAsync(idProducto);
-            };
-
+            cmbOrdenResumen.Items.Clear();
+            cmbOrdenResumen.Items.AddRange(new object[] { "A - Z", "Z - A" });
+            cmbOrdenResumen.SelectedIndex = 0;
             _timerBusqueda.Tick += (_, _) =>
             {
                 _timerBusqueda.Stop();
                 AplicarBusquedaResumen();
             };
-
             ActivarModoNuevoProducto(false);
         }
 
-        private async void form_Productos_Load_1(object sender, EventArgs e)
+        private async void Frm_producto_Load(object sender, EventArgs e)
         {
             await RefrescarCatalogosAsync();
             await RecargarResumenAsync();
@@ -119,23 +60,20 @@ namespace Nk_Colletion_New
             var marcas = (await _marcaService.ListarAsync()).Where(x => x.Estado != false).ToList();
             var tallas = (await _tallaService.ListarAsync()).Where(x => x.Estado != false).ToList();
             var colores = (await _colorService.ListarAsync()).Where(x => x.Estado != false).ToList();
-
             ConfigurarCombo(cmbCategoria, categorias, "NombreCategoria", "IdCategoria");
             ConfigurarCombo(cmbMarca, marcas, "Nombre", "IdMarca");
             ConfigurarCombo(cmbTalla, tallas, "NombreTalla", "IdTalla");
             ConfigurarCombo(cmbColor, colores, "NombreColor", "IdColor");
         }
 
-        private static void ConfigurarCombo(System.Windows.Forms.ComboBox combo, object datos, string displayMember, string valueMember)
+        private static void ConfigurarCombo(ComboBox combo, object datos, string displayMember, string valueMember)
         {
             object? valorAnterior = combo.SelectedValue;
-
             combo.DataSource = null;
             combo.DisplayMember = displayMember;
             combo.ValueMember = valueMember;
             combo.DataSource = datos;
             combo.SelectedIndex = -1;
-
             if (valorAnterior == null)
             {
                 return;
@@ -151,7 +89,7 @@ namespace Nk_Colletion_New
             }
         }
 
-        private static int? ObtenerId(System.Windows.Forms.ComboBox combo)
+        private static int? ObtenerId(ComboBox combo)
         {
             if (combo.SelectedIndex < 0 || combo.SelectedValue == null)
             {
@@ -186,44 +124,22 @@ namespace Nk_Colletion_New
 
         private void AplicarBusquedaResumen()
         {
-            bool ascendente = guna2ComboBox3.SelectedIndex != 1;
-
+            bool ascendente = cmbOrdenResumen.SelectedIndex != 1;
             var productos = _arbolProductos.BuscarYFiltrar(
-                guna2TextBox2.Text,
-                producto => new[]
-                {
-                    producto.NombreProducto,
-                    producto.IdMarcaNavigation?.Nombre,
-                    producto.IdCategoriaNavigation?.NombreCategoria,
-                    producto.IdProducto.ToString()
-                },
+                txtBuscarResumen.Text,
+                producto => new[] { producto.NombreProducto, producto.IdMarcaNavigation?.Nombre, producto.IdCategoriaNavigation?.NombreCategoria, producto.IdProducto.ToString() },
                 ascendente: ascendente
             );
-
-            dgvProductos.Rows.Clear();
-
+            dgvResumen.Rows.Clear();
             foreach (var producto in productos)
             {
-                var variantes = producto.ProductoVariantes?.ToList() ?? new List<ProductoVariante>();
+                var variantes = producto.ProductoVariantes.ToList();
                 int cantidadVariantes = variantes.Count;
-
                 int stockTotal = variantes.Sum(v => v.StockActual);
-
-                decimal precioMinimo = cantidadVariantes == 0
-                    ? 0
-                    : variantes.Min(v => v.PrecioVenta);
-
-                decimal precioMaximo = cantidadVariantes == 0
-                    ? 0
-                    : variantes.Max(v => v.PrecioVenta);
-
-                string precio = cantidadVariantes == 0
-                    ? "C$ 0.00"
-                    : precioMinimo == precioMaximo
-                        ? $"C${precioMinimo:N2}"
-                        : $"C${precioMinimo:N2} - {precioMaximo:N2}";
-
-                dgvProductos.Rows.Add(
+                decimal precioMinimo = cantidadVariantes == 0 ? 0 : variantes.Min(v => v.PrecioVenta);
+                decimal precioMaximo = cantidadVariantes == 0 ? 0 : variantes.Max(v => v.PrecioVenta);
+                string precio = cantidadVariantes == 0 ? "C$ 0.00" : precioMinimo == precioMaximo ? $"C$ {precioMinimo:N2}" : $"C$ {precioMinimo:N2} - {precioMaximo:N2}";
+                dgvResumen.Rows.Add(
                     producto.IdProducto,
                     producto.NombreProducto,
                     producto.IdMarcaNavigation?.Nombre ?? "Sin marca",
@@ -235,24 +151,24 @@ namespace Nk_Colletion_New
                 );
             }
 
-            dgvProductos.ClearSelection();
-            dgvProductos.CurrentCell = null;
-            button1.Enabled = false;
-            lblCount.Text = $"Mostrando {productos.Count} producto(s) agrupados por ID";
+            dgvResumen.ClearSelection();
+            dgvResumen.CurrentCell = null;
+            btnAgregarVariantesExistente.Enabled = false;
+            lblResumenTotal.Text = $"Mostrando {productos.Count} producto(s) agrupados por ID";
         }
 
         //validar variante
 
         private bool ValidarVarianteFormulario()
         {
-            if (ObtenerId(cmbTalla) is null)
+            if (ObtenerId(cmbTalla)is null)
             {
                 MessageBox.Show("Seleccione una talla.", "Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cmbTalla.Focus();
                 return false;
             }
 
-            if (ObtenerId(cmbColor) is null)
+            if (ObtenerId(cmbColor)is null)
             {
                 MessageBox.Show("Seleccione un color.", "Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cmbColor.Focus();
@@ -274,7 +190,6 @@ namespace Nk_Colletion_New
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-
                 return;
             }
 
@@ -286,24 +201,21 @@ namespace Nk_Colletion_New
             try
             {
                 btnAgregarVariante.Enabled = false;
-
                 int idVariante = await _productoService.AgregarVarianteAsync(
                     _idProductoParaVariantes.Value,
                     ObtenerId(cmbTalla),
                     ObtenerId(cmbColor),
-                    Convert.ToInt32(numStock.Value),
-                    Convert.ToInt32(numStockMin.Value),
-                    numPrecioCompra.Value,
-                    numPrecioVenta.Value
+                    Convert.ToInt32(nudStock.Value),
+                    Convert.ToInt32(nudStockMinimo.Value),
+                    nudPrecioCompra.Value,
+                    nudPrecioVenta.Value
                 );
-
                 MessageBox.Show(
                     $"Variante #{idVariante} agregada correctamente.",
                     "Producto",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-
                 LimpiarCamposVariante();
                 await RecargarResumenAsync();
             }
@@ -329,23 +241,20 @@ namespace Nk_Colletion_New
             try
             {
                 btnGuardarProducto.Enabled = false;
-
                 int idProducto = await _productoService.GuardarAsync(
-                    txtNombreProducto.Text,
+                    txtNombre.Text,
                     txtDescripcion.Text,
                     ObtenerId(cmbCategoria),
                     ObtenerId(cmbMarca),
                     ObtenerId(cmbTalla),
                     ObtenerId(cmbColor),
-                    Convert.ToInt32(numStock.Value),
-                    Convert.ToInt32(numStockMin.Value),
-                    numPrecioCompra.Value,
-                    numPrecioVenta.Value
+                    Convert.ToInt32(nudStock.Value),
+                    Convert.ToInt32(nudStockMinimo.Value),
+                    nudPrecioCompra.Value,
+                    nudPrecioVenta.Value
                 );
-
                 await RecargarResumenAsync();
                 await ActivarModoAgregarVariantesAsync(idProducto);
-
                 MessageBox.Show(
                     $"Producto #{idProducto} guardado correctamente. Ahora puedes agregar más variantes.",
                     "Producto",
@@ -373,38 +282,28 @@ namespace Nk_Colletion_New
         private void ActivarModoNuevoProducto(bool limpiarCampos)
         {
             _idProductoParaVariantes = null;
-
-            txtNombreProducto.ReadOnly = false;
+            txtNombre.ReadOnly = false;
             txtDescripcion.ReadOnly = false;
-
             cmbCategoria.Enabled = true;
             cmbMarca.Enabled = true;
-
-            grpRegistrar.Text = "Registrar producto";
-            lblSubtitle.Text = "Completa los datos del producto y define su primera combinación de talla y color.";
-            grpVariante.Text = "Variante inicial del producto";
-
+            lblRegistrar.Text = "Registrar producto";
+            lblRegistrarAyuda.Text = "Completa los datos del producto y define su primera combinación de talla y color.";
+            lblVariante.Text = "Variante inicial del producto";
             btnGuardarProducto.Visible = true;
             btnGuardarProducto.Enabled = true;
-
             btnAgregarVariante.Visible = false;
-            btnAgregarVariante.Enabled = false;
-
             btnLimpiar.Text = "Limpiar";
-
             if (!limpiarCampos)
             {
                 return;
             }
 
-            txtNombreProducto.Clear();
+            txtNombre.Clear();
             txtDescripcion.Clear();
             cmbCategoria.SelectedIndex = -1;
             cmbMarca.SelectedIndex = -1;
-
             LimpiarCamposVariante();
-
-            txtNombreProducto.Focus();
+            txtNombre.Focus();
         }
 
         //modo agregar variantes
@@ -414,7 +313,6 @@ namespace Nk_Colletion_New
             try
             {
                 var producto = await _productoService.ObtenerPorIdAsync(idProducto);
-
                 if (producto is null)
                 {
                     MessageBox.Show(
@@ -423,27 +321,18 @@ namespace Nk_Colletion_New
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
                     );
-
                     return;
                 }
 
                 if (producto.Estado == false)
                 {
-                    MessageBox.Show(
-                        "El producto está inactivo.",
-                        "Productos",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
+                    MessageBox.Show("El producto está inactivo.", "Productos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 _idProductoParaVariantes = producto.IdProducto;
-
-                txtNombreProducto.Text = producto.NombreProducto;
+                txtNombre.Text = producto.NombreProducto;
                 txtDescripcion.Text = producto.Descripcion ?? string.Empty;
-
                 if (producto.IdCategoria.HasValue)
                 {
                     cmbCategoria.SelectedValue = producto.IdCategoria.Value;
@@ -462,25 +351,18 @@ namespace Nk_Colletion_New
                     cmbMarca.SelectedIndex = -1;
                 }
 
-                txtNombreProducto.ReadOnly = true;
+                txtNombre.ReadOnly = true;
                 txtDescripcion.ReadOnly = true;
-
                 cmbCategoria.Enabled = false;
                 cmbMarca.Enabled = false;
-
-                grpRegistrar.Text = $"Agregar variantes al producto #{producto.IdProducto}";
-                lblSubtitle.Text = $"Producto: {producto.NombreProducto}. Selecciona talla, color, stock y precios.";
-
-                grpVariante.Text = "Nueva variante del producto";
-
+                lblRegistrar.Text = $"Agregar variantes al producto #{producto.IdProducto}";
+                lblRegistrarAyuda.Text = $"{producto.NombreProducto}: selecciona talla, color, stock y precios.";
+                lblVariante.Text = "Nueva variante del producto";
                 btnGuardarProducto.Visible = false;
                 btnAgregarVariante.Visible = true;
                 btnAgregarVariante.Enabled = true;
-
                 btnLimpiar.Text = "Nuevo producto";
-
                 LimpiarCamposVariante();
-
                 cmbTalla.Focus();
             }
             catch (Exception ex)
@@ -493,52 +375,35 @@ namespace Nk_Colletion_New
         {
             cmbTalla.SelectedIndex = -1;
             cmbColor.SelectedIndex = -1;
-
-            numStock.Value = 0;
-            numStockMin.Value = 0;
-
-            numPrecioCompra.Value = 0;
-            numPrecioVenta.Value = 0;
+            nudStock.Value = 0;
+            nudStockMinimo.Value = 0;
+            nudPrecioCompra.Value = 0;
+            nudPrecioVenta.Value = 0;
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
-            NavegacionPanel.Abrir(
-                this,
-                new Frm_catalogo_rapido(AppConfig.DbOptions!, Presentacion.Productos.Frm_catalogo_rapido.TipoCatalogoRapido.Categoria, this)
-            );
+            NavegacionPanel.Abrir(this, new Frm_catalogo_rapido(TipoCatalogoRapido.Categoria, this));
         }
 
         private void btnMarcas_Click(object sender, EventArgs e)
         {
-            NavegacionPanel.Abrir(
-                this,
-                new Frm_catalogo_rapido(AppConfig.DbOptions!, Presentacion.Productos.Frm_catalogo_rapido.TipoCatalogoRapido.Marca, this)
-            );
+            NavegacionPanel.Abrir(this, new Frm_catalogo_rapido(TipoCatalogoRapido.Marca, this));
         }
 
         private void btnTallas_Click(object sender, EventArgs e)
         {
-            NavegacionPanel.Abrir(
-                this,
-                new Frm_catalogo_rapido(AppConfig.DbOptions!, Presentacion.Productos.Frm_catalogo_rapido.TipoCatalogoRapido.Talla, this)
-            );
+            NavegacionPanel.Abrir(this, new Frm_catalogo_rapido(TipoCatalogoRapido.Talla, this));
         }
 
         private void btnColores_Click(object sender, EventArgs e)
         {
-            NavegacionPanel.Abrir(
-                this,
-                new Frm_catalogo_rapido(AppConfig.DbOptions!, Presentacion.Productos.Frm_catalogo_rapido.TipoCatalogoRapido.Color, this)
-            );
+            NavegacionPanel.Abrir(this, new Frm_catalogo_rapido(TipoCatalogoRapido.Color, this));
         }
 
         private void btnVerTodos_Click(object sender, EventArgs e)
         {
-            NavegacionPanel.Abrir(
-                this,
-                new Nk_Colletion_New.form_Listado_Producto()
-            );
+            NavegacionPanel.Abrir(this, new Frm_producto_listado(this));
         }
 
         private void txtBuscarResumen_TextChanged(object sender, EventArgs e)
@@ -557,25 +422,18 @@ namespace Nk_Colletion_New
 
         private void dgvResumen_SelectionChanged(object sender, EventArgs e)
         {
-            button1.Enabled = dgvProductos.SelectedRows.Count > 0;
+            btnAgregarVariantesExistente.Enabled = dgvResumen.SelectedRows.Count > 0;
         }
 
         private async void btnAgregarVariantesExistente_Click(object sender, EventArgs e)
         {
-            if (dgvProductos.SelectedRows.Count == 0)
+            if (dgvResumen.SelectedRows.Count == 0)
             {
-                MessageBox.Show(
-                    "Seleccione un producto.",
-                    "Productos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
+                MessageBox.Show("Seleccione un producto.", "Productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            int idProducto = Convert.ToInt32(dgvProductos.SelectedRows[0].Cells[0].Value);
-
+            int idProducto = Convert.ToInt32(dgvResumen.SelectedRows[0].Cells[0].Value);
             await ActivarModoAgregarVariantesAsync(idProducto);
         }
 
@@ -586,20 +444,8 @@ namespace Nk_Colletion_New
                 return;
             }
 
-            int idProducto = Convert.ToInt32(dgvProductos.Rows[e.RowIndex].Cells[0].Value);
-
+            int idProducto = Convert.ToInt32(dgvResumen.Rows[e.RowIndex].Cells[0].Value);
             await ActivarModoAgregarVariantesAsync(idProducto);
-        }
-
-        private void pnlEncabezado_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void dgvResumen_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }
-
-    
-

@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New.Presentacion.Catalogos
+namespace Nk_Colletion_New.Presentacion.Catalogos
 {
     partial class Form_usuarioD
     {

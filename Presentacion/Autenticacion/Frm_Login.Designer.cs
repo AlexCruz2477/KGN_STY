@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New.Presentacion.Autenticacion
+namespace Nk_Colletion_New.Presentacion.Autenticacion
 {
     partial class Frm_Login
     {

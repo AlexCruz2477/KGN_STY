@@ -1,4 +1,4 @@
-﻿using Guna.UI2.WinForms;
+using Guna.UI2.WinForms;
 using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Negocios.Catalogos;

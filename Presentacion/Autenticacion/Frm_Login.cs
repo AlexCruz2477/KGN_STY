@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Nk_Colletion_New.Negocios;
 using Nk_Colletion_New.Negocios.Autenticacion;
@@ -91,7 +91,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
                 );
 
                 // Abrir menú principal
-                Main menuPrincipal = new Main();
+                Main menuPrincipal = new Main(usuarioEncontrado.IdUsuario);
 
                 // Ocultar login
                 this.Hide();

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Negocios.Catalogos;
 using System;
