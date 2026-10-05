@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
 using System;
@@ -160,6 +160,23 @@ namespace Nk_Colletion_New.Negocios.Catalogos
 
             await contexto.SaveChangesAsync();
         }
+
+        public async Task CambiarEstadoAsync(int idCliente, bool estado)
+        {
+            await using var contexto = new NkCollectionContext(_options);
+            var cliente = await contexto.Clientes
+                .FirstOrDefaultAsync(c => c.IdCliente == idCliente)
+                ?? throw new Exception("El cliente no existe.");
+
+            cliente.Estado = estado;
+            await contexto.SaveChangesAsync();
+        }
+
+        public Task DesactivarAsync(int idCliente) =>
+            CambiarEstadoAsync(idCliente, false);
+
+        public Task ActivarAsync(int idCliente) =>
+            CambiarEstadoAsync(idCliente, true);
 
         private static void ValidarCamposGuardar(string nombre, string apellido)
         {

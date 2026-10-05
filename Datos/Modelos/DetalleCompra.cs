@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("detalle_compra")]
+[Index("IdCompra", Name = "idx_detalle_compra_id_compra")]
+[Index("IdVariante", Name = "idx_detalle_compra_id_variante")]
 public partial class DetalleCompra
 {
     [Key]

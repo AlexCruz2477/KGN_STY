@@ -101,7 +101,7 @@ namespace Nk_Colletion_New
             // 
             // Panel_Padre
             // 
-            Panel_Padre.BackColor = Color.White;
+            Panel_Padre.BackColor = Color.FromArgb(63, 65, 64);
             Panel_Padre.Controls.Add(panel5);
             Panel_Padre.Controls.Add(panel4);
             Panel_Padre.Controls.Add(panel3);
@@ -144,7 +144,7 @@ namespace Nk_Colletion_New
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(64, 0, 0);
+            panel5.BackColor = Color.FromArgb(63, 65, 64);
             panel5.Dock = DockStyle.Bottom;
             panel5.Location = new Point(10, 857);
             panel5.Name = "panel5";
@@ -153,7 +153,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(64, 0, 0);
+            panel4.BackColor = Color.FromArgb(63, 65, 64);
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(10, 0);
             panel4.Name = "panel4";
@@ -162,7 +162,7 @@ namespace Nk_Colletion_New
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(64, 0, 0);
+            panel3.BackColor = Color.FromArgb(63, 65, 64);
             panel3.Dock = DockStyle.Right;
             panel3.Location = new Point(241, 0);
             panel3.Name = "panel3";
@@ -171,7 +171,7 @@ namespace Nk_Colletion_New
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(64, 0, 0);
+            panel2.BackColor = Color.FromArgb(63, 65, 64);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -180,7 +180,7 @@ namespace Nk_Colletion_New
             // 
             // guna2Panel1
             // 
-            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BackColor = Color.FromArgb(63, 65, 64);
             guna2Panel1.Controls.Add(panel1);
             guna2Panel1.CustomizableEdges = customizableEdges1;
             guna2Panel1.Location = new Point(0, 5);
@@ -207,9 +207,11 @@ namespace Nk_Colletion_New
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.White;
+            guna2Button1.FillColor = Color.FromArgb(63, 65, 64);
             guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.Black;
+            guna2Button1.ForeColor = Color.FromArgb(235, 222, 208);
+            guna2Button1.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button1.HoverState.ForeColor = Color.White;
             guna2Button1.Image = Properties.Resources.icons8_flecha_derecha_larga_24;
             guna2Button1.Location = new Point(0, 819);
             guna2Button1.Margin = new Padding(4, 5, 4, 5);
@@ -226,9 +228,11 @@ namespace Nk_Colletion_New
             btncategoria.DisabledState.CustomBorderColor = Color.DarkGray;
             btncategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btncategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btncategoria.FillColor = Color.White;
+            btncategoria.FillColor = Color.FromArgb(63, 65, 64);
             btncategoria.Font = new Font("Segoe UI", 9F);
-            btncategoria.ForeColor = Color.Black;
+            btncategoria.ForeColor = Color.FromArgb(235, 222, 208);
+            btncategoria.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btncategoria.HoverState.ForeColor = Color.White;
             btncategoria.Image = Properties.Resources.icons8_etiquetas_24;
             btncategoria.Location = new Point(-2, 213);
             btncategoria.Margin = new Padding(4, 5, 4, 5);
@@ -246,9 +250,11 @@ namespace Nk_Colletion_New
             btnacercade.DisabledState.CustomBorderColor = Color.DarkGray;
             btnacercade.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnacercade.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnacercade.FillColor = Color.White;
+            btnacercade.FillColor = Color.FromArgb(63, 65, 64);
             btnacercade.Font = new Font("Segoe UI", 9F);
-            btnacercade.ForeColor = Color.Black;
+            btnacercade.ForeColor = Color.FromArgb(235, 222, 208);
+            btnacercade.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnacercade.HoverState.ForeColor = Color.White;
             btnacercade.Image = Properties.Resources.icons8_información;
             btnacercade.Location = new Point(0, 634);
             btnacercade.Margin = new Padding(4, 5, 4, 5);
@@ -265,9 +271,11 @@ namespace Nk_Colletion_New
             btnmantenimiento.DisabledState.CustomBorderColor = Color.DarkGray;
             btnmantenimiento.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnmantenimiento.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnmantenimiento.FillColor = Color.White;
+            btnmantenimiento.FillColor = Color.FromArgb(63, 65, 64);
             btnmantenimiento.Font = new Font("Segoe UI", 9F);
-            btnmantenimiento.ForeColor = Color.Black;
+            btnmantenimiento.ForeColor = Color.FromArgb(235, 222, 208);
+            btnmantenimiento.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnmantenimiento.HoverState.ForeColor = Color.White;
             btnmantenimiento.Image = Properties.Resources.icons8_apoyo_24;
             btnmantenimiento.Location = new Point(0, 570);
             btnmantenimiento.Margin = new Padding(4, 5, 4, 5);
@@ -285,9 +293,11 @@ namespace Nk_Colletion_New
             btnreporte.DisabledState.CustomBorderColor = Color.DarkGray;
             btnreporte.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnreporte.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnreporte.FillColor = Color.White;
+            btnreporte.FillColor = Color.FromArgb(63, 65, 64);
             btnreporte.Font = new Font("Segoe UI", 9F);
-            btnreporte.ForeColor = Color.Black;
+            btnreporte.ForeColor = Color.FromArgb(235, 222, 208);
+            btnreporte.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnreporte.HoverState.ForeColor = Color.White;
             btnreporte.Image = Properties.Resources.icons8_gráfico_de_barras_24;
             btnreporte.Location = new Point(0, 518);
             btnreporte.Margin = new Padding(4, 5, 4, 5);
@@ -305,9 +315,11 @@ namespace Nk_Colletion_New
             btncredito.DisabledState.CustomBorderColor = Color.DarkGray;
             btncredito.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btncredito.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btncredito.FillColor = Color.White;
+            btncredito.FillColor = Color.FromArgb(63, 65, 64);
             btncredito.Font = new Font("Segoe UI", 9F);
-            btncredito.ForeColor = Color.Black;
+            btncredito.ForeColor = Color.FromArgb(235, 222, 208);
+            btncredito.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btncredito.HoverState.ForeColor = Color.White;
             btncredito.Image = Properties.Resources.icons8_parte_trasera_de_tarjeta_bancaria_24;
             btncredito.Location = new Point(0, 474);
             btncredito.Margin = new Padding(4, 5, 4, 5);
@@ -324,9 +336,11 @@ namespace Nk_Colletion_New
             btndevolucion.DisabledState.CustomBorderColor = Color.DarkGray;
             btndevolucion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btndevolucion.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btndevolucion.FillColor = Color.White;
+            btndevolucion.FillColor = Color.FromArgb(63, 65, 64);
             btndevolucion.Font = new Font("Segoe UI", 9F);
-            btndevolucion.ForeColor = Color.Black;
+            btndevolucion.ForeColor = Color.FromArgb(235, 222, 208);
+            btndevolucion.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btndevolucion.HoverState.ForeColor = Color.White;
             btndevolucion.Image = Properties.Resources.icons8_girar_a_la_izquierda_24;
             btndevolucion.Location = new Point(0, 427);
             btndevolucion.Margin = new Padding(4, 5, 4, 5);
@@ -344,9 +358,11 @@ namespace Nk_Colletion_New
             btnventas.DisabledState.CustomBorderColor = Color.DarkGray;
             btnventas.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnventas.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnventas.FillColor = Color.White;
+            btnventas.FillColor = Color.FromArgb(63, 65, 64);
             btnventas.Font = new Font("Segoe UI", 9F);
-            btnventas.ForeColor = Color.Black;
+            btnventas.ForeColor = Color.FromArgb(235, 222, 208);
+            btnventas.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnventas.HoverState.ForeColor = Color.White;
             btnventas.Image = Properties.Resources.icons8_carrito_de_compras_24;
             btnventas.Location = new Point(0, 385);
             btnventas.Margin = new Padding(4, 5, 4, 5);
@@ -364,9 +380,11 @@ namespace Nk_Colletion_New
             btncaja.DisabledState.CustomBorderColor = Color.DarkGray;
             btncaja.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btncaja.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btncaja.FillColor = Color.White;
+            btncaja.FillColor = Color.FromArgb(63, 65, 64);
             btncaja.Font = new Font("Segoe UI", 9F);
-            btncaja.ForeColor = Color.Black;
+            btncaja.ForeColor = Color.FromArgb(235, 222, 208);
+            btncaja.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btncaja.HoverState.ForeColor = Color.White;
             btncaja.Image = Properties.Resources.icons8_caja_registradora_24;
             btncaja.Location = new Point(0, 340);
             btncaja.Margin = new Padding(4, 5, 4, 5);
@@ -384,9 +402,11 @@ namespace Nk_Colletion_New
             btnproductos.DisabledState.CustomBorderColor = Color.DarkGray;
             btnproductos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnproductos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnproductos.FillColor = Color.White;
+            btnproductos.FillColor = Color.FromArgb(63, 65, 64);
             btnproductos.Font = new Font("Segoe UI", 9F);
-            btnproductos.ForeColor = Color.Black;
+            btnproductos.ForeColor = Color.FromArgb(235, 222, 208);
+            btnproductos.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnproductos.HoverState.ForeColor = Color.White;
             btnproductos.Image = Properties.Resources.icons8_caja_llena_241;
             btnproductos.Location = new Point(0, 295);
             btnproductos.Margin = new Padding(4, 5, 4, 5);
@@ -404,9 +424,11 @@ namespace Nk_Colletion_New
             btncompras.DisabledState.CustomBorderColor = Color.DarkGray;
             btncompras.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btncompras.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btncompras.FillColor = Color.White;
+            btncompras.FillColor = Color.FromArgb(63, 65, 64);
             btncompras.Font = new Font("Segoe UI", 9F);
-            btncompras.ForeColor = Color.Black;
+            btncompras.ForeColor = Color.FromArgb(235, 222, 208);
+            btncompras.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btncompras.HoverState.ForeColor = Color.White;
             btncompras.Image = Properties.Resources.icons8_carrito_de_compras_241;
             btncompras.Location = new Point(0, 252);
             btncompras.Margin = new Padding(4, 5, 4, 5);
@@ -424,9 +446,11 @@ namespace Nk_Colletion_New
             btnproveedores.DisabledState.CustomBorderColor = Color.DarkGray;
             btnproveedores.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnproveedores.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnproveedores.FillColor = Color.White;
+            btnproveedores.FillColor = Color.FromArgb(63, 65, 64);
             btnproveedores.Font = new Font("Segoe UI", 9F);
-            btnproveedores.ForeColor = Color.Black;
+            btnproveedores.ForeColor = Color.FromArgb(235, 222, 208);
+            btnproveedores.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btnproveedores.HoverState.ForeColor = Color.White;
             btnproveedores.Image = Properties.Resources.icons8_camión_24;
             btnproveedores.Location = new Point(0, 177);
             btnproveedores.Margin = new Padding(4, 5, 4, 5);
@@ -444,9 +468,11 @@ namespace Nk_Colletion_New
             btn_clientes.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_clientes.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btn_clientes.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_clientes.FillColor = Color.White;
+            btn_clientes.FillColor = Color.FromArgb(63, 65, 64);
             btn_clientes.Font = new Font("Segoe UI", 9F);
-            btn_clientes.ForeColor = Color.Black;
+            btn_clientes.ForeColor = Color.FromArgb(235, 222, 208);
+            btn_clientes.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btn_clientes.HoverState.ForeColor = Color.White;
             btn_clientes.Image = Properties.Resources.icons8_grupo_de_usuarios_mujer_mujer_241;
             btn_clientes.Location = new Point(0, 135);
             btn_clientes.Margin = new Padding(4, 5, 4, 5);
@@ -464,9 +490,11 @@ namespace Nk_Colletion_New
             btn_usuarios.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_usuarios.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btn_usuarios.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_usuarios.FillColor = Color.White;
+            btn_usuarios.FillColor = Color.FromArgb(63, 65, 64);
             btn_usuarios.Font = new Font("Segoe UI", 9F);
-            btn_usuarios.ForeColor = Color.Black;
+            btn_usuarios.ForeColor = Color.FromArgb(235, 222, 208);
+            btn_usuarios.HoverState.FillColor = Color.FromArgb(184, 149, 85);
+            btn_usuarios.HoverState.ForeColor = Color.White;
             btn_usuarios.Image = Properties.Resources.icons8_grupo_de_usuarios_mujer_mujer_24;
             btn_usuarios.Location = new Point(0, 94);
             btn_usuarios.Margin = new Padding(4, 5, 4, 5);
@@ -718,8 +746,7 @@ namespace Nk_Colletion_New
             // 
             // Panel_Hijo
             // 
-            Panel_Hijo.BackgroundImage = (Image)resources.GetObject("Panel_Hijo.BackgroundImage");
-            Panel_Hijo.BackgroundImageLayout = ImageLayout.Stretch;
+            Panel_Hijo.BackColor = Color.FromArgb(245, 241, 232);
             Panel_Hijo.Dock = DockStyle.Fill;
             Panel_Hijo.Location = new Point(251, 0);
             Panel_Hijo.Name = "Panel_Hijo";
@@ -731,6 +758,7 @@ namespace Nk_Colletion_New
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Center;
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1626, 867);
             Controls.Add(Panel_Hijo);
             Controls.Add(Panel_Padre);

@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("caja")]
-[Index("IdUsuario", Name = "caja_id_usuario_key", IsUnique = true)]
+[Index(nameof(IdUsuario), Name = "caja_id_usuario_key", IsUnique = true)]
+[Index(nameof(NumeroCaja), Name = "ux_caja_numero_caja_ci", IsUnique = true)]
 public partial class Caja
 {
     [Key]
@@ -24,10 +23,10 @@ public partial class Caja
     [Column("estado")]
     public bool? Estado { get; set; }
 
-    [InverseProperty("IdCajaNavigation")]
+    [InverseProperty(nameof(AperturaCaja.IdCajaNavigation))]
     public virtual ICollection<AperturaCaja> AperturaCajas { get; set; } = new List<AperturaCaja>();
 
-    [ForeignKey("IdUsuario")]
-    [InverseProperty("Caja")]
+    [ForeignKey(nameof(IdUsuario))]
+    [InverseProperty(nameof(Usuario.Caja))]
     public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 }

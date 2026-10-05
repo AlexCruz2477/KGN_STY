@@ -1,25 +1,340 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
+using Nk_Colletion_New.Datos;
+using Nk_Colletion_New.Datos.Modelos;
+using Nk_Colletion_New.Presentacion.Estilos;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using System.Globalization;
 
 namespace Nk_Colletion_New
 {
     public partial class Form_reporte : Form
     {
+        private sealed record OpcionReporte(int Id, string Nombre);
+        private sealed record FilaReporte(string[] Valores);
+        private static readonly CultureInfo CulturaNicaragua = CultureInfo.GetCultureInfo("es-NI");
+
         public Form_reporte()
         {
             InitializeComponent();
+            TemaNk.Aplicar(this);
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            btn_Ventas.Click += async (_, _) => await GenerarVentasAsync();
+            button1.Click += async (_, _) => await GenerarInventarioAsync();
+            button2.Click += async (_, _) => await GenerarComprasAsync();
         }
 
-        private void Form_reporte_Load(object sender, EventArgs e)
+        private async void Form_reporte_Load(object sender, EventArgs e)
         {
+            comboBox1.DataSource = null;
+            comboBox3.DataSource = null;
+            comboBox1.Items.Clear();
+            comboBox3.Items.Clear();
 
+            if (AppConfig.DbOptions is null)
+            {
+                MostrarErrorCarga("La conexión a la base de datos no está inicializada.");
+                return;
+            }
+
+            try
+            {
+                await using var contexto = new NkCollectionContext(AppConfig.DbOptions);
+                var usuarios = await contexto.Usuarios
+                    .AsNoTracking()
+                    .OrderBy(usuario => usuario.Nombre)
+                    .ThenBy(usuario => usuario.Apellido)
+                    .Select(usuario => new OpcionReporte(
+                        usuario.IdUsuario,
+                        (usuario.Nombre + " " + usuario.Apellido).Trim() + " · " + usuario.Usuario1))
+                    .ToListAsync();
+
+                var proveedores = await contexto.Proveedors
+                    .AsNoTracking()
+                    .OrderBy(proveedor => proveedor.Nombre)
+                    .Select(proveedor => new OpcionReporte(proveedor.IdProveedor, proveedor.Nombre))
+                    .ToListAsync();
+
+                EnlazarOpciones(comboBox1, usuarios, "Todos los usuarios");
+                EnlazarOpciones(comboBox3, proveedores, "Todos los proveedores");
+            }
+            catch (Exception ex)
+            {
+                MostrarErrorCarga($"No se pudieron cargar usuarios y proveedores. {ex.GetBaseException().Message}");
+            }
+        }
+
+        private static void EnlazarOpciones(ComboBox combo, List<OpcionReporte> opciones, string textoTodos)
+        {
+            opciones.Insert(0, new OpcionReporte(0, textoTodos));
+            combo.BeginUpdate();
+            try
+            {
+                combo.DataSource = null;
+                combo.DisplayMember = nameof(OpcionReporte.Nombre);
+                combo.ValueMember = nameof(OpcionReporte.Id);
+                combo.DataSource = opciones;
+                combo.SelectedIndex = 0;
+            }
+            finally
+            {
+                combo.EndUpdate();
+            }
+        }
+
+        private void MostrarErrorCarga(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Filtros de reportes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private async Task GenerarVentasAsync()
+        {
+            if (!TryObtenerRango(dateTimePicker1.Value, dateTimePicker2.Value, out var desde, out var hasta)) return;
+            if (AppConfig.DbOptions is null) return;
+
+            try
+            {
+                await using var db = new NkCollectionContext(AppConfig.DbOptions);
+                var consulta = db.Venta.AsNoTracking()
+                    .Include(v => v.IdClienteNavigation)
+                    .Include(v => v.IdAperturaCajaNavigation)
+                        .ThenInclude(a => a.IdCajaNavigation)
+                    .Include(v => v.DetalleVenta)
+                        .ThenInclude(d => d.IdVarianteNavigation)
+                            .ThenInclude(variante => variante.IdProductoNavigation)
+                    .Include(v => v.PagoVenta)
+                        .ThenInclude(p => p.IdMetodoPagoNavigation)
+                    .Where(v => v.Estado != false && v.FechaVenta >= desde && v.FechaVenta < hasta);
+
+                if (comboBox1.SelectedValue is int idUsuario && idUsuario > 0)
+                    consulta = consulta.Where(v => v.IdAperturaCajaNavigation.IdCajaNavigation.IdUsuario == idUsuario);
+
+                var ventas = await consulta.OrderBy(v => v.FechaVenta).ToListAsync();
+                var filas = ventas.SelectMany(v => v.DetalleVenta.Select(d => new FilaReporte(new[]
+                {
+                    v.NumeroComprobante ?? $"V-{v.IdVenta:D6}",
+                    v.FechaVenta?.ToString("dd/MM/yyyy HH:mm") ?? "—",
+                    v.IdClienteNavigation is null ? "Venta general" : $"{v.IdClienteNavigation.Nombre} {v.IdClienteNavigation.Apellido}",
+                    d.IdVarianteNavigation.IdProductoNavigation.NombreProducto,
+                    d.Cantidad.ToString("N0", CulturaNicaragua),
+                    d.PrecioUnitario.ToString("C2", CulturaNicaragua),
+                    (d.Cantidad * d.PrecioUnitario).ToString("C2", CulturaNicaragua),
+                    string.Join(", ", v.PagoVenta.Select(p => $"{p.IdMetodoPagoNavigation.Nombre}: {p.Monto.ToString("C2", CulturaNicaragua)}")),
+                    v.TotalVenta.ToString("C2", CulturaNicaragua)
+                }))).ToList();
+
+                await CrearPdfAsync("Reporte de ventas", new[] { "Comprobante", "Fecha", "Cliente", "Producto", "Cant.", "Precio", "Subtotal", "Pago", "Total" }, filas,
+                    new[] { ("Ventas", ventas.Count.ToString("N0", CulturaNicaragua)), ("Unidades", ventas.Sum(v => v.DetalleVenta.Sum(d => d.Cantidad)).ToString("N0", CulturaNicaragua)), ("Descuentos", ventas.Sum(v => v.Descuento).ToString("C2", CulturaNicaragua)), ("Total vendido", ventas.Sum(v => v.TotalVenta).ToString("C2", CulturaNicaragua)) }, desde, hasta.AddDays(-1));
+            }
+            catch (Exception ex) { MostrarErrorReporte(ex); }
+        }
+
+        private async Task GenerarComprasAsync()
+        {
+            if (!TryObtenerRango(dateTimePicker6.Value, dateTimePicker5.Value, out var desde, out var hasta)) return;
+            if (AppConfig.DbOptions is null) return;
+
+            try
+            {
+                await using var db = new NkCollectionContext(AppConfig.DbOptions);
+                var consulta = db.Compras.AsNoTracking()
+                    .Include(c => c.IdProveedorNavigation)
+                    .Include(c => c.IdUsuarioNavigation)
+                    .Include(c => c.DetalleCompras)
+                        .ThenInclude(d => d.IdVarianteNavigation)
+                            .ThenInclude(variante => variante.IdProductoNavigation)
+                    .Where(c => c.Estado != false && c.FechaCompra >= desde && c.FechaCompra < hasta);
+                if (comboBox3.SelectedValue is int idProveedor && idProveedor > 0)
+                    consulta = consulta.Where(c => c.IdProveedor == idProveedor);
+
+                var compras = await consulta.OrderBy(c => c.FechaCompra).ToListAsync();
+                var filas = compras.SelectMany(c => c.DetalleCompras.Select(d => new FilaReporte(new[]
+                {
+                    c.NumeroFactura ?? $"C-{c.IdCompra:D6}",
+                    c.FechaCompra?.ToString("dd/MM/yyyy") ?? "—",
+                    c.IdProveedorNavigation.Nombre,
+                    $"{c.IdUsuarioNavigation.Nombre} {c.IdUsuarioNavigation.Apellido}",
+                    d.IdVarianteNavigation.IdProductoNavigation.NombreProducto,
+                    d.Cantidad.ToString("N0", CulturaNicaragua),
+                    d.PrecioUnitario.ToString("C2", CulturaNicaragua),
+                    (d.Subtotal ?? d.Cantidad * d.PrecioUnitario).ToString("C2", CulturaNicaragua),
+                    c.Total.ToString("C2", CulturaNicaragua)
+                }))).ToList();
+
+                await CrearPdfAsync("Reporte de compras", new[] { "Factura", "Fecha", "Proveedor", "Usuario", "Producto", "Cant.", "Costo", "Subtotal", "Total" }, filas,
+                    new[] { ("Compras", compras.Count.ToString("N0", CulturaNicaragua)), ("Unidades", compras.Sum(c => c.DetalleCompras.Sum(d => d.Cantidad)).ToString("N0", CulturaNicaragua)), ("Impuestos", compras.Sum(c => c.Impuesto).ToString("C2", CulturaNicaragua)), ("Total comprado", compras.Sum(c => c.Total).ToString("C2", CulturaNicaragua)) }, desde, hasta.AddDays(-1));
+            }
+            catch (Exception ex) { MostrarErrorReporte(ex); }
+        }
+
+        private async Task GenerarInventarioAsync()
+        {
+            if (AppConfig.DbOptions is null) return;
+
+            try
+            {
+                await using var db = new NkCollectionContext(AppConfig.DbOptions);
+                var variantes = await db.ProductoVariantes.AsNoTracking()
+                    .Include(v => v.IdProductoNavigation)
+                    .Include(v => v.IdTallaNavigation)
+                    .Include(v => v.IdColorNavigation)
+                    .Where(v => v.Estado != false && v.IdProductoNavigation.Estado != false)
+                    .OrderBy(v => v.IdProductoNavigation.NombreProducto)
+                    .ThenBy(v => v.Codigo)
+                    .ToListAsync();
+                var filas = variantes.Select(v => new FilaReporte(new[]
+                {
+                    v.Codigo,
+                    v.IdProductoNavigation.NombreProducto,
+                    v.IdTallaNavigation?.NombreTalla ?? "—",
+                    v.IdColorNavigation?.NombreColor ?? "—",
+                    v.StockActual.ToString("N0", CulturaNicaragua),
+                    v.StockMinimo.ToString("N0", CulturaNicaragua),
+                    v.PrecioCompra.ToString("C2", CulturaNicaragua),
+                    v.PrecioVenta.ToString("C2", CulturaNicaragua),
+                    (v.StockActual * v.PrecioCompra).ToString("C2", CulturaNicaragua)
+                })).ToList();
+
+                await CrearPdfAsync("Reporte de inventario", new[] { "Código", "Producto", "Talla", "Color", "Stock", "Mínimo", "Costo unitario", "Precio venta", "Valor a costo" }, filas,
+                    new[] { ("Variantes activas", variantes.Count.ToString("N0", CulturaNicaragua)), ("Unidades", variantes.Sum(v => v.StockActual).ToString("N0", CulturaNicaragua)), ("Bajo mínimo", variantes.Count(v => v.StockActual <= v.StockMinimo).ToString("N0", CulturaNicaragua)), ("Valor total a costo", variantes.Sum(v => v.StockActual * v.PrecioCompra).ToString("C2", CulturaNicaragua)) }, null, null);
+            }
+            catch (Exception ex) { MostrarErrorReporte(ex); }
+        }
+
+        private static bool TryObtenerRango(DateTime fechaInicio, DateTime fechaFin, out DateTime desde, out DateTime hasta)
+        {
+            desde = DateTime.SpecifyKind(fechaInicio.Date, DateTimeKind.Unspecified);
+            hasta = DateTime.SpecifyKind(fechaFin.Date.AddDays(1), DateTimeKind.Unspecified);
+            if (fechaInicio.Date <= fechaFin.Date) return true;
+            MessageBox.Show("La fecha inicial no puede ser posterior a la fecha final.", "Rango de fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        private async Task CrearPdfAsync(string titulo, string[] columnas, IReadOnlyCollection<FilaReporte> filas,
+            IReadOnlyCollection<(string Etiqueta, string Valor)> resumen, DateTime? desde, DateTime? hasta)
+        {
+            using var dialogo = new SaveFileDialog
+            {
+                Title = "Guardar reporte PDF",
+                Filter = "Archivo PDF (*.pdf)|*.pdf",
+                DefaultExt = "pdf",
+                AddExtension = true,
+                FileName = $"{titulo.Replace(' ', '_')}_{DateTime.Now:yyyyMMdd_HHmm}.pdf"
+            };
+            if (dialogo.ShowDialog(this) != DialogResult.OK) return;
+
+            QuestPDF.Settings.License = LicenseType.Community;
+            var documento = new DocumentoReporte(titulo, DateTime.Now, columnas, filas, resumen, desde, hasta);
+            await Task.Run(() => documento.GeneratePdf(dialogo.FileName));
+            MessageBox.Show("El PDF se generó correctamente.", "Reporte generado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private static void MostrarErrorReporte(Exception ex) =>
+            MessageBox.Show(ex.GetBaseException().Message, "No se pudo generar el reporte", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        private sealed class DocumentoReporte : IDocument
+        {
+            private readonly string _titulo;
+            private readonly DateTime _generado;
+            private readonly string[] _columnas;
+            private readonly IReadOnlyCollection<FilaReporte> _filas;
+            private readonly IReadOnlyCollection<(string Etiqueta, string Valor)> _resumen;
+            private readonly DateTime? _desde;
+            private readonly DateTime? _hasta;
+
+            public DocumentoReporte(string titulo, DateTime generado, string[] columnas, IReadOnlyCollection<FilaReporte> filas,
+                IReadOnlyCollection<(string Etiqueta, string Valor)> resumen, DateTime? desde, DateTime? hasta)
+            {
+                _titulo = titulo;
+                _generado = generado;
+                _columnas = columnas;
+                _filas = filas;
+                _resumen = resumen;
+                _desde = desde;
+                _hasta = hasta;
+            }
+
+            public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
+
+            public void Compose(IDocumentContainer container)
+            {
+                container.Page(page =>
+                {
+                    page.Size(PageSizes.A4.Landscape());
+                    page.Margin(28);
+                    page.PageColor(Colors.White);
+                    page.DefaultTextStyle(style => style.FontFamily("Lato").FontSize(8).FontColor("#292A28"));
+                    page.Header().Column(column =>
+                    {
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Column(title =>
+                            {
+                                title.Item().Text("NK STYLE POINT").FontSize(10).SemiBold().FontColor("#8C6A38");
+                                title.Item().Text(_titulo).FontSize(21).Bold().FontColor("#292A28");
+                                title.Item().Text(_desde.HasValue && _hasta.HasValue
+                                    ? $"Período: {_desde:dd/MM/yyyy} — {_hasta:dd/MM/yyyy}  |  Generado: {_generado:dd/MM/yyyy HH:mm}"
+                                    : $"Inventario actual  |  Generado: {_generado:dd/MM/yyyy HH:mm}").FontSize(8).FontColor("#77746D");
+                            });
+                            row.RelativeItem().AlignRight().AlignMiddle().Text("REPORTE ADMINISTRATIVO").FontSize(9).Bold().FontColor("#65705A");
+                        });
+                        column.Item().PaddingTop(10).LineHorizontal(2).LineColor("#B89555");
+                    });
+                    page.Content().PaddingVertical(12).Column(column =>
+                    {
+                        column.Item().Row(row =>
+                        {
+                            foreach (var item in _resumen)
+                                row.RelativeItem().PaddingRight(6).Border(1).BorderColor("#D6CCBE").Background("#F8F4EC").Padding(9).Column(card =>
+                                {
+                                    card.Item().Text(item.Etiqueta.ToUpperInvariant()).FontSize(7).SemiBold().FontColor("#77746D");
+                                    card.Item().PaddingTop(4).Text(item.Valor).FontSize(12).Bold().FontColor("#3F4140");
+                                });
+                        });
+
+                        if (_filas.Count == 0)
+                        {
+                            column.Item().PaddingTop(14).Border(1).BorderColor("#D6CCBE").Background("#F8F4EC").Padding(14)
+                                .AlignCenter().Text("No se encontraron registros para los filtros seleccionados.").Italic().FontColor("#77746D");
+                        }
+                        else
+                        {
+                            column.Item().PaddingTop(14).Table(table =>
+                            {
+                                table.ColumnsDefinition(definition =>
+                                {
+                                    foreach (var _ in _columnas) definition.RelativeColumn();
+                                });
+                                table.Header(header =>
+                                {
+                                    foreach (string tituloColumna in _columnas)
+                                        header.Cell().Background("#3F4140").Padding(6).Text(tituloColumna).FontSize(7).Bold().FontColor(Colors.White);
+                                });
+                                int indice = 0;
+                                foreach (var fila in _filas)
+                                {
+                                    string fondo = indice++ % 2 == 0 ? "#FFFFFF" : "#F5F1E8";
+                                    foreach (string valor in fila.Valores)
+                                        table.Cell().Background(fondo).BorderBottom(0.5f).BorderColor("#D6CCBE").Padding(5).Text(valor).FontSize(7);
+                                }
+                            });
+                        }
+                    });
+                    page.Footer().Row(row =>
+                    {
+                        row.RelativeItem().Text("Documento generado por NK Style Point").FontSize(7).FontColor("#77746D");
+                        row.AutoItem().Text(text =>
+                        {
+                            text.Span("Página ").FontSize(7).FontColor("#77746D");
+                            text.CurrentPageNumber().FontSize(7).FontColor("#77746D");
+                            text.Span(" de ").FontSize(7).FontColor("#77746D");
+                            text.TotalPages().FontSize(7).FontColor("#77746D");
+                        });
+                    });
+                });
+            }
         }
     }
 }

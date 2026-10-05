@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("detalle_arqueo")]
+[Index("IdArqueo", Name = "idx_detalle_arqueo_id_arqueo")]
 public partial class DetalleArqueo
 {
     [Key]
@@ -26,6 +27,14 @@ public partial class DetalleArqueo
     [Column("subtotal")]
     [Precision(12, 2)]
     public decimal Subtotal { get; set; }
+
+    [Column("moneda")]
+    [StringLength(3)]
+    public string Moneda { get; set; } = null!;
+
+    [Column("tasa_cambio")]
+    [Precision(12, 4)]
+    public decimal TasaCambio { get; set; }
 
     [ForeignKey("IdArqueo")]
     [InverseProperty("DetalleArqueos")]

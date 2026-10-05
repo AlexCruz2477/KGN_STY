@@ -106,7 +106,7 @@ namespace Nk_Colletion_New
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(txtArqueodecaja);
             groupBox2.Font = new Font("PMingLiU-ExtB", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.ForeColor = Color.FromArgb(64, 0, 0);
+            groupBox2.ForeColor = Color.FromArgb(63, 65, 64);
             groupBox2.Location = new Point(105, 474);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
@@ -124,7 +124,7 @@ namespace Nk_Colletion_New
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.FromArgb(110, 18, 32);
+            guna2Button1.FillColor = Color.FromArgb(184, 149, 85);
             guna2Button1.Font = new Font("Segoe UI", 9F);
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = Properties.Resources.icons8_guardar_24__1_;
@@ -296,7 +296,7 @@ namespace Nk_Colletion_New
             groupBox1.Controls.Add(txtventas);
             groupBox1.Controls.Add(label8);
             groupBox1.Font = new Font("PMingLiU-ExtB", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.FromArgb(64, 0, 0);
+            groupBox1.ForeColor = Color.FromArgb(63, 65, 64);
             groupBox1.Location = new Point(88, 176);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
@@ -318,7 +318,7 @@ namespace Nk_Colletion_New
             // 
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(64, 0, 0);
+            label7.ForeColor = Color.FromArgb(63, 65, 64);
             label7.Location = new Point(48, 62);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
@@ -339,7 +339,7 @@ namespace Nk_Colletion_New
             // 
             label2.AutoSize = true;
             label2.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(64, 0, 0);
+            label2.ForeColor = Color.FromArgb(63, 65, 64);
             label2.Location = new Point(811, 104);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
@@ -351,7 +351,7 @@ namespace Nk_Colletion_New
             // 
             label1.AutoSize = true;
             label1.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(64, 0, 0);
+            label1.ForeColor = Color.FromArgb(63, 65, 64);
             label1.Location = new Point(161, 105);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -372,7 +372,7 @@ namespace Nk_Colletion_New
             // 
             label22.AutoSize = true;
             label22.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.FromArgb(64, 0, 0);
+            label22.ForeColor = Color.FromArgb(63, 65, 64);
             label22.Location = new Point(21, 37);
             label22.Margin = new Padding(2, 0, 2, 0);
             label22.Name = "label22";
@@ -393,7 +393,7 @@ namespace Nk_Colletion_New
             // 
             label21.AutoSize = true;
             label21.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label21.ForeColor = Color.FromArgb(64, 0, 0);
+            label21.ForeColor = Color.FromArgb(63, 65, 64);
             label21.Location = new Point(161, 156);
             label21.Margin = new Padding(2, 0, 2, 0);
             label21.Name = "label21";
@@ -405,7 +405,7 @@ namespace Nk_Colletion_New
             // 
             label19.AutoSize = true;
             label19.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.FromArgb(64, 0, 0);
+            label19.ForeColor = Color.FromArgb(63, 65, 64);
             label19.Location = new Point(811, 155);
             label19.Margin = new Padding(2, 0, 2, 0);
             label19.Name = "label19";
@@ -417,7 +417,7 @@ namespace Nk_Colletion_New
             // 
             label18.AutoSize = true;
             label18.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.FromArgb(64, 0, 0);
+            label18.ForeColor = Color.FromArgb(63, 65, 64);
             label18.Location = new Point(161, 200);
             label18.Margin = new Padding(2, 0, 2, 0);
             label18.Name = "label18";
@@ -429,7 +429,7 @@ namespace Nk_Colletion_New
             // 
             label17.AutoSize = true;
             label17.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(64, 0, 0);
+            label17.ForeColor = Color.FromArgb(63, 65, 64);
             label17.Location = new Point(811, 199);
             label17.Margin = new Padding(2, 0, 2, 0);
             label17.Name = "label17";
@@ -450,7 +450,7 @@ namespace Nk_Colletion_New
             // 
             label8.AutoSize = true;
             label8.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(64, 0, 0);
+            label8.ForeColor = Color.FromArgb(63, 65, 64);
             label8.Location = new Point(48, 209);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
@@ -461,7 +461,7 @@ namespace Nk_Colletion_New
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(64, 0, 0);
+            panel2.BackColor = Color.FromArgb(63, 65, 64);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(1361, 0);
             panel2.Name = "panel2";
@@ -470,7 +470,7 @@ namespace Nk_Colletion_New
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(64, 0, 0);
+            panel1.BackColor = Color.FromArgb(63, 65, 64);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -479,7 +479,7 @@ namespace Nk_Colletion_New
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(64, 0, 0);
+            panel3.BackColor = Color.FromArgb(63, 65, 64);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 10);
             panel3.Name = "panel3";
@@ -488,7 +488,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(64, 0, 0);
+            panel4.BackColor = Color.FromArgb(63, 65, 64);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(10, 853);
             panel4.Name = "panel4";
@@ -507,7 +507,7 @@ namespace Nk_Colletion_New
             guna2Panel1.Controls.Add(label5);
             guna2Panel1.Controls.Add(label6);
             guna2Panel1.CustomizableEdges = customizableEdges5;
-            guna2Panel1.FillColor = Color.White;
+            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
             guna2Panel1.Location = new Point(26, 28);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -534,7 +534,7 @@ namespace Nk_Colletion_New
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.ForeColor = Color.Gray;
+            label5.ForeColor = Color.FromArgb(119, 116, 109);
             label5.Location = new Point(129, 66);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -547,7 +547,7 @@ namespace Nk_Colletion_New
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Georgia", 21F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(110, 18, 32);
+            label6.ForeColor = Color.FromArgb(184, 149, 85);
             label6.Location = new Point(129, 18);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -564,7 +564,7 @@ namespace Nk_Colletion_New
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.FromArgb(110, 18, 32);
+            guna2Button2.FillColor = Color.FromArgb(184, 149, 85);
             guna2Button2.Font = new Font("Segoe UI", 9F);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.Location = new Point(779, 586);
@@ -594,7 +594,7 @@ namespace Nk_Colletion_New
             guna2CircleButton2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton2.FillColor = Color.White;
+            guna2CircleButton2.FillColor = Color.FromArgb(235, 222, 208);
             guna2CircleButton2.Font = new Font("Segoe UI", 9F);
             guna2CircleButton2.ForeColor = Color.White;
             guna2CircleButton2.Image = Properties.Resources.icons8_ayuda_24__2_;
@@ -633,7 +633,8 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1371, 863);
             Controls.Add(guna2Button2);
             Controls.Add(guna2Panel1);

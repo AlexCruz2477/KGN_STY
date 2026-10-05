@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos.Modelos;
@@ -12,6 +12,8 @@ public partial class NkCollectionContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<AlertaStock> AlertaStocks { get; set; }
 
     public virtual DbSet<AperturaCaja> AperturaCajas { get; set; }
 
@@ -35,9 +37,13 @@ public partial class NkCollectionContext : DbContext
 
     public virtual DbSet<Egreso> Egresos { get; set; }
 
+    public virtual DbSet<LogSistema> LogSistemas { get; set; }
+
     public virtual DbSet<Marca> Marcas { get; set; }
 
     public virtual DbSet<MetodoPago> MetodoPagos { get; set; }
+
+    public virtual DbSet<MovimientoInventario> MovimientoInventarios { get; set; }
 
     public virtual DbSet<PagoVentum> PagoVenta { get; set; }
 
@@ -51,6 +57,8 @@ public partial class NkCollectionContext : DbContext
 
     public virtual DbSet<Talla> Tallas { get; set; }
 
+    public virtual DbSet<TipoCambioBcn> TipoCambioBcns { get; set; }
+
     public virtual DbSet<TipoEgreso> TipoEgresos { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -59,13 +67,41 @@ public partial class NkCollectionContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AlertaStock>(entity =>
+        {
+            entity.HasKey(e => e.IdAlerta).HasName("alerta_stock_pkey");
+
+            entity.HasIndex(e => new { e.IdVariante, e.FechaAlerta }, "idx_alerta_stock_pendiente")
+                .IsDescending(false, true)
+                .HasFilter("(atendida IS FALSE)");
+
+            entity.Property(e => e.IdAlerta).UseIdentityAlwaysColumn();
+            entity.Property(e => e.FechaAlerta).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            entity.HasOne(d => d.IdVarianteNavigation).WithMany(p => p.AlertaStocks)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_alerta_stock_variante");
+        });
+
         modelBuilder.Entity<AperturaCaja>(entity =>
         {
             entity.HasKey(e => e.IdAperturaCaja).HasName("apertura_caja_pkey");
 
+            entity.HasIndex(e => e.FechaApertura, "idx_apertura_caja_activa")
+                .IsDescending()
+                .HasFilter("(estado = true)");
+
+            entity.HasIndex(e => e.FechaApertura, "idx_apertura_caja_activa_fecha")
+                .IsDescending()
+                .HasFilter("(estado IS TRUE)");
+
+            entity.HasIndex(e => e.IdCaja, "ux_apertura_caja_una_activa_por_caja")
+                .IsUnique()
+                .HasFilter("(estado IS TRUE)");
+
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaApertura).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            entity.Property(e => e.MontoApertura).HasDefaultValueSql("0");
+            entity.Property(e => e.MontoApertura).HasDefaultValue(0m);
 
             entity.HasOne(d => d.IdCajaNavigation).WithMany(p => p.AperturaCajas)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -75,6 +111,10 @@ public partial class NkCollectionContext : DbContext
         modelBuilder.Entity<ArqueoCaja>(entity =>
         {
             entity.HasKey(e => e.IdArqueo).HasName("arqueo_caja_pkey");
+
+            entity.HasIndex(e => e.IdAperturaCaja, "ux_arqueo_unico_activo_por_apertura")
+                .IsUnique()
+                .HasFilter("(estado IS TRUE)");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaArqueo).HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -121,6 +161,10 @@ public partial class NkCollectionContext : DbContext
         {
             entity.HasKey(e => e.IdCompra).HasName("compra_pkey");
 
+            entity.HasIndex(e => e.FechaCompra, "idx_compra_fecha_activa")
+                .IsDescending()
+                .HasFilter("(estado IS TRUE)");
+
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaCompra).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -136,6 +180,9 @@ public partial class NkCollectionContext : DbContext
         modelBuilder.Entity<DetalleArqueo>(entity =>
         {
             entity.HasKey(e => e.IdDetalleArqueo).HasName("detalle_arqueo_pkey");
+
+            entity.Property(e => e.Moneda).HasDefaultValueSql("'NIO'::character varying");
+            entity.Property(e => e.TasaCambio).HasDefaultValue(1m);
 
             entity.HasOne(d => d.IdArqueoNavigation).WithMany(p => p.DetalleArqueos).HasConstraintName("fk_detalle_arqueo_arqueo");
         });
@@ -180,6 +227,16 @@ public partial class NkCollectionContext : DbContext
                 .HasConstraintName("fk_egreso_tipo");
         });
 
+        modelBuilder.Entity<LogSistema>(entity =>
+        {
+            entity.HasKey(e => e.IdLog).HasName("log_sistema_pkey");
+
+            entity.Property(e => e.IdLog).UseIdentityAlwaysColumn();
+            entity.Property(e => e.Fecha).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.Txid).HasDefaultValueSql("txid_current()");
+            entity.Property(e => e.UsuarioBd).HasDefaultValueSql("CURRENT_USER");
+        });
+
         modelBuilder.Entity<Marca>(entity =>
         {
             entity.HasKey(e => e.IdMarca).HasName("marca_pkey");
@@ -192,6 +249,20 @@ public partial class NkCollectionContext : DbContext
             entity.HasKey(e => e.IdMetodoPago).HasName("metodo_pago_pkey");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<MovimientoInventario>(entity =>
+        {
+            entity.HasKey(e => e.IdMovimiento).HasName("movimiento_inventario_pkey");
+
+            entity.Property(e => e.IdMovimiento).UseIdentityAlwaysColumn();
+            entity.Property(e => e.FechaMovimiento).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.Txid).HasDefaultValueSql("txid_current()");
+            entity.Property(e => e.UsuarioBd).HasDefaultValueSql("CURRENT_USER");
+
+            entity.HasOne(d => d.IdVarianteNavigation).WithMany(p => p.MovimientoInventarios)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_movimiento_variante");
         });
 
         modelBuilder.Entity<PagoVentum>(entity =>
@@ -224,9 +295,12 @@ public partial class NkCollectionContext : DbContext
         {
             entity.HasKey(e => e.IdVariante).HasName("producto_variante_pkey");
 
+            entity.HasIndex(e => new { e.IdProducto, e.IdTalla, e.IdColor }, "ux_producto_variante_activa_combinacion")
+                .IsUnique()
+                .HasFilter("(estado IS TRUE)")
+                .AreNullsDistinct(false);
+
             entity.Property(e => e.Estado).HasDefaultValue(true);
-            entity.Property(e => e.StockActual).HasDefaultValue(0);
-            entity.Property(e => e.StockMinimo).HasDefaultValue(0);
 
             entity.HasOne(d => d.IdColorNavigation).WithMany(p => p.ProductoVariantes).HasConstraintName("fk_variante_color");
 
@@ -257,6 +331,14 @@ public partial class NkCollectionContext : DbContext
             entity.Property(e => e.Estado).HasDefaultValue(true);
         });
 
+        modelBuilder.Entity<TipoCambioBcn>(entity =>
+        {
+            entity.HasKey(e => e.Fecha).HasName("tipo_cambio_bcn_pkey");
+
+            entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.Oficial).HasDefaultValue(true);
+        });
+
         modelBuilder.Entity<TipoEgreso>(entity =>
         {
             entity.HasKey(e => e.IdTipoEgreso).HasName("tipo_egreso_pkey");
@@ -278,6 +360,14 @@ public partial class NkCollectionContext : DbContext
         modelBuilder.Entity<Ventum>(entity =>
         {
             entity.HasKey(e => e.IdVenta).HasName("venta_pkey");
+
+            entity.HasIndex(e => e.FechaVenta, "idx_venta_fecha_activa")
+                .IsDescending()
+                .HasFilter("(estado = true)");
+
+            entity.HasIndex(e => e.NumeroComprobante, "ux_venta_numero_comprobante")
+                .IsUnique()
+                .HasFilter("(numero_comprobante IS NOT NULL)");
 
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaVenta).HasDefaultValueSql("CURRENT_TIMESTAMP");

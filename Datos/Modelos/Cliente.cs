@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +8,7 @@ namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("cliente")]
 [Index("Cedula", Name = "cliente_cedula_key", IsUnique = true)]
+[Index("Nombre", "Apellido", Name = "idx_cliente_nombre_apellido")]
 public partial class Cliente
 {
     [Key]

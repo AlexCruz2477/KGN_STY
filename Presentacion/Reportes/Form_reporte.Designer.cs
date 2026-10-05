@@ -60,7 +60,7 @@ namespace Nk_Colletion_New
             // 
             // panel7
             // 
-            panel7.BackColor = Color.FromArgb(64, 0, 0);
+            panel7.BackColor = Color.FromArgb(63, 65, 64);
             panel7.Dock = DockStyle.Left;
             panel7.Location = new Point(0, 0);
             panel7.Name = "panel7";
@@ -69,7 +69,7 @@ namespace Nk_Colletion_New
             // 
             // panel10
             // 
-            panel10.BackColor = Color.FromArgb(64, 0, 0);
+            panel10.BackColor = Color.FromArgb(63, 65, 64);
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(12, 0);
             panel10.Name = "panel10";
@@ -78,7 +78,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(64, 0, 0);
+            panel4.BackColor = Color.FromArgb(63, 65, 64);
             panel4.Dock = DockStyle.Right;
             panel4.Location = new Point(1361, 10);
             panel4.Name = "panel4";
@@ -135,7 +135,6 @@ namespace Nk_Colletion_New
             // 
             comboBox1.Font = new Font("PMingLiU-ExtB", 12F, FontStyle.Bold);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Usuario 1", "Usuario 2", "Usuario 3" });
             comboBox1.Location = new Point(70, 499);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(301, 32);
@@ -167,7 +166,7 @@ namespace Nk_Colletion_New
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(64, 0, 0);
+            label7.ForeColor = Color.FromArgb(63, 65, 64);
             label7.Location = new Point(84, 147);
             label7.Name = "label7";
             label7.Size = new Size(254, 32);
@@ -210,7 +209,7 @@ namespace Nk_Colletion_New
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(64, 0, 0);
+            label5.ForeColor = Color.FromArgb(63, 65, 64);
             label5.Location = new Point(516, 147);
             label5.Name = "label5";
             label5.Size = new Size(286, 32);
@@ -267,7 +266,6 @@ namespace Nk_Colletion_New
             // 
             comboBox3.Font = new Font("PMingLiU-ExtB", 12F, FontStyle.Bold);
             comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "Usuario 1", "Usuario 2", "Usuario 3" });
             comboBox3.Location = new Point(991, 492);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(301, 32);
@@ -299,7 +297,7 @@ namespace Nk_Colletion_New
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(64, 0, 0);
+            label6.ForeColor = Color.FromArgb(63, 65, 64);
             label6.Location = new Point(1006, 147);
             label6.Name = "label6";
             label6.Size = new Size(286, 32);
@@ -308,7 +306,7 @@ namespace Nk_Colletion_New
             // 
             // panel12
             // 
-            panel12.BackColor = Color.FromArgb(64, 0, 0);
+            panel12.BackColor = Color.FromArgb(63, 65, 64);
             panel12.Dock = DockStyle.Bottom;
             panel12.Location = new Point(12, 814);
             panel12.Name = "panel12";
@@ -319,6 +317,7 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1371, 824);
             Controls.Add(panel12);
             Controls.Add(label9);

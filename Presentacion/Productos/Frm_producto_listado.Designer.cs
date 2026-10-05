@@ -129,13 +129,13 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // etiquetas filtros
             // 
-            lblBuscar.AutoSize = true; lblBuscar.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblBuscar.ForeColor = Color.FromArgb(64, 0, 0); lblBuscar.Location = new Point(31, 86); lblBuscar.Name = "lblBuscar"; lblBuscar.Text = "Buscar";
-            lblCategoria.AutoSize = true; lblCategoria.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblCategoria.ForeColor = Color.FromArgb(64, 0, 0); lblCategoria.Location = new Point(327, 86); lblCategoria.Name = "lblCategoria"; lblCategoria.Text = "Categoría";
-            lblMarca.AutoSize = true; lblMarca.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblMarca.ForeColor = Color.FromArgb(64, 0, 0); lblMarca.Location = new Point(497, 86); lblMarca.Name = "lblMarca"; lblMarca.Text = "Marca";
-            lblTalla.AutoSize = true; lblTalla.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblTalla.ForeColor = Color.FromArgb(64, 0, 0); lblTalla.Location = new Point(667, 86); lblTalla.Name = "lblTalla"; lblTalla.Text = "Talla";
-            lblColor.AutoSize = true; lblColor.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblColor.ForeColor = Color.FromArgb(64, 0, 0); lblColor.Location = new Point(812, 86); lblColor.Name = "lblColor"; lblColor.Text = "Color";
-            lblEstado.AutoSize = true; lblEstado.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblEstado.ForeColor = Color.FromArgb(64, 0, 0); lblEstado.Location = new Point(957, 86); lblEstado.Name = "lblEstado"; lblEstado.Text = "Estado";
-            lblOrden.AutoSize = true; lblOrden.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblOrden.ForeColor = Color.FromArgb(64, 0, 0); lblOrden.Location = new Point(1092, 86); lblOrden.Name = "lblOrden"; lblOrden.Text = "Orden";
+            lblBuscar.AutoSize = true; lblBuscar.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblBuscar.ForeColor = Color.FromArgb(63, 65, 64); lblBuscar.Location = new Point(31, 86); lblBuscar.Name = "lblBuscar"; lblBuscar.Text = "Buscar";
+            lblCategoria.AutoSize = true; lblCategoria.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblCategoria.ForeColor = Color.FromArgb(63, 65, 64); lblCategoria.Location = new Point(327, 86); lblCategoria.Name = "lblCategoria"; lblCategoria.Text = "Categoría";
+            lblMarca.AutoSize = true; lblMarca.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblMarca.ForeColor = Color.FromArgb(63, 65, 64); lblMarca.Location = new Point(497, 86); lblMarca.Name = "lblMarca"; lblMarca.Text = "Marca";
+            lblTalla.AutoSize = true; lblTalla.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblTalla.ForeColor = Color.FromArgb(63, 65, 64); lblTalla.Location = new Point(667, 86); lblTalla.Name = "lblTalla"; lblTalla.Text = "Talla";
+            lblColor.AutoSize = true; lblColor.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblColor.ForeColor = Color.FromArgb(63, 65, 64); lblColor.Location = new Point(812, 86); lblColor.Name = "lblColor"; lblColor.Text = "Color";
+            lblEstado.AutoSize = true; lblEstado.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblEstado.ForeColor = Color.FromArgb(63, 65, 64); lblEstado.Location = new Point(957, 86); lblEstado.Name = "lblEstado"; lblEstado.Text = "Estado";
+            lblOrden.AutoSize = true; lblOrden.Font = new Font("Book Antiqua", 8F, FontStyle.Bold); lblOrden.ForeColor = Color.FromArgb(63, 65, 64); lblOrden.Location = new Point(1092, 86); lblOrden.Name = "lblOrden"; lblOrden.Text = "Orden";
             // 
             // txtBuscar
             // 
@@ -263,6 +263,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 241, 242);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1556, 867);
             Controls.Add(pnlContenido);
             Controls.Add(pnlEncabezado);

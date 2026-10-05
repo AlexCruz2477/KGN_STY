@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nk_Colletion.Negocios.Seguridad;
+using Nk_Colletion_New.Negocios.Seguridad;
 
 namespace Nk_Colletion_New.Negocios.Catalogos
 {
@@ -259,6 +259,23 @@ namespace Nk_Colletion_New.Negocios.Catalogos
 
             await contexto.SaveChangesAsync();
         }
+
+        public async Task CambiarEstadoAsync(int idUsuario, bool estado)
+        {
+            await using var contexto = new NkCollectionContext(_options);
+            var usuario = await contexto.Usuarios
+                .FirstOrDefaultAsync(u => u.IdUsuario == idUsuario)
+                ?? throw new Exception("El usuario no existe.");
+
+            usuario.Estado = estado;
+            await contexto.SaveChangesAsync();
+        }
+
+        public Task DesactivarAsync(int idUsuario) =>
+            CambiarEstadoAsync(idUsuario, false);
+
+        public Task ActivarAsync(int idUsuario) =>
+            CambiarEstadoAsync(idUsuario, true);
 
         // LISTAR ROLES
         public async Task<List<Rol>> ListarRolesAsync()

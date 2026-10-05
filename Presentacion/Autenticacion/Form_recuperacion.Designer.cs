@@ -82,7 +82,7 @@ namespace Nk_Colletion_New
             // 
             // btn_continuar
             // 
-            btn_continuar.BackColor = Color.Maroon;
+            btn_continuar.BackColor = Color.FromArgb(171, 84, 69);
             btn_continuar.ForeColor = Color.White;
             btn_continuar.Location = new Point(479, 382);
             btn_continuar.Name = "btn_continuar";
@@ -105,7 +105,7 @@ namespace Nk_Colletion_New
             // 
             // btncancelar
             // 
-            btncancelar.ForeColor = Color.Maroon;
+            btncancelar.ForeColor = Color.FromArgb(171, 84, 69);
             btncancelar.Location = new Point(238, 382);
             btncancelar.Name = "btncancelar";
             btncancelar.Size = new Size(123, 34);
@@ -128,7 +128,7 @@ namespace Nk_Colletion_New
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Maroon;
+            label1.ForeColor = Color.FromArgb(171, 84, 69);
             label1.Location = new Point(282, 184);
             label1.Name = "label1";
             label1.Size = new Size(266, 32);
@@ -156,7 +156,8 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 0, 0);
+            BackColor = Color.FromArgb(63, 65, 64);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(864, 542);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;

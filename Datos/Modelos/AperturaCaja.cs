@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("apertura_caja")]
+[Index(nameof(FechaApertura), Name = "idx_apertura_caja_activa_fecha", AllDescending = true)]
 public partial class AperturaCaja
 {
     [Key]
@@ -29,16 +28,16 @@ public partial class AperturaCaja
     [Column("estado")]
     public bool? Estado { get; set; }
 
-    [InverseProperty("IdAperturaCajaNavigation")]
+    [InverseProperty(nameof(ArqueoCaja.IdAperturaCajaNavigation))]
     public virtual ICollection<ArqueoCaja> ArqueoCajas { get; set; } = new List<ArqueoCaja>();
 
-    [InverseProperty("IdAperturaCajaNavigation")]
+    [InverseProperty(nameof(Egreso.IdAperturaCajaNavigation))]
     public virtual ICollection<Egreso> Egresos { get; set; } = new List<Egreso>();
 
-    [ForeignKey("IdCaja")]
-    [InverseProperty("AperturaCajas")]
+    [ForeignKey(nameof(IdCaja))]
+    [InverseProperty(nameof(Caja.AperturaCajas))]
     public virtual Caja IdCajaNavigation { get; set; } = null!;
 
-    [InverseProperty("IdAperturaCajaNavigation")]
+    [InverseProperty(nameof(Ventum.IdAperturaCajaNavigation))]
     public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
 }

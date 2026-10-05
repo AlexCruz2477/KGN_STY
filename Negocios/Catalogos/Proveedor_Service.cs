@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
 using System;
@@ -147,5 +147,22 @@ namespace Nk_Colletion_New.Negocios.Catalogos
 
             await contexto.SaveChangesAsync();
         }
+        public async Task CambiarEstadoAsync(int idProveedor, bool estado)
+        {
+            await using var contexto = new NkCollectionContext(_options);
+            var proveedor = await contexto.Proveedors
+                .FirstOrDefaultAsync(p => p.IdProveedor == idProveedor)
+                ?? throw new Exception("El proveedor no existe.");
+
+            proveedor.Estado = estado;
+            await contexto.SaveChangesAsync();
+        }
+
+        public Task DesactivarAsync(int idProveedor) =>
+            CambiarEstadoAsync(idProveedor, false);
+
+        public Task ActivarAsync(int idProveedor) =>
+            CambiarEstadoAsync(idProveedor, true);
+
     }
 }

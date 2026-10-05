@@ -29,13 +29,11 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlVariante = new Panel();
             btnAgregarVariante = new Button();
             nudPrecioVenta = new NumericUpDown();
-            nudPrecioCompra = new NumericUpDown();
             nudStockMinimo = new NumericUpDown();
             nudStock = new NumericUpDown();
             cmbColor = new ComboBox();
             cmbTalla = new ComboBox();
             lblPrecioVenta = new Label();
-            lblPrecioCompra = new Label();
             lblStockMinimo = new Label();
             lblStock = new Label();
             lblColor = new Label();
@@ -52,7 +50,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblRegistrarAyuda = new Label();
             lblRegistrar = new Label();
             pnlResumen = new Panel();
-            btnAgregarVariantesExistente = new Button();
             txtBuscarResumen = new TextBox();
             cmbOrdenResumen = new ComboBox();
             lblOrdenResumen = new Label();
@@ -66,13 +63,11 @@ namespace Nk_Colletion_New.Presentacion.Productos
             colVariantesResumen = new DataGridViewTextBoxColumn();
             colStockResumen = new DataGridViewTextBoxColumn();
             colPrecioResumen = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
             colEstadoResumen = new DataGridViewTextBoxColumn();
             pnlEncabezado.SuspendLayout();
             pnlRegistro.SuspendLayout();
             pnlVariante.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrecioVenta).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudPrecioCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudStockMinimo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudStock).BeginInit();
             pnlResumen.SuspendLayout();
@@ -149,7 +144,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Location = new Point(38, 65);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(550, 23);
+            lblSubtitulo.Size = new Size(510, 25);
             lblSubtitulo.TabIndex = 5;
             lblSubtitulo.Text = "Registra productos y consulta la vista general agrupada por ID.";
             // 
@@ -158,7 +153,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(33, 17);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(203, 49);
+            lblTitulo.Size = new Size(93, 25);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Productos";
             // 
@@ -208,13 +203,11 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlVariante.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlVariante.Controls.Add(btnAgregarVariante);
             pnlVariante.Controls.Add(nudPrecioVenta);
-            pnlVariante.Controls.Add(nudPrecioCompra);
             pnlVariante.Controls.Add(nudStockMinimo);
             pnlVariante.Controls.Add(nudStock);
             pnlVariante.Controls.Add(cmbColor);
             pnlVariante.Controls.Add(cmbTalla);
             pnlVariante.Controls.Add(lblPrecioVenta);
-            pnlVariante.Controls.Add(lblPrecioCompra);
             pnlVariante.Controls.Add(lblStockMinimo);
             pnlVariante.Controls.Add(lblStock);
             pnlVariante.Controls.Add(lblColor);
@@ -240,23 +233,12 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             nudPrecioVenta.BorderStyle = BorderStyle.FixedSingle;
             nudPrecioVenta.DecimalPlaces = 2;
-            nudPrecioVenta.Location = new Point(1070, 66);
+            nudPrecioVenta.Location = new Point(939, 66);
             nudPrecioVenta.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             nudPrecioVenta.Name = "nudPrecioVenta";
-            nudPrecioVenta.Size = new Size(142, 30);
+            nudPrecioVenta.Size = new Size(142, 31);
             nudPrecioVenta.TabIndex = 1;
             nudPrecioVenta.ThousandsSeparator = true;
-            // 
-            // nudPrecioCompra
-            // 
-            nudPrecioCompra.BorderStyle = BorderStyle.FixedSingle;
-            nudPrecioCompra.DecimalPlaces = 2;
-            nudPrecioCompra.Location = new Point(904, 66);
-            nudPrecioCompra.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
-            nudPrecioCompra.Name = "nudPrecioCompra";
-            nudPrecioCompra.Size = new Size(142, 30);
-            nudPrecioCompra.TabIndex = 2;
-            nudPrecioCompra.ThousandsSeparator = true;
             // 
             // nudStockMinimo
             // 
@@ -264,7 +246,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             nudStockMinimo.Location = new Point(766, 66);
             nudStockMinimo.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudStockMinimo.Name = "nudStockMinimo";
-            nudStockMinimo.Size = new Size(116, 30);
+            nudStockMinimo.Size = new Size(116, 31);
             nudStockMinimo.TabIndex = 3;
             // 
             // nudStock
@@ -273,51 +255,42 @@ namespace Nk_Colletion_New.Presentacion.Productos
             nudStock.Location = new Point(645, 66);
             nudStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudStock.Name = "nudStock";
-            nudStock.Size = new Size(99, 30);
+            nudStock.Size = new Size(99, 31);
             nudStock.TabIndex = 4;
             // 
             // cmbColor
             // 
             cmbColor.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbColor.ItemHeight = 30;
+            cmbColor.ItemHeight = 25;
             cmbColor.Location = new Point(316, 59);
             cmbColor.Name = "cmbColor";
-            cmbColor.Size = new Size(210, 36);
+            cmbColor.Size = new Size(210, 33);
             cmbColor.TabIndex = 5;
             // 
             // cmbTalla
             // 
             cmbTalla.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTalla.ItemHeight = 30;
+            cmbTalla.ItemHeight = 25;
             cmbTalla.Location = new Point(24, 59);
             cmbTalla.Name = "cmbTalla";
-            cmbTalla.Size = new Size(270, 36);
+            cmbTalla.Size = new Size(270, 33);
             cmbTalla.TabIndex = 6;
             // 
             // lblPrecioVenta
             // 
             lblPrecioVenta.AutoSize = true;
-            lblPrecioVenta.Location = new Point(1070, 41);
+            lblPrecioVenta.Location = new Point(939, 41);
             lblPrecioVenta.Name = "lblPrecioVenta";
-            lblPrecioVenta.Size = new Size(99, 21);
+            lblPrecioVenta.Size = new Size(108, 25);
             lblPrecioVenta.TabIndex = 7;
             lblPrecioVenta.Text = "Precio venta";
-            // 
-            // lblPrecioCompra
-            // 
-            lblPrecioCompra.AutoSize = true;
-            lblPrecioCompra.Location = new Point(904, 41);
-            lblPrecioCompra.Name = "lblPrecioCompra";
-            lblPrecioCompra.Size = new Size(113, 21);
-            lblPrecioCompra.TabIndex = 8;
-            lblPrecioCompra.Text = "Precio compra";
             // 
             // lblStockMinimo
             // 
             lblStockMinimo.AutoSize = true;
             lblStockMinimo.Location = new Point(766, 41);
             lblStockMinimo.Name = "lblStockMinimo";
-            lblStockMinimo.Size = new Size(112, 21);
+            lblStockMinimo.Size = new Size(121, 25);
             lblStockMinimo.TabIndex = 9;
             lblStockMinimo.Text = "Stock mínimo";
             // 
@@ -326,7 +299,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblStock.AutoSize = true;
             lblStock.Location = new Point(645, 41);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(51, 21);
+            lblStock.Size = new Size(55, 25);
             lblStock.TabIndex = 10;
             lblStock.Text = "Stock";
             // 
@@ -335,7 +308,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblColor.AutoSize = true;
             lblColor.Location = new Point(316, 35);
             lblColor.Name = "lblColor";
-            lblColor.Size = new Size(51, 21);
+            lblColor.Size = new Size(55, 25);
             lblColor.TabIndex = 11;
             lblColor.Text = "Color";
             // 
@@ -344,7 +317,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblTalla.AutoSize = true;
             lblTalla.Location = new Point(24, 35);
             lblTalla.Name = "lblTalla";
-            lblTalla.Size = new Size(47, 21);
+            lblTalla.Size = new Size(45, 25);
             lblTalla.TabIndex = 12;
             lblTalla.Text = "Talla";
             // 
@@ -353,17 +326,17 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblVariante.AutoSize = true;
             lblVariante.Location = new Point(20, 8);
             lblVariante.Name = "lblVariante";
-            lblVariante.Size = new Size(262, 23);
+            lblVariante.Size = new Size(231, 25);
             lblVariante.TabIndex = 13;
             lblVariante.Text = "Variante inicial del producto";
             // 
             // cmbMarca
             // 
             cmbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMarca.ItemHeight = 30;
+            cmbMarca.ItemHeight = 25;
             cmbMarca.Location = new Point(1120, 110);
             cmbMarca.Name = "cmbMarca";
-            cmbMarca.Size = new Size(339, 36);
+            cmbMarca.Size = new Size(339, 33);
             cmbMarca.TabIndex = 3;
             // 
             // lblMarca
@@ -371,17 +344,17 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblMarca.AutoSize = true;
             lblMarca.Location = new Point(1120, 85);
             lblMarca.Name = "lblMarca";
-            lblMarca.Size = new Size(60, 22);
+            lblMarca.Size = new Size(60, 25);
             lblMarca.TabIndex = 4;
             lblMarca.Text = "Marca";
             // 
             // cmbCategoria
             // 
             cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCategoria.ItemHeight = 30;
+            cmbCategoria.ItemHeight = 25;
             cmbCategoria.Location = new Point(780, 110);
             cmbCategoria.Name = "cmbCategoria";
-            cmbCategoria.Size = new Size(318, 36);
+            cmbCategoria.Size = new Size(318, 33);
             cmbCategoria.TabIndex = 5;
             // 
             // lblCategoria
@@ -389,7 +362,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblCategoria.AutoSize = true;
             lblCategoria.Location = new Point(780, 85);
             lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(86, 22);
+            lblCategoria.Size = new Size(88, 25);
             lblCategoria.TabIndex = 6;
             lblCategoria.Text = "Categoría";
             // 
@@ -399,7 +372,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             txtDescripcion.Margin = new Padding(4, 5, 4, 5);
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.PlaceholderText = "Descripción opcional";
-            txtDescripcion.Size = new Size(367, 36);
+            txtDescripcion.Size = new Size(367, 31);
             txtDescripcion.TabIndex = 7;
             // 
             // lblDescripcion
@@ -407,7 +380,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblDescripcion.AutoSize = true;
             lblDescripcion.Location = new Point(391, 85);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(105, 22);
+            lblDescripcion.Size = new Size(104, 25);
             lblDescripcion.TabIndex = 8;
             lblDescripcion.Text = "Descripción";
             // 
@@ -417,7 +390,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             txtNombre.Margin = new Padding(4, 5, 4, 5);
             txtNombre.Name = "txtNombre";
             txtNombre.PlaceholderText = "Ej. Camisa deportiva Nike";
-            txtNombre.Size = new Size(338, 36);
+            txtNombre.Size = new Size(338, 31);
             txtNombre.TabIndex = 9;
             // 
             // lblNombre
@@ -425,7 +398,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblNombre.AutoSize = true;
             lblNombre.Location = new Point(31, 85);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(176, 22);
+            lblNombre.Size = new Size(186, 25);
             lblNombre.TabIndex = 10;
             lblNombre.Text = "Nombre del producto";
             // 
@@ -434,7 +407,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblRegistrarAyuda.AutoSize = true;
             lblRegistrarAyuda.Location = new Point(31, 49);
             lblRegistrarAyuda.Name = "lblRegistrarAyuda";
-            lblRegistrarAyuda.Size = new Size(624, 22);
+            lblRegistrarAyuda.Size = new Size(664, 25);
             lblRegistrarAyuda.TabIndex = 11;
             lblRegistrarAyuda.Text = "Completa los datos del producto y define su primera combinación de talla y color.";
             // 
@@ -443,14 +416,13 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblRegistrar.AutoSize = true;
             lblRegistrar.Location = new Point(26, 17);
             lblRegistrar.Name = "lblRegistrar";
-            lblRegistrar.Size = new Size(216, 28);
+            lblRegistrar.Size = new Size(160, 25);
             lblRegistrar.TabIndex = 12;
             lblRegistrar.Text = "Registrar producto";
             // 
             // pnlResumen
             // 
             pnlResumen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlResumen.Controls.Add(btnAgregarVariantesExistente);
             pnlResumen.Controls.Add(txtBuscarResumen);
             pnlResumen.Controls.Add(cmbOrdenResumen);
             pnlResumen.Controls.Add(lblOrdenResumen);
@@ -462,17 +434,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlResumen.Size = new Size(1500, 363);
             pnlResumen.TabIndex = 0;
             // 
-            // btnAgregarVariantesExistente
-            // 
-            btnAgregarVariantesExistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAgregarVariantesExistente.Enabled = false;
-            btnAgregarVariantesExistente.Location = new Point(617, 23);
-            btnAgregarVariantesExistente.Name = "btnAgregarVariantesExistente";
-            btnAgregarVariantesExistente.Size = new Size(223, 42);
-            btnAgregarVariantesExistente.TabIndex = 0;
-            btnAgregarVariantesExistente.Text = "+ Agregar variantes";
-            btnAgregarVariantesExistente.Click += btnAgregarVariantesExistente_Click;
-            // 
             // txtBuscarResumen
             // 
             txtBuscarResumen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -480,7 +441,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             txtBuscarResumen.Margin = new Padding(4, 5, 4, 5);
             txtBuscarResumen.Name = "txtBuscarResumen";
             txtBuscarResumen.PlaceholderText = "Buscar producto...";
-            txtBuscarResumen.Size = new Size(417, 42);
+            txtBuscarResumen.Size = new Size(417, 31);
             txtBuscarResumen.TabIndex = 1;
             txtBuscarResumen.TextChanged += txtBuscarResumen_TextChanged;
             // 
@@ -488,10 +449,10 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             cmbOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cmbOrdenResumen.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbOrdenResumen.ItemHeight = 28;
+            cmbOrdenResumen.ItemHeight = 25;
             cmbOrdenResumen.Location = new Point(860, 30);
             cmbOrdenResumen.Name = "cmbOrdenResumen";
-            cmbOrdenResumen.Size = new Size(160, 34);
+            cmbOrdenResumen.Size = new Size(160, 33);
             cmbOrdenResumen.TabIndex = 2;
             cmbOrdenResumen.SelectedIndexChanged += cmbOrdenResumen_SelectedIndexChanged;
             // 
@@ -501,7 +462,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblOrdenResumen.AutoSize = true;
             lblOrdenResumen.Location = new Point(860, 8);
             lblOrdenResumen.Name = "lblOrdenResumen";
-            lblOrdenResumen.Size = new Size(54, 19);
+            lblOrdenResumen.Size = new Size(62, 25);
             lblOrdenResumen.TabIndex = 3;
             lblOrdenResumen.Text = "Orden";
             // 
@@ -511,7 +472,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblResumenTotal.AutoSize = true;
             lblResumenTotal.Location = new Point(31, 329);
             lblResumenTotal.Name = "lblResumenTotal";
-            lblResumenTotal.Size = new Size(341, 22);
+            lblResumenTotal.Size = new Size(359, 25);
             lblResumenTotal.TabIndex = 4;
             lblResumenTotal.Text = "Mostrando 0 producto(s) agrupados por ID";
             // 
@@ -520,7 +481,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblResumen.AutoSize = true;
             lblResumen.Location = new Point(26, 16);
             lblResumen.Name = "lblResumen";
-            lblResumen.Size = new Size(306, 28);
+            lblResumen.Size = new Size(225, 25);
             lblResumen.TabIndex = 6;
             lblResumen.Text = "Vista general de productos";
             // 
@@ -531,8 +492,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             dgvResumen.AllowUserToResizeRows = false;
             dgvResumen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvResumen.ColumnHeadersHeight = 40;
-            dgvResumen.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvResumen.Columns.AddRange(new DataGridViewColumn[] { colIdProducto, colProducto, colMarcaResumen, colCategoriaResumen, colVariantesResumen, colStockResumen, colPrecioResumen, Column1, colEstadoResumen });
+            dgvResumen.Columns.AddRange(new DataGridViewColumn[] { colIdProducto, colProducto, colMarcaResumen, colCategoriaResumen, colVariantesResumen, colStockResumen, colPrecioResumen, colEstadoResumen });
             dgvResumen.GridColor = Color.FromArgb(239, 226, 229);
             dgvResumen.Location = new Point(31, 82);
             dgvResumen.MultiSelect = false;
@@ -552,6 +512,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             colIdProducto.MinimumWidth = 8;
             colIdProducto.Name = "colIdProducto";
             colIdProducto.ReadOnly = true;
+            colIdProducto.Width = 150;
             // 
             // colProducto
             // 
@@ -584,6 +545,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             colVariantesResumen.MinimumWidth = 8;
             colVariantesResumen.Name = "colVariantesResumen";
             colVariantesResumen.ReadOnly = true;
+            colVariantesResumen.Width = 150;
             // 
             // colStockResumen
             // 
@@ -591,6 +553,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             colStockResumen.MinimumWidth = 8;
             colStockResumen.Name = "colStockResumen";
             colStockResumen.ReadOnly = true;
+            colStockResumen.Width = 150;
             // 
             // colPrecioResumen
             // 
@@ -600,25 +563,19 @@ namespace Nk_Colletion_New.Presentacion.Productos
             colPrecioResumen.Name = "colPrecioResumen";
             colPrecioResumen.ReadOnly = true;
             // 
-            // Column1
-            // 
-            Column1.HeaderText = "Precio Compra";
-            Column1.MinimumWidth = 8;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
             // colEstadoResumen
             // 
             colEstadoResumen.HeaderText = "Estado";
             colEstadoResumen.MinimumWidth = 8;
             colEstadoResumen.Name = "colEstadoResumen";
             colEstadoResumen.ReadOnly = true;
+            colEstadoResumen.Width = 150;
             // 
             // Frm_producto
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(248, 241, 242);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1556, 867);
             Controls.Add(pnlResumen);
             Controls.Add(pnlRegistro);
@@ -634,7 +591,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlVariante.ResumeLayout(false);
             pnlVariante.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrecioVenta).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudPrecioCompra).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudStockMinimo).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudStock).EndInit();
             pnlResumen.ResumeLayout(false);
@@ -660,13 +616,11 @@ namespace Nk_Colletion_New.Presentacion.Productos
         private Button btnTallas;
         private Button btnAgregarVariante;
         private NumericUpDown nudPrecioVenta;
-        private NumericUpDown nudPrecioCompra;
         private NumericUpDown nudStockMinimo;
         private NumericUpDown nudStock;
         private ComboBox cmbColor;
         private ComboBox cmbTalla;
         private Label lblPrecioVenta;
-        private Label lblPrecioCompra;
         private Label lblStockMinimo;
         private Label lblStock;
         private Label lblColor;
@@ -683,7 +637,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
         private Label lblRegistrarAyuda;
         private Label lblRegistrar;
         private Panel pnlResumen;
-        private Button btnAgregarVariantesExistente;
         private TextBox txtBuscarResumen;
         private ComboBox cmbOrdenResumen;
         private Label lblOrdenResumen;
@@ -697,7 +650,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
         private DataGridViewTextBoxColumn colVariantesResumen;
         private DataGridViewTextBoxColumn colStockResumen;
         private DataGridViewTextBoxColumn colPrecioResumen;
-        private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn colEstadoResumen;
     }
 }

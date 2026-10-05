@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("usuario")]
+[Index("Nombre", Name = "idx_usuario_nombre")]
 [Index("Cedula", Name = "usuario_cedula_key", IsUnique = true)]
 [Index("Correo", Name = "usuario_correo_key", IsUnique = true)]
 [Index("Usuario1", Name = "usuario_usuario_key", IsUnique = true)]

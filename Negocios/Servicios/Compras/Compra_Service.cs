@@ -2,76 +2,249 @@ using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
 
-namespace Nk_Colletion_New.Negocios.Servicios.Compras
+namespace Nk_Colletion_New.Negocios.Servicios.Compras;
+
+public sealed record DetalleCompraTemporal(
+    int IdVariante,
+    string Producto,
+    string Codigo,
+    int Cantidad,
+    decimal PrecioCompra,
+    decimal PrecioVenta)
 {
-    public sealed record DetalleCompraTemporal(int IdVariante, string Producto, string Codigo, int Cantidad, decimal PrecioCompra, decimal PrecioVenta)
+    public decimal Subtotal => Cantidad * PrecioCompra;
+}
+
+public sealed class Compra_Service
+{
+    private readonly DbContextOptions<NkCollectionContext> _options;
+
+    public Compra_Service(DbContextOptions<NkCollectionContext> options)
     {
-        public decimal Subtotal => Cantidad * PrecioCompra;
+        _options = options;
     }
 
-    public class Compra_Service
+    public async Task<List<Proveedor>> ListarProveedoresAsync()
     {
-        private readonly DbContextOptions<NkCollectionContext> _options;
+        await using var context = new NkCollectionContext(_options);
 
-        public Compra_Service(DbContextOptions<NkCollectionContext> options) => _options = options;
+        return await context.Proveedors
+            .AsNoTracking()
+            .Where(proveedor => proveedor.Estado != false)
+            .OrderBy(proveedor => proveedor.Nombre)
+            .ToListAsync();
+    }
 
-        public async Task<List<Proveedor>> ListarProveedoresAsync()
+    public async Task<List<ProductoVariante>> ListarVariantesAsync()
+    {
+        await using var context = new NkCollectionContext(_options);
+
+        return await context.ProductoVariantes
+            .AsNoTracking()
+            .Include(variante => variante.IdProductoNavigation)
+            .Where(variante =>
+                variante.Estado != false &&
+                variante.IdProductoNavigation.Estado != false)
+            .OrderBy(variante => variante.IdProductoNavigation.NombreProducto)
+            .ThenBy(variante => variante.Codigo)
+            .ToListAsync();
+    }
+
+    public async Task<int> GuardarAsync(
+        int idProveedor,
+        int idUsuario,
+        string? factura,
+        DateTime fecha,
+        decimal impuesto,
+        IEnumerable<DetalleCompraTemporal> detalles)
+    {
+        var lineas = detalles.ToList();
+        ValidarCompra(idProveedor, idUsuario, impuesto, lineas);
+
+        decimal subtotal = lineas.Sum(detalle => detalle.Subtotal);
+        decimal montoImpuesto = Math.Round(subtotal * impuesto / 100m, 2);
+
+        await using var context = new NkCollectionContext(_options);
+        await using var transaction = await context.Database.BeginTransactionAsync();
+
+        try
         {
-            await using var contexto = new NkCollectionContext(_options);
-            return await contexto.Proveedors.AsNoTracking().Where(p => p.Estado != false).OrderBy(p => p.Nombre).ToListAsync();
-        }
+            await ValidarEntidadesRelacionadasAsync(
+                context,
+                idProveedor,
+                idUsuario,
+                lineas);
 
-        public async Task<List<ProductoVariante>> ListarVariantesAsync()
-        {
-            await using var contexto = new NkCollectionContext(_options);
-            return await contexto.ProductoVariantes.AsNoTracking().Include(v => v.IdProductoNavigation)
-                .Where(v => v.Estado != false && v.IdProductoNavigation.Estado != false)
-                .OrderBy(v => v.IdProductoNavigation.NombreProducto).ThenBy(v => v.Codigo).ToListAsync();
-        }
+            var idsVariantes = lineas
+                .Select(detalle => detalle.IdVariante)
+                .Distinct()
+                .ToList();
 
-        public async Task<int> GuardarAsync(int idProveedor, int idUsuario, string? factura, DateTime fecha, decimal impuesto, IEnumerable<DetalleCompraTemporal> detalles)
-        {
-            var lineas = detalles.ToList();
-            if (lineas.Count == 0) throw new InvalidOperationException("Agregue al menos un producto a la compra.");
-            if (lineas.Any(d => d.Cantidad <= 0 || d.PrecioCompra < 0 || d.PrecioVenta < 0)) throw new InvalidOperationException("Revise cantidades y precios de compra/venta.");
-            if (impuesto < 0) throw new InvalidOperationException("El impuesto no puede ser negativo.");
-            decimal subtotal = lineas.Sum(d => d.Subtotal);
-            decimal montoImpuesto = Math.Round(subtotal * impuesto / 100m, 2);
-
-            await using var contexto = new NkCollectionContext(_options);
-            await using var transaccion = await contexto.Database.BeginTransactionAsync();
-            if (!await contexto.Proveedors.AnyAsync(p => p.IdProveedor == idProveedor && p.Estado != false)) throw new InvalidOperationException("Seleccione un proveedor activo.");
-            if (!await contexto.Usuarios.AnyAsync(u => u.IdUsuario == idUsuario && u.Estado)) throw new InvalidOperationException("El usuario no existe o está inactivo.");
-            if (lineas.GroupBy(d => d.IdVariante).Any(g => g.Count() > 1)) throw new InvalidOperationException("La compra contiene variantes duplicadas.");
-            var ids = lineas.Select(d => d.IdVariante).Distinct().ToList();
-            var variantes = await contexto.ProductoVariantes.Where(v => ids.Contains(v.IdVariante)).ToDictionaryAsync(v => v.IdVariante);
-            if (variantes.Count != ids.Count || lineas.Any(d => !variantes.ContainsKey(d.IdVariante) || variantes[d.IdVariante].Estado == false))
-                throw new InvalidOperationException("Una o más variantes no existen o están inactivas.");
+            var variantes = await context.ProductoVariantes
+                .Where(variante => idsVariantes.Contains(variante.IdVariante))
+                .ToDictionaryAsync(variante => variante.IdVariante);
 
             var compra = new Compra
             {
                 IdProveedor = idProveedor,
                 IdUsuario = idUsuario,
-                NumeroFactura = string.IsNullOrWhiteSpace(factura) ? null : factura.Trim(),
-                FechaCompra = fecha,
+                NumeroFactura = string.IsNullOrWhiteSpace(factura)
+                    ? null
+                    : factura.Trim(),
+                FechaCompra = DateTime.SpecifyKind(fecha, DateTimeKind.Unspecified),
                 Subtotal = subtotal,
                 Impuesto = montoImpuesto,
                 Total = subtotal + montoImpuesto,
-                Estado = true
+                Estado = true,
+                DetalleCompras = lineas.Select(detalle => new DetalleCompra
+                {
+                    IdVariante = detalle.IdVariante,
+                    Cantidad = detalle.Cantidad,
+                    PrecioUnitario = detalle.PrecioCompra
+                }).ToList()
             };
-            contexto.Compras.Add(compra);
-            await contexto.SaveChangesAsync();
+
             foreach (var detalle in lineas)
             {
-                var variante = variantes[detalle.IdVariante];
-                variante.StockActual += detalle.Cantidad;
-                variante.PrecioCompra = detalle.PrecioCompra;
-                if (detalle.PrecioVenta > 0) variante.PrecioVenta = detalle.PrecioVenta;
-                contexto.DetalleCompras.Add(new DetalleCompra { IdCompra = compra.IdCompra, IdVariante = detalle.IdVariante, Cantidad = detalle.Cantidad, PrecioUnitario = detalle.PrecioCompra });
+                if (detalle.PrecioVenta > 0)
+                {
+                    variantes[detalle.IdVariante].PrecioVenta = detalle.PrecioVenta;
+                }
             }
-            await contexto.SaveChangesAsync();
-            await transaccion.CommitAsync();
+
+            context.Compras.Add(compra);
+
+            // PostgreSQL incrementa el stock, actualiza el precio de compra,
+            // recalcula los totales y registra el kardex con los triggers de
+            // detalle_compra. C# solo registra la transacción de negocio.
+            await context.SaveChangesAsync();
+            await context.Entry(compra).ReloadAsync();
+            await transaction.CommitAsync();
+
             return compra.IdCompra;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
+    }
+
+    public async Task<List<Compra>> ListarAsync()
+    {
+        await using var context = new NkCollectionContext(_options);
+
+        return await context.Compras
+            .AsNoTracking()
+            .Include(compra => compra.IdProveedorNavigation)
+            .Include(compra => compra.IdUsuarioNavigation)
+            .Include(compra => compra.DetalleCompras)
+                .ThenInclude(detalle => detalle.IdVarianteNavigation)
+            .OrderByDescending(compra => compra.FechaCompra)
+            .ToListAsync();
+    }
+
+    public async Task<Compra?> ObtenerPorIdAsync(int idCompra)
+    {
+        if (idCompra <= 0)
+        {
+            return null;
+        }
+
+        await using var context = new NkCollectionContext(_options);
+
+        return await context.Compras
+            .AsNoTracking()
+            .Include(compra => compra.IdProveedorNavigation)
+            .Include(compra => compra.IdUsuarioNavigation)
+            .Include(compra => compra.DetalleCompras)
+                .ThenInclude(detalle => detalle.IdVarianteNavigation)
+            .FirstOrDefaultAsync(compra => compra.IdCompra == idCompra);
+    }
+
+    private static void ValidarCompra(
+        int idProveedor,
+        int idUsuario,
+        decimal impuesto,
+        IReadOnlyCollection<DetalleCompraTemporal> lineas)
+    {
+        if (idProveedor <= 0 || idUsuario <= 0)
+        {
+            throw new ArgumentException(
+                "Proveedor o usuario no válido.");
+        }
+
+        if (lineas.Count == 0)
+        {
+            throw new InvalidOperationException(
+                "Agregue al menos un producto a la compra.");
+        }
+
+        if (lineas.Any(detalle =>
+                detalle.IdVariante <= 0 ||
+                detalle.Cantidad <= 0 ||
+                detalle.PrecioCompra < 0 ||
+                detalle.PrecioVenta < 0))
+        {
+            throw new InvalidOperationException(
+                "Revise las variantes, cantidades y precios de compra/venta.");
+        }
+
+        if (lineas.GroupBy(detalle => detalle.IdVariante).Any(grupo => grupo.Count() > 1))
+        {
+            throw new InvalidOperationException(
+                "La compra contiene variantes duplicadas.");
+        }
+
+        if (impuesto < 0)
+        {
+            throw new InvalidOperationException(
+                "El impuesto no puede ser negativo.");
+        }
+    }
+
+    private static async Task ValidarEntidadesRelacionadasAsync(
+        NkCollectionContext context,
+        int idProveedor,
+        int idUsuario,
+        IReadOnlyCollection<DetalleCompraTemporal> lineas)
+    {
+        bool proveedorActivo = await context.Proveedors
+            .AnyAsync(proveedor =>
+                proveedor.IdProveedor == idProveedor &&
+                proveedor.Estado != false);
+
+        if (!proveedorActivo)
+        {
+            throw new InvalidOperationException(
+                "El proveedor no existe o está inactivo.");
+        }
+
+        bool usuarioActivo = await context.Usuarios
+            .AnyAsync(usuario =>
+                usuario.IdUsuario == idUsuario &&
+                usuario.Estado);
+
+        if (!usuarioActivo)
+        {
+            throw new InvalidOperationException(
+                "El usuario no existe o está inactivo.");
+        }
+
+        var idsVariantes = lineas
+            .Select(detalle => detalle.IdVariante)
+            .Distinct()
+            .ToList();
+
+        int variantesActivas = await context.ProductoVariantes
+            .CountAsync(variante =>
+                idsVariantes.Contains(variante.IdVariante) &&
+                variante.Estado != false);
+
+        if (variantesActivas != idsVariantes.Count)
+        {
+            throw new InvalidOperationException(
+                "Hay variantes inexistentes o inactivas en la compra.");
         }
     }
 }

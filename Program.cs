@@ -1,40 +1,28 @@
-using Microsoft.EntityFrameworkCore;
-using System.Windows.Forms;
+﻿using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
-using Nk_Colletion_New.Negocios;
-using Nk_Colletion_New.Presentacion.Autenticacion;
-using System.Windows.Forms;
 using Nk_Colletion_New.Negocios.Autenticacion;
+using Nk_Colletion_New.Presentacion.Autenticacion;
+using Nk_Colletion_New.Presentacion.Estilos;
 
-namespace Nk_Colletion_New
+namespace Nk_Colletion_New;
+
+internal static class Program
 {
-    internal static class Program
+    [STAThread]
+    private static void Main()
     {
-        [STAThread]
-        static void Main()
-        {
-            ApplicationConfiguration.Initialize();
+        ApplicationConfiguration.Initialize();
+        InterfazResponsiva.Activar();
 
-            var options = new DbContextOptionsBuilder<NkCollectionContext>()
-                .UseNpgsql(
-                    "Host=localhost;" +
-                    "Port=5432;" +
-                    "Database=NK_STYLE_POINT;" +
-                    "Username=postgres;" +
-                    "Password=131007"
-                )
-                .Options;
+        var options = new DbContextOptionsBuilder<NkCollectionContext>()
+            .UseNpgsql(AppConfig.CadenaConexion)
+            .Options;
 
-            // Store options globally so WinForms constructors that rely on AppConfig.DbOptions
-            // receive the same configured DbContextOptions (provider, connection string).
-            Nk_Colletion_New.Datos.AppConfig.DbOptions = options;
+        AppConfig.DbOptions = options;
 
-            var autenticacionUsuario = new AutenticacionUsuario(options);
-            var loginServicio = new LoginServicio(options);
+        var servicioAuth = new ServicioAuth(options);
+        var loginServicio = new LoginServicio(options);
 
-            Application.Run(
-                new Frm_Login(autenticacionUsuario, loginServicio)
-            );
-        }
+        Application.Run(new Frm_Login(servicioAuth, loginServicio));
     }
 }

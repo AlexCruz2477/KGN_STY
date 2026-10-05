@@ -1,132 +1,144 @@
-using System;
-using System.Windows.Forms;
-using Nk_Colletion_New.Negocios;
 using Nk_Colletion_New.Negocios.Autenticacion;
+using Nk_Colletion_New.Presentacion.Estilos;
 
-namespace Nk_Colletion_New.Presentacion.Autenticacion
+namespace Nk_Colletion_New.Presentacion.Autenticacion;
+
+public partial class Frm_Login : Form
 {
-    public partial class Frm_Login : Form
+    private readonly ServicioAuth? _servicioAuth;
+    private readonly LoginServicio? _loginServicio;
+
+    public Frm_Login()
     {
-        private readonly LoginServicio? _loginServicio;
-        private readonly AutenticacionUsuario? _autenticacionUsuario;
+        InitializeComponent();
+        TemaNk.Aplicar(this);
+    }
 
-        // Constructor para el diseñador
-        public Frm_Login()
+    public Frm_Login(ServicioAuth servicioAuth, LoginServicio loginServicio) : this()
+    {
+        _servicioAuth = servicioAuth;
+        _loginServicio = loginServicio;
+    }
+
+    private void Frm_Login_Load(object sender, EventArgs e)
+    {
+        txt_Usuario.Clear();
+        txt_Contrasena.Clear();
+        txt_Contrasena.Multiline = false;
+        txt_Contrasena.PasswordChar = '●';
+        txt_Contrasena.UseSystemPasswordChar = true;
+        txt_Usuario.Focus();
+    }
+
+    private async void btn_Ingresar_Click(object sender, EventArgs e)
+    {
+        string usuario = txt_Usuario.Text.Trim();
+        string contrasena = txt_Contrasena.Text;
+
+        if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contrasena))
         {
-            InitializeComponent();
+            MessageBox.Show(
+                "Ingrese su usuario y contraseña.",
+                "Inicio de sesión",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            return;
         }
 
-        // Constructor usado al ejecutar el programa
-        public Frm_Login(AutenticacionUsuario autenticacionUsuario, LoginServicio loginServicio) : this()
+        if (_servicioAuth is null)
         {
-            _autenticacionUsuario = autenticacionUsuario;
-            _loginServicio = loginServicio;
+            MessageBox.Show(
+                "El servicio de autenticación no está configurado.",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
         }
-        private void Frm_Login_Load(object sender, EventArgs e)
+
+        try
         {
+            btn_Ingresar.Enabled = false;
+            btn_Ingresar.Text = "Ingresando...";
 
-        }
-
-        private async void btn_Ingresar_Click(object sender, EventArgs e)
-        {
-            string usuario = txt_Usuario.Text.Trim();
-            string contrasena = txt_Contrasena.Text;
-
-            // Validar campos vacíos
-            if (string.IsNullOrWhiteSpace(usuario) ||
-                string.IsNullOrWhiteSpace(contrasena))
+            var sesion = await _servicioAuth.ValidarCredencialesAsync(usuario, contrasena);
+            if (sesion is null)
             {
                 MessageBox.Show(
-                    "Ingrese su usuario y contraseña.",
-                    "Campos vacíos",
+                    "Usuario o contraseña incorrectos, o la cuenta está inactiva.",
+                    "Acceso denegado",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                    MessageBoxIcon.Warning);
 
+                txt_Contrasena.Clear();
+                txt_Contrasena.Focus();
                 return;
             }
 
-            // Comprobar que el servicio existe
-            if (_autenticacionUsuario == null)
+            // El flujo de la aplicación obliga a pasar por apertura de caja.
+            // El menú principal nunca se abre con una apertura inexistente.
+            Hide();
+
+            using (var apertura = new Formapertura(sesion))
             {
-                MessageBox.Show(
-                    "El servicio de autenticación no está configurado.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-
-                return;
-            }
-
-            try
-            {
-                btn_Ingresar.Enabled = false;
-
-                var usuarioEncontrado = _autenticacionUsuario.ValidarCredenciales(
-                    usuario,
-                    contrasena
-                );
-
-                if (usuarioEncontrado == null)
+                var resultado = apertura.ShowDialog();
+                if (resultado != DialogResult.OK || apertura.IdAperturaCaja <= 0)
                 {
-                    MessageBox.Show(
-                        "Usuario o contraseña incorrectos.",
-                        "Error de acceso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-
+                    Show();
                     txt_Contrasena.Clear();
-                    txt_Contrasena.Focus();
-
+                    txt_Usuario.Focus();
                     return;
                 }
 
                 MessageBox.Show(
-                    $"Bienvenido/a {usuarioEncontrado.Nombre} {usuarioEncontrado.Apellido}",
-                    "Acceso correcto",
+                    $"¡Bienvenido/a, {sesion.NombreCompleto}!",
+                    "Inicio de sesión",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                    MessageBoxIcon.Information);
 
-                // Abrir menú principal
-                Main menuPrincipal = new Main(usuarioEncontrado.IdUsuario);
-
-                // Ocultar login
-                this.Hide();
-
-                // Cuando se cierre Main, cerrar también el login
-                menuPrincipal.FormClosed += (s, args) => this.Close();
-
-                menuPrincipal.Show();
+                using var principal = new Main(sesion, apertura.IdAperturaCaja);
+                principal.ShowDialog();
             }
-            catch (Exception ex)
+
+            Show();
+            txt_Contrasena.Clear();
+            txt_Usuario.Focus();
+        }
+        catch (Exception ex)
+        {
+            if (!Visible && !IsDisposed)
             {
-                MessageBox.Show(
-                    "No se pudo realizar el inicio de sesión.\n\n" +
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                Show();
             }
-            finally
+
+            MessageBox.Show(
+                "No se pudo iniciar sesión.\n\n" + ex.GetBaseException().Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+        finally
+        {
+            if (!IsDisposed)
             {
                 btn_Ingresar.Enabled = true;
+                btn_Ingresar.Text = "Ingresar";
             }
         }
+    }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        if (_loginServicio is null)
         {
-            if (_loginServicio is null)
-            {
-                MessageBox.Show("El servicio de recuperación no está configurado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            new Form_recuperacion(_loginServicio, _autenticacionUsuario).Show();
-            Hide();
+            MessageBox.Show(
+                "El servicio de recuperación no está configurado.",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
         }
+
+        using var recuperacion = new Form_recuperacion(_loginServicio);
+        recuperacion.ShowDialog(this);
     }
 }

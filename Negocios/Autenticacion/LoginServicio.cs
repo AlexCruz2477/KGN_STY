@@ -1,101 +1,232 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Nk_Colletion.Negocios.Seguridad;
+using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Nk_Colletion_New.Negocios.Seguridad;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
+namespace Nk_Colletion_New.Negocios.Autenticacion;
 
-namespace Nk_Colletion_New.Negocios.Autenticacion
+public sealed class LoginServicio
 {
-    public class LoginServicio
+    private readonly DbContextOptions<NkCollectionContext> _options;
+
+    private static readonly string CorreoRemitente =
+        Environment.GetEnvironmentVariable("NK_SMTP_USER")
+        ?? "nk_collection@zohomail.com";
+
+    private static readonly string ContrasenaCorreo =
+        Environment.GetEnvironmentVariable("NK_SMTP_PASSWORD")
+        ?? "MG4ihpbHWj7H";
+
+    private static readonly string ServidorSmtp =
+        Environment.GetEnvironmentVariable("NK_SMTP_HOST")
+        ?? "smtp.zoho.com";
+
+    private static readonly int PuertoSmtp =
+        int.TryParse(Environment.GetEnvironmentVariable("NK_SMTP_PORT"), out int puerto)
+            ? puerto
+            : 587;
+
+    public LoginServicio(DbContextOptions<NkCollectionContext> options)
     {
-        private readonly DbContextOptions<NkCollectionContext> _opciones;
+        _options = options;
+    }
 
-        public LoginServicio(DbContextOptions<NkCollectionContext> opciones)
+    public async Task<bool> EnviarCodigoRecuperacionAsync(string correo)
+    {
+        if (string.IsNullOrWhiteSpace(correo))
         {
-            _opciones = opciones;
-        }
-
-        public bool EnviarCodigoRecuperacion(string correo)
-        {
-            if (string.IsNullOrWhiteSpace(correo))
-                return false;
-
-            var correoNormalizado = correo.Trim();
-            // Mantener la lógica original: token como GUID (cadena única)
-            var codigo = Guid.NewGuid().ToString();
-
-            using var contexto = new NkCollectionContext(_opciones);
-            var usuario = contexto.Usuarios.FirstOrDefault(u => u.Correo == correoNormalizado && u.Estado);
-
-            if (usuario == null)
-                return false;
-
-            usuario.TokenRecuperacion = codigo;
-            usuario.FechaHoraRecuperacion = DateTime.Now.AddMinutes(15);
-            contexto.Usuarios.Update(usuario);
-            contexto.SaveChanges();
-
-            // Enviar el correo. Si falla, revertir el token y devolver false.
-            if (EnviarCorreo(correoNormalizado, codigo))
-                return true;
-
-            usuario.TokenRecuperacion = null;
-            usuario.FechaHoraRecuperacion = null;
-            contexto.Usuarios.Update(usuario);
-            contexto.SaveChanges();
             return false;
         }
 
-        public bool EnviarCorreo(string correoDestino, string codigo)
+        correo = correo.Trim().ToLowerInvariant();
+        if (!MailAddress.TryCreate(correo, out _))
         {
-            try
-            {
-                string correoZoho = "nk_collection@zohomail.com";
-                string contrasenaZoho = "MG4ihpbHWj7H";
+            throw new ArgumentException("El correo electrónico no es válido.");
+        }
 
-                using var smtp = new SmtpClient("smtp.zoho.com")
-                {
-                    Port = 587,
-                    Credentials = new NetworkCredential(correoZoho, contrasenaZoho),
-                    EnableSsl = true
-                };
+        await using var contexto = new NkCollectionContext(_options);
+        var usuario = await contexto.Usuarios
+            .FirstOrDefaultAsync(u =>
+                u.Correo != null &&
+                EF.Functions.ILike(u.Correo, correo) &&
+                u.Estado);
 
-                string asuntoCorreo = "NK Style point - recuperacion de contraseña";
-                string cuerpoCorreo = $@"
+        if (usuario is null)
+        {
+            return false;
+        }
+
+        string codigo = RandomNumberGenerator.GetInt32(100000, 1000000).ToString();
+        usuario.TokenRecuperacion = CrearHashCodigo(codigo);
+        usuario.FechaHoraRecuperacion = DateTime.Now.AddMinutes(15);
+        await contexto.SaveChangesAsync();
+
+        try
+        {
+            await EnviarCorreoAsync(usuario.Correo!, usuario.Nombre, codigo);
+            return true;
+        }
+        catch
+        {
+            usuario.TokenRecuperacion = null;
+            usuario.FechaHoraRecuperacion = null;
+            await contexto.SaveChangesAsync();
+            throw;
+        }
+    }
+
+    public async Task<bool> ValidarCodigoAsync(string correo, string codigo)
+    {
+        if (string.IsNullOrWhiteSpace(correo) ||
+            string.IsNullOrWhiteSpace(codigo))
+        {
+            return false;
+        }
+
+        correo = correo.Trim().ToLowerInvariant();
+        codigo = codigo.Trim();
+
+        await using var contexto = new NkCollectionContext(_options);
+        var usuario = await contexto.Usuarios
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u =>
+                u.Correo != null &&
+                EF.Functions.ILike(u.Correo, correo) &&
+                u.Estado);
+
+        if (usuario is null ||
+            string.IsNullOrWhiteSpace(usuario.TokenRecuperacion) ||
+            !usuario.FechaHoraRecuperacion.HasValue ||
+            usuario.FechaHoraRecuperacion.Value <= DateTime.Now)
+        {
+            return false;
+        }
+
+        return VerificarCodigo(codigo, usuario.TokenRecuperacion);
+    }
+
+    public async Task<bool> CambiarContrasenaAsync(
+        string correo,
+        string codigo,
+        string nuevaContrasena)
+    {
+        if (string.IsNullOrWhiteSpace(correo) ||
+            string.IsNullOrWhiteSpace(codigo) ||
+            string.IsNullOrWhiteSpace(nuevaContrasena))
+        {
+            return false;
+        }
+
+        if (nuevaContrasena.Length < 6)
+        {
+            throw new ArgumentException(
+                "La contraseña debe tener al menos 6 caracteres.");
+        }
+
+        correo = correo.Trim().ToLowerInvariant();
+        codigo = codigo.Trim();
+
+        await using var contexto = new NkCollectionContext(_options);
+        var usuario = await contexto.Usuarios
+            .FirstOrDefaultAsync(u =>
+                u.Correo != null &&
+                EF.Functions.ILike(u.Correo, correo) &&
+                u.Estado);
+
+        if (usuario is null ||
+            string.IsNullOrWhiteSpace(usuario.TokenRecuperacion) ||
+            !usuario.FechaHoraRecuperacion.HasValue)
+        {
+            return false;
+        }
+
+        if (usuario.FechaHoraRecuperacion.Value <= DateTime.Now)
+        {
+            usuario.TokenRecuperacion = null;
+            usuario.FechaHoraRecuperacion = null;
+            await contexto.SaveChangesAsync();
+            return false;
+        }
+
+        if (!VerificarCodigo(codigo, usuario.TokenRecuperacion))
+        {
+            return false;
+        }
+
+        usuario.Contrasena = ContrasenaHelper.CrearHash(nuevaContrasena);
+        usuario.TokenRecuperacion = null;
+        usuario.FechaHoraRecuperacion = null;
+        await contexto.SaveChangesAsync();
+        return true;
+    }
+
+    private static string CrearHashCodigo(string codigo)
+    {
+        byte[] hash = SHA256.HashData(Encoding.UTF8.GetBytes(codigo));
+        return Convert.ToHexString(hash);
+    }
+
+    private static bool VerificarCodigo(string codigo, string hashGuardado)
+    {
+        try
+        {
+            byte[] codigoHash = SHA256.HashData(Encoding.UTF8.GetBytes(codigo));
+            byte[] hashEsperado = Convert.FromHexString(hashGuardado);
+            return CryptographicOperations.FixedTimeEquals(codigoHash, hashEsperado);
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    }
+
+    private static async Task EnviarCorreoAsync(
+        string correoDestino,
+        string nombre,
+        string codigo)
+    {
+        using var smtp = new SmtpClient(ServidorSmtp, PuertoSmtp)
+        {
+            Credentials = new NetworkCredential(CorreoRemitente, ContrasenaCorreo),
+            EnableSsl = true
+        };
+
+        using var mensaje = new MailMessage
+        {
+            From = new MailAddress(CorreoRemitente, "NK Style Point"),
+            Subject = "NK Style Point - Recuperación de contraseña",
+            IsBodyHtml = true,
+            Body = $@"
 <html>
-<body>
-    <h2 style='color:#800000;'>NK Style Point -Recuperación de contraseña</h2>
-    <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta.</p>
-    <p><b>Tu código de recuperación es:</b></p>
-    <h3 style='color:#d35400;'>{WebUtility.HtmlEncode(codigo)}</h3>
-    <p>Este código es válido por 15 minutos.</p>
+<body style='font-family:Arial,sans-serif;background:#f5f5f5;padding:30px;'>
+<div style='max-width:600px;margin:auto;background:white;padding:35px;border-radius:12px;'>
+    <h2 style='color:#6E1220;'>Recuperación de contraseña</h2>
+    <p>Hola <b>{WebUtility.HtmlEncode(nombre)}</b>,</p>
+    <p>Tu código de recuperación es:</p>
+    <div style='text-align:center;font-size:32px;font-weight:bold;letter-spacing:8px;color:#6E1220;'>
+        {codigo}
+    </div>
+    <p>Este código será válido durante <b>15 minutos</b>.</p>
     <p>Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
+</div>
 </body>
-</html>";
-                   using var mensajeCorreo = new MailMessage(correoZoho, correoDestino)
-                   {
-                        From = new MailAddress(correoZoho),
-                        Subject = asuntoCorreo,
-                        Body = cuerpoCorreo,
-                        IsBodyHtml = true
-                   };
+</html>"
+        };
 
-                mensajeCorreo.To.Add(correoDestino);
-                smtp.Send(mensajeCorreo);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        mensaje.To.Add(correoDestino);
+
+        try
+        {
+            await smtp.SendMailAsync(mensaje);
+        }
+        catch (SmtpException ex)
+        {
+            throw new InvalidOperationException(
+                "No se pudo enviar el correo de recuperación. " + ex.Message,
+                ex);
         }
     }
 }

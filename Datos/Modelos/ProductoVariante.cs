@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("producto_variante")]
+[Index("IdProducto", "IdVariante", Name = "idx_producto_variante_producto_variante")]
 [Index("Codigo", Name = "producto_variante_codigo_key", IsUnique = true)]
 public partial class ProductoVariante
 {
@@ -45,6 +46,9 @@ public partial class ProductoVariante
     public bool? Estado { get; set; }
 
     [InverseProperty("IdVarianteNavigation")]
+    public virtual ICollection<AlertaStock> AlertaStocks { get; set; } = new List<AlertaStock>();
+
+    [InverseProperty("IdVarianteNavigation")]
     public virtual ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
 
     [InverseProperty("IdVarianteNavigation")]
@@ -61,4 +65,7 @@ public partial class ProductoVariante
     [ForeignKey("IdTalla")]
     [InverseProperty("ProductoVariantes")]
     public virtual Talla? IdTallaNavigation { get; set; }
+
+    [InverseProperty("IdVarianteNavigation")]
+    public virtual ICollection<MovimientoInventario> MovimientoInventarios { get; set; } = new List<MovimientoInventario>();
 }

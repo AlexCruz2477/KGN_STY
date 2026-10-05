@@ -22,7 +22,7 @@ internal static class AjustesPantallaNk
             separador.Top = campos.Max(control => control.Bottom) + 8;
         }
 
-        if (formulario.Name == "Frm_venta")
+        if (formulario.Name is "Frm_venta" or "Form_ventas")
         {
             PrepararVentas(formulario);
         }

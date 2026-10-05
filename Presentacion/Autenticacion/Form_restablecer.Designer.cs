@@ -71,7 +71,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // btncontinuar
             // 
-            btncontinuar.BackColor = Color.Maroon;
+            btncontinuar.BackColor = Color.FromArgb(171, 84, 69);
             btncontinuar.ForeColor = Color.White;
             btncontinuar.Location = new Point(483, 393);
             btncontinuar.Name = "btncontinuar";
@@ -93,7 +93,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // btncancelar
             // 
-            btncancelar.ForeColor = Color.Maroon;
+            btncancelar.ForeColor = Color.FromArgb(171, 84, 69);
             btncancelar.Location = new Point(240, 393);
             btncancelar.Name = "btncancelar";
             btncancelar.Size = new Size(123, 34);
@@ -116,7 +116,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Maroon;
+            label1.ForeColor = Color.FromArgb(171, 84, 69);
             label1.Location = new Point(284, 166);
             label1.Name = "label1";
             label1.Size = new Size(283, 32);
@@ -153,7 +153,8 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 0, 0);
+            BackColor = Color.FromArgb(63, 65, 64);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(864, 542);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;

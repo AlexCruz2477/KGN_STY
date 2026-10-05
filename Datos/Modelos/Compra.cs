@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("compra")]
+[Index("IdProveedor", "FechaCompra", Name = "idx_compra_proveedor_fecha", IsDescending = new[] { false, true })]
 public partial class Compra
 {
     [Key]
