@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New
+namespace Nk_Colletion_New
 {
     partial class Formapertura
     {
@@ -94,7 +94,7 @@
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.CustomizableEdges = customizableEdges17;
-            guna2Panel1.FillColor = Color.White;
+            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
             guna2Panel1.Location = new Point(13, 13);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -111,7 +111,7 @@
             btn_regresar.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_regresar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btn_regresar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_regresar.FillColor = Color.FromArgb(110, 18, 32);
+            btn_regresar.FillColor = Color.FromArgb(184, 149, 85);
             btn_regresar.Font = new Font("Segoe UI", 9F);
             btn_regresar.ForeColor = Color.White;
             btn_regresar.Location = new Point(426, 543);
@@ -148,8 +148,8 @@
             guna2ShadowPanel1.Controls.Add(btn_aperturar);
             guna2ShadowPanel1.Controls.Add(label4);
             guna2ShadowPanel1.Controls.Add(txtvalordolar);
-            guna2ShadowPanel1.FillColor = Color.White;
-            guna2ShadowPanel1.ForeColor = Color.FromArgb(110, 18, 32);
+            guna2ShadowPanel1.FillColor = Color.FromArgb(235, 222, 208);
+            guna2ShadowPanel1.ForeColor = Color.FromArgb(184, 149, 85);
             guna2ShadowPanel1.Location = new Point(130, 183);
             guna2ShadowPanel1.Margin = new Padding(4, 5, 4, 5);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
@@ -164,7 +164,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(64, 0, 0);
+            label2.ForeColor = Color.FromArgb(63, 65, 64);
             label2.Location = new Point(69, 22);
             label2.Margin = new Padding(1, 0, 1, 0);
             label2.Name = "label2";
@@ -176,7 +176,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(64, 0, 0);
+            label7.ForeColor = Color.FromArgb(63, 65, 64);
             label7.Location = new Point(534, 22);
             label7.Margin = new Padding(1, 0, 1, 0);
             label7.Name = "label7";
@@ -240,7 +240,7 @@
             // 
             // guna2Separator2
             // 
-            guna2Separator2.FillColor = Color.FromArgb(194, 154, 116);
+            guna2Separator2.FillColor = Color.FromArgb(171, 84, 69);
             guna2Separator2.Location = new Point(-29, 472);
             guna2Separator2.Margin = new Padding(4, 5, 4, 5);
             guna2Separator2.Name = "guna2Separator2";
@@ -271,9 +271,9 @@
             txtsaldoinicial.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtsaldoinicial.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtsaldoinicial.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtsaldoinicial.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtsaldoinicial.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
             txtsaldoinicial.Font = new Font("Segoe UI", 9F);
-            txtsaldoinicial.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtsaldoinicial.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
             txtsaldoinicial.IconLeft = Properties.Resources.dolar;
             txtsaldoinicial.Location = new Point(153, 102);
             txtsaldoinicial.Margin = new Padding(6, 8, 6, 8);
@@ -294,7 +294,7 @@
             btn_aperturar.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_aperturar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btn_aperturar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_aperturar.FillColor = Color.FromArgb(110, 18, 32);
+            btn_aperturar.FillColor = Color.FromArgb(184, 149, 85);
             btn_aperturar.Font = new Font("Segoe UI", 9F);
             btn_aperturar.ForeColor = Color.White;
             btn_aperturar.Location = new Point(71, 275);
@@ -329,9 +329,9 @@
             txtvalordolar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtvalordolar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtvalordolar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtvalordolar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtvalordolar.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
             txtvalordolar.Font = new Font("Segoe UI", 9F);
-            txtvalordolar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtvalordolar.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
             txtvalordolar.IconLeft = Properties.Resources.dolar;
             txtvalordolar.Location = new Point(153, 202);
             txtvalordolar.Margin = new Padding(6, 8, 6, 8);
@@ -348,7 +348,7 @@
             guna2PictureBox1.CustomizableEdges = customizableEdges15;
             guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
-            guna2PictureBox1.Location = new Point(971, 28);
+            guna2PictureBox1.Location = new Point(13, 5);
             guna2PictureBox1.Margin = new Padding(4, 5, 4, 5);
             guna2PictureBox1.Name = "guna2PictureBox1";
             guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges16;
@@ -418,7 +418,7 @@
             // 
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(127, 687);
+            pictureBox3.Location = new Point(111, 687);
             pictureBox3.Margin = new Padding(4, 5, 4, 5);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(24, 23);
@@ -431,7 +431,7 @@
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("PMingLiU-ExtB", 10F);
             lblUsuario.ForeColor = Color.White;
-            lblUsuario.Location = new Point(159, 688);
+            lblUsuario.Location = new Point(143, 688);
             lblUsuario.Margin = new Padding(4, 0, 4, 0);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(67, 20);
@@ -442,7 +442,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(110, 18, 32);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1169, 750);
             Controls.Add(lblFecha);
             Controls.Add(pictureBox3);

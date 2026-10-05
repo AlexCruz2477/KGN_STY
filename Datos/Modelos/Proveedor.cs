@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("proveedor")]
+[Index("Ruc", Name = "proveedor_ruc_key", IsUnique = true)]
 public partial class Proveedor
 {
     [Key]
@@ -17,16 +18,12 @@ public partial class Proveedor
     [StringLength(150)]
     public string Nombre { get; set; } = null!;
 
-    [Column("apellido")]
-    [StringLength(150)]
-    public string Apellido { get; set; } = null!;
-
     [Column("telefono")]
     [StringLength(20)]
     public string? Telefono { get; set; }
 
     [Column("correo")]
-    [StringLength(150)]
+    [StringLength(100)]
     public string? Correo { get; set; }
 
     [Column("direccion")]

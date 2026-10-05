@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +19,7 @@ public partial class Marca
     public string Nombre { get; set; } = null!;
 
     [Column("estado")]
-    public bool Estado { get; set; }
+    public bool? Estado { get; set; }
 
     [InverseProperty("IdMarcaNavigation")]
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("rol")]
+[Index("Nombre", Name = "rol_nombre_key", IsUnique = true)]
 public partial class Rol
 {
     [Key]
@@ -14,8 +15,8 @@ public partial class Rol
     public int IdRol { get; set; }
 
     [Column("nombre")]
-    [StringLength(100)]
-    public string? Nombre { get; set; }
+    [StringLength(50)]
+    public string Nombre { get; set; } = null!;
 
     [Column("descripcion")]
     [StringLength(150)]

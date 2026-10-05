@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Nk_Colletion_New.Datos.Modelos;
 
 [Table("detalle_venta")]
+[Index("IdVariante", Name = "idx_detalle_venta_id_variante")]
+[Index("IdVenta", Name = "idx_detalle_venta_id_venta")]
 public partial class DetalleVentum
 {
     [Key]
@@ -14,27 +16,27 @@ public partial class DetalleVentum
     public int IdDetalleVenta { get; set; }
 
     [Column("id_venta")]
-    public int? IdVenta { get; set; }
+    public int IdVenta { get; set; }
 
-    [Column("id_producto")]
-    public int? IdProducto { get; set; }
+    [Column("id_variante")]
+    public int IdVariante { get; set; }
 
     [Column("cantidad")]
-    public int? Cantidad { get; set; }
+    public int Cantidad { get; set; }
 
     [Column("precio_unitario")]
-    [Precision(10, 2)]
-    public decimal? PrecioUnitario { get; set; }
+    [Precision(12, 2)]
+    public decimal PrecioUnitario { get; set; }
 
     [Column("subtotal")]
-    [Precision(10, 2)]
+    [Precision(12, 2)]
     public decimal? Subtotal { get; set; }
 
-    [ForeignKey("IdProducto")]
+    [ForeignKey("IdVariante")]
     [InverseProperty("DetalleVenta")]
-    public virtual Producto? IdProductoNavigation { get; set; }
+    public virtual ProductoVariante IdVarianteNavigation { get; set; } = null!;
 
     [ForeignKey("IdVenta")]
     [InverseProperty("DetalleVenta")]
-    public virtual Ventum? IdVentaNavigation { get; set; }
+    public virtual Ventum IdVentaNavigation { get; set; } = null!;
 }

@@ -1,32 +1,28 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
-using Nk_Colletion_New.Negocios;
+using Nk_Colletion_New.Negocios.Autenticacion;
 using Nk_Colletion_New.Presentacion.Autenticacion;
+using Nk_Colletion_New.Presentacion.Estilos;
 
-namespace Nk_Colletion_New
+namespace Nk_Colletion_New;
+
+internal static class Program
 {
-    internal static class Program
+    [STAThread]
+    private static void Main()
     {
-        [STAThread]
-        static void Main()
-        {
-            ApplicationConfiguration.Initialize();
+        ApplicationConfiguration.Initialize();
+        InterfazResponsiva.Activar();
 
-            var options = new DbContextOptionsBuilder<NkCollectionContext>()
-                .UseNpgsql(
-                    "Host=localhost;" +
-                    "Port=5432;" +
-                    "Database=NK_STYLE_POINT;" +
-                    "Username=Ari;" +
-                    "Password=12345"
-                )
-                .Options;
+        var options = new DbContextOptionsBuilder<NkCollectionContext>()
+            .UseNpgsql(AppConfig.CadenaConexion)
+            .Options;
 
-            var servicioAuth = new ServicioAuth(options);
+        AppConfig.DbOptions = options;
 
-            Application.Run(
-                new Frm_Login(servicioAuth)
-            );
-        }
+        var servicioAuth = new ServicioAuth(options);
+        var loginServicio = new LoginServicio(options);
+
+        Application.Run(new Frm_Login(servicioAuth, loginServicio));
     }
 }

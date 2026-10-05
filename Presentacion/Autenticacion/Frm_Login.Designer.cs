@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New.Presentacion.Autenticacion
+namespace Nk_Colletion_New.Presentacion.Autenticacion
 {
     partial class Frm_Login
     {
@@ -36,28 +36,28 @@
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
             panel2 = new Panel();
+            panel5 = new Panel();
+            pictureBox1 = new PictureBox();
             label2 = new Label();
             panel3 = new Panel();
             panel4 = new Panel();
             txt_Usuario = new TextBox();
-            pictureBox1 = new PictureBox();
-            panel5 = new Panel();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // guna2ContextMenuStrip1
             // 
             guna2ContextMenuStrip1.ImageScalingSize = new Size(24, 24);
             guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
-            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
-            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(184, 149, 85);
+            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.FromArgb(214, 204, 190);
             guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
             guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
             guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(101, 112, 90);
             guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.White;
             guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.Gainsboro;
             guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -66,17 +66,26 @@
             // txt_Contrasena
             // 
             txt_Contrasena.Location = new Point(3, 3);
-            txt_Contrasena.Multiline = true;
+            txt_Contrasena.AutoSize = false;
+            txt_Contrasena.BackColor = Color.FromArgb(253, 251, 247);
+            txt_Contrasena.BorderStyle = BorderStyle.FixedSingle;
+            txt_Contrasena.Font = new Font("Segoe UI", 11F);
+            txt_Contrasena.Multiline = false;
             txt_Contrasena.Name = "txt_Contrasena";
+            txt_Contrasena.PasswordChar = '●';
             txt_Contrasena.Size = new Size(373, 63);
             txt_Contrasena.TabIndex = 1;
             // 
             // btn_Ingresar
             // 
-            btn_Ingresar.BackColor = Color.Maroon;
-            btn_Ingresar.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_Ingresar.BackColor = Color.FromArgb(184, 149, 85);
+            btn_Ingresar.FlatAppearance.BorderColor = Color.FromArgb(140, 106, 56);
+            btn_Ingresar.FlatAppearance.BorderSize = 0;
+            btn_Ingresar.FlatStyle = FlatStyle.Flat;
+            btn_Ingresar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btn_Ingresar.ForeColor = SystemColors.ControlLightLight;
-            btn_Ingresar.Location = new Point(185, 401);
+            btn_Ingresar.Cursor = Cursors.Hand;
+            btn_Ingresar.Location = new Point(176, 391);
             btn_Ingresar.Name = "btn_Ingresar";
             btn_Ingresar.Size = new Size(158, 50);
             btn_Ingresar.TabIndex = 2;
@@ -97,13 +106,14 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.FromArgb(64, 0, 0);
+            linkLabel1.LinkColor = Color.FromArgb(63, 65, 64);
             linkLabel1.Location = new Point(157, 470);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(214, 25);
             linkLabel1.TabIndex = 4;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "¿Olvidaste tu contraseña?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -118,7 +128,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.BackColor = Color.FromArgb(235, 222, 208);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(label2);
@@ -133,6 +143,25 @@
             panel2.Size = new Size(511, 518);
             panel2.TabIndex = 6;
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(63, 65, 64);
+            panel5.Dock = DockStyle.Left;
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(10, 518);
+            panel5.TabIndex = 9;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
+            pictureBox1.Location = new Point(194, 21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 125);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -145,53 +174,39 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(64, 0, 0);
+            panel3.BackColor = Color.FromArgb(214, 204, 190);
             panel3.Controls.Add(txt_Contrasena);
-            panel3.Location = new Point(75, 291);
+            panel3.Location = new Point(75, 286);
             panel3.Name = "panel3";
-            panel3.Size = new Size(379, 69);
+            panel3.Size = new Size(379, 44);
             panel3.TabIndex = 6;
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(64, 0, 0);
+            panel4.BackColor = Color.FromArgb(214, 204, 190);
             panel4.Controls.Add(txt_Usuario);
-            panel4.Location = new Point(75, 188);
+            panel4.Location = new Point(75, 187);
             panel4.Name = "panel4";
-            panel4.Size = new Size(379, 69);
+            panel4.Size = new Size(379, 44);
             panel4.TabIndex = 7;
             // 
             // txt_Usuario
             // 
-            txt_Usuario.Location = new Point(3, 3);
-            txt_Usuario.Multiline = true;
+            txt_Usuario.Location = new Point(4, 4);
+            txt_Usuario.AutoSize = false;
+            txt_Usuario.BackColor = Color.FromArgb(253, 251, 247);
+            txt_Usuario.BorderStyle = BorderStyle.FixedSingle;
+            txt_Usuario.Font = new Font("Segoe UI", 11F);
+            txt_Usuario.Multiline = false;
             txt_Usuario.Name = "txt_Usuario";
-            txt_Usuario.Size = new Size(373, 63);
+            txt_Usuario.Size = new Size(371, 36);
             txt_Usuario.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
-            pictureBox1.Location = new Point(194, 21);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(131, 125);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(64, 0, 0);
-            panel5.Dock = DockStyle.Left;
-            panel5.Location = new Point(0, 0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(10, 518);
-            panel5.TabIndex = 9;
             // 
             // Frm_Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(846, 518);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -202,11 +217,11 @@
             Load += Frm_Login_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 

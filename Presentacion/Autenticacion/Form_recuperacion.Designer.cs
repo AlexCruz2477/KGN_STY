@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New
+namespace Nk_Colletion_New
 {
     partial class Form_recuperacion
     {
@@ -32,13 +32,13 @@
             panel1 = new Panel();
             label4 = new Label();
             pictureBox1 = new PictureBox();
-            btncontinuar = new Button();
+            btn_continuar = new Button();
             label3 = new Label();
             btncancelar = new Button();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txt_correo = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -49,13 +49,13 @@
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(btncontinuar);
+            panel1.Controls.Add(btn_continuar);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(btncancelar);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txt_correo);
             panel1.Location = new Point(18, 17);
             panel1.Name = "panel1";
             panel1.Size = new Size(828, 508);
@@ -80,16 +80,17 @@
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
-            // btncontinuar
+            // btn_continuar
             // 
-            btncontinuar.BackColor = Color.Maroon;
-            btncontinuar.ForeColor = Color.White;
-            btncontinuar.Location = new Point(479, 382);
-            btncontinuar.Name = "btncontinuar";
-            btncontinuar.Size = new Size(112, 34);
-            btncontinuar.TabIndex = 2;
-            btncontinuar.Text = "Continuar";
-            btncontinuar.UseVisualStyleBackColor = false;
+            btn_continuar.BackColor = Color.FromArgb(171, 84, 69);
+            btn_continuar.ForeColor = Color.White;
+            btn_continuar.Location = new Point(479, 382);
+            btn_continuar.Name = "btn_continuar";
+            btn_continuar.Size = new Size(112, 34);
+            btn_continuar.TabIndex = 2;
+            btn_continuar.Text = "Continuar";
+            btn_continuar.UseVisualStyleBackColor = false;
+            btn_continuar.Click += btncontinuar_Click;
             // 
             // label3
             // 
@@ -104,7 +105,7 @@
             // 
             // btncancelar
             // 
-            btncancelar.ForeColor = Color.Maroon;
+            btncancelar.ForeColor = Color.FromArgb(171, 84, 69);
             btncancelar.Location = new Point(238, 382);
             btncancelar.Name = "btncancelar";
             btncancelar.Size = new Size(123, 34);
@@ -127,7 +128,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Maroon;
+            label1.ForeColor = Color.FromArgb(171, 84, 69);
             label1.Location = new Point(282, 184);
             label1.Name = "label1";
             label1.Size = new Size(266, 32);
@@ -144,18 +145,19 @@
             label2.TabIndex = 4;
             label2.Text = "Ingrese su dirección de correo electrónico y te\r\n enviaremos un enlace para restablecerla.";
             // 
-            // textBox1
+            // txt_correo
             // 
-            textBox1.Location = new Point(260, 315);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(353, 31);
-            textBox1.TabIndex = 0;
+            txt_correo.Location = new Point(260, 315);
+            txt_correo.Name = "txt_correo";
+            txt_correo.Size = new Size(353, 31);
+            txt_correo.TabIndex = 0;
             // 
             // Form_recuperacion
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 0, 0);
+            BackColor = Color.FromArgb(63, 65, 64);
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(864, 542);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -174,12 +176,12 @@
         private Panel panel1;
         private Label label4;
         private PictureBox pictureBox1;
-        private Button btncontinuar;
+        private Button btn_continuar;
         private Label label3;
         private Button btncancelar;
         private PictureBox pictureBox2;
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txt_correo;
     }
 }

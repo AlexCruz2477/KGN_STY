@@ -1,4 +1,4 @@
-﻿namespace Nk_Colletion_New
+namespace Nk_Colletion_New
 {
     partial class Form_mantenimiento
     {
@@ -67,7 +67,7 @@
             // 
             // btn_Restaurar
             // 
-            btn_Restaurar.BackColor = Color.Maroon;
+            btn_Restaurar.BackColor = Color.FromArgb(171, 84, 69);
             btn_Restaurar.FlatStyle = FlatStyle.Flat;
             btn_Restaurar.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Bold | FontStyle.Italic);
             btn_Restaurar.ForeColor = SystemColors.ControlLightLight;
@@ -81,7 +81,7 @@
             // 
             // btn_Crear
             // 
-            btn_Crear.BackColor = Color.Maroon;
+            btn_Crear.BackColor = Color.FromArgb(171, 84, 69);
             btn_Crear.FlatStyle = FlatStyle.Flat;
             btn_Crear.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Bold | FontStyle.Italic);
             btn_Crear.ForeColor = SystemColors.ControlLightLight;
@@ -117,7 +117,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("PMingLiU-ExtB", 20F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(64, 0, 0);
+            label5.ForeColor = Color.FromArgb(63, 65, 64);
             label5.Location = new Point(527, 35);
             label5.Name = "label5";
             label5.Size = new Size(259, 40);
@@ -129,7 +129,7 @@
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(64, 0, 0);
+            label6.ForeColor = Color.FromArgb(63, 65, 64);
             label6.Location = new Point(39, 53);
             label6.Name = "label6";
             label6.Size = new Size(1278, 32);
@@ -138,7 +138,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(64, 0, 0);
+            panel1.BackColor = Color.FromArgb(63, 65, 64);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -147,7 +147,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(64, 0, 0);
+            panel3.BackColor = Color.FromArgb(63, 65, 64);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 10);
             panel3.Name = "panel3";
@@ -156,7 +156,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(64, 0, 0);
+            panel4.BackColor = Color.FromArgb(63, 65, 64);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(10, 853);
             panel4.Name = "panel4";
@@ -165,7 +165,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(64, 0, 0);
+            panel2.BackColor = Color.FromArgb(63, 65, 64);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(1361, 10);
             panel2.Name = "panel2";
@@ -177,6 +177,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 241, 232);
             ClientSize = new Size(1371, 863);
             Controls.Add(panel2);
             Controls.Add(panel4);
