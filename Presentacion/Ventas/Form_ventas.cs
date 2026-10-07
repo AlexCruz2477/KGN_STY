@@ -5,6 +5,9 @@ using Nk_Colletion_New.Negocios.Metodos_Ordenamiento;
 using Nk_Colletion_New.Negocios.Autenticacion;
 using Nk_Colletion_New.Negocios.Servicios.Cambio;
 using Nk_Colletion_New.Negocios.Servicios.Ventas;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace Nk_Colletion_New;
 
@@ -57,6 +60,8 @@ public partial class Form_ventas : Form
     private List<VarianteOpcion> _opcionesVariantes = new();
     private TipoCambioBcn? _tasa;
     private int _idMetodoEfectivo;
+    private int? _idVarianteEnEdicion;
+    private bool _cargandoEdicion;
     private bool _cargando;
 
     public Form_ventas() : this(0, string.Empty)
@@ -148,7 +153,7 @@ public partial class Form_ventas : Form
         guna2Button1.Click += AgregarDetalle_Click;
         guna2Button2.Click += EliminarDetalle_Click;
         guna2Button4.Click += GuardarVenta_Click;
-        guna2DataGridView1.CellDoubleClick += (_, e) => EliminarDetallePorFila(e.RowIndex);
+        guna2DataGridView1.CellDoubleClick += (_, e) => CargarDetalleParaEditar(e.RowIndex);
         guna2ComboBox1.SelectedIndexChanged += VarianteSeleccionada;
         guna2NumericUpDown1.ValueChanged += (_, _) => ActualizarTotales();
         guna2TextBox10.TextChanged += (_, _) => ActualizarTotales();
@@ -294,7 +299,15 @@ public partial class Form_ventas : Form
         guna2TextBox3.Text = opcion.Cliente.Direccion ?? string.Empty;
     }
 
-    private void VarianteSeleccionada(object? sender, EventArgs e) => ActualizarDatosVariante();
+    private void VarianteSeleccionada(object? sender, EventArgs e)
+    {
+        ActualizarDatosVariante();
+        if (!_cargandoEdicion && _idVarianteEnEdicion.HasValue &&
+            guna2ComboBox1.SelectedValue is int idSeleccionado && idSeleccionado != _idVarianteEnEdicion.Value)
+        {
+            LimpiarEdicion();
+        }
+    }
 
     private ProductoVariante? ObtenerVarianteSeleccionada() =>
         (guna2ComboBox1.SelectedItem as VarianteOpcion)?.Variante;
@@ -376,15 +389,15 @@ public partial class Form_ventas : Form
         }
 
         var actual = _detalles.FirstOrDefault(detalle => detalle.IdVariante == variante.IdVariante);
-        int cantidadTotal = cantidad + (actual?.Cantidad ?? 0);
+        bool editandoDetalle = _idVarianteEnEdicion == variante.IdVariante;
+        int cantidadTotal = editandoDetalle ? cantidad : cantidad + (actual?.Cantidad ?? 0);
 
         if (cantidadTotal > variante.StockActual)
         {
-            MessageBox.Show(
-                $"Stock disponible: {variante.StockActual}. Ya tiene {actual?.Cantidad ?? 0} unidad(es) agregadas.",
-                "Ventas",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
+            string mensaje = editandoDetalle
+                ? $"La cantidad supera el stock disponible: {variante.StockActual}."
+                : $"Stock disponible: {variante.StockActual}. Ya tiene {actual?.Cantidad ?? 0} unidad(es) agregadas.";
+            MessageBox.Show(mensaje, "Ventas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -405,6 +418,7 @@ public partial class Form_ventas : Form
 
         ActualizarGrilla();
         guna2NumericUpDown1.Value = 1;
+        LimpiarEdicion();
     }
 
     private void EliminarDetalle_Click(object? sender, EventArgs e)
@@ -415,6 +429,41 @@ public partial class Form_ventas : Form
         }
 
         EliminarDetallePorFila(guna2DataGridView1.CurrentRow.Index);
+    }
+
+    private void CargarDetalleParaEditar(int indice)
+    {
+        if (indice < 0 || indice >= guna2DataGridView1.Rows.Count ||
+            guna2DataGridView1.Rows[indice].IsNewRow ||
+            guna2DataGridView1.Rows[indice].Cells[0].Value is not int idVariante)
+        {
+            return;
+        }
+
+        var detalle = _detalles.FirstOrDefault(item => item.IdVariante == idVariante);
+        if (detalle is null)
+        {
+            return;
+        }
+
+        _cargandoEdicion = true;
+        try
+        {
+            guna2ComboBox1.SelectedValue = idVariante;
+            guna2NumericUpDown1.Value = detalle.Cantidad;
+            _idVarianteEnEdicion = idVariante;
+            guna2Button1.Text = "Actualizar";
+        }
+        finally
+        {
+            _cargandoEdicion = false;
+        }
+    }
+
+    private void LimpiarEdicion()
+    {
+        _idVarianteEnEdicion = null;
+        guna2Button1.Text = "Agregar";
     }
 
     private void EliminarDetallePorFila(int indice)
@@ -432,6 +481,10 @@ public partial class Form_ventas : Form
 
         int idVariante = Convert.ToInt32(valor);
         _detalles.Eliminar(detalle => detalle.IdVariante == idVariante);
+        if (_idVarianteEnEdicion == idVariante)
+        {
+            LimpiarEdicion();
+        }
         ActualizarGrilla();
     }
 
@@ -595,6 +648,12 @@ public partial class Form_ventas : Form
                 pagos);
 
             decimal cambio = recibido - total;
+            string nombreCliente = _clientesCombo.SelectedItem is ClienteOpcion clienteOpcion
+                ? clienteOpcion.NombreCompleto
+                : "Venta general";
+            var detallesVoucher = _detalles.ToList();
+            await PrevisualizarVoucherAsync(idVenta, nombreCliente, detallesVoucher, subtotal, descuento, total, recibido, cambio);
+
             MessageBox.Show(
                 $"Venta V-{idVenta:D6} registrada correctamente.\n\n" +
                 $"Total: C$ {total:N2}\n" +
@@ -618,6 +677,157 @@ public partial class Form_ventas : Form
         finally
         {
             guna2Button4.Enabled = true;
+        }
+    }
+
+    private async Task PrevisualizarVoucherAsync(
+        int idVenta,
+        string cliente,
+        IReadOnlyCollection<DetalleVentaTemporal> detalles,
+        decimal subtotal,
+        decimal descuento,
+        decimal total,
+        decimal recibido,
+        decimal cambio)
+    {
+        string archivoTemporal = Path.Combine(Path.GetTempPath(), $"Voucher_V-{idVenta:D6}_{Guid.NewGuid():N}.pdf");
+        try
+        {
+            QuestPDF.Settings.License = LicenseType.Community;
+            using var logoStream = new MemoryStream();
+            Properties.Resources.imagen_circular_recortada.Save(logoStream, System.Drawing.Imaging.ImageFormat.Png);
+            var documento = new DocumentoVoucher(
+                idVenta, DateTime.Now, cliente, _nombreUsuario, detalles, subtotal, descuento, total, recibido, cambio,
+                logoStream.ToArray());
+            await Task.Run(() => documento.GeneratePdf(archivoTemporal));
+
+            using var dialogo = new SaveFileDialog
+            {
+                Title = "Guardar voucher de venta",
+                Filter = "Archivo PDF (*.pdf)|*.pdf",
+                DefaultExt = "pdf",
+                AddExtension = true,
+                FileName = $"Voucher_V-{idVenta:D6}.pdf"
+            };
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(archivoTemporal) { UseShellExecute = true });
+            if (MessageBox.Show(
+                    this,
+                    "Se abrió el voucher para revisarlo. ¿Desea guardar una copia del PDF?",
+                    "Revisar voucher",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            string archivoVista = dialogo.ShowDialog(this) == DialogResult.OK
+                ? GuardarCopiaPdf(archivoTemporal, dialogo.FileName)
+                : archivoTemporal;
+            if (archivoVista != archivoTemporal)
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(archivoVista) { UseShellExecute = true });
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"La venta V-{idVenta:D6} se registró, pero no se pudo previsualizar el voucher. {ex.GetBaseException().Message}",
+                "Voucher de venta",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+        }
+    }
+
+    private static string GuardarCopiaPdf(string origen, string destino)
+    {
+        File.Copy(origen, destino, true);
+        return destino;
+    }
+
+    private sealed class DocumentoVoucher : IDocument
+    {
+        private readonly int _idVenta;
+        private readonly DateTime _fecha;
+        private readonly string _cliente;
+        private readonly string _usuario;
+        private readonly IReadOnlyCollection<DetalleVentaTemporal> _detalles;
+        private readonly decimal _subtotal;
+        private readonly decimal _descuento;
+        private readonly decimal _total;
+        private readonly decimal _recibido;
+        private readonly decimal _cambio;
+        private readonly byte[] _logo;
+
+        public DocumentoVoucher(int idVenta, DateTime fecha, string cliente, string usuario,
+            IReadOnlyCollection<DetalleVentaTemporal> detalles, decimal subtotal, decimal descuento,
+            decimal total, decimal recibido, decimal cambio, byte[] logo)
+        {
+            _idVenta = idVenta;
+            _fecha = fecha;
+            _cliente = cliente;
+            _usuario = string.IsNullOrWhiteSpace(usuario) ? "Usuario" : usuario;
+            _detalles = detalles;
+            _subtotal = subtotal;
+            _descuento = descuento;
+            _total = total;
+            _recibido = recibido;
+            _cambio = cambio;
+            _logo = logo;
+        }
+
+        public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
+
+        public void Compose(IDocumentContainer container)
+        {
+            container.Page(page =>
+            {
+                page.Size(PageSizes.A5);
+                page.Margin(28);
+                page.DefaultTextStyle(style => style.FontFamily("Lato").FontSize(9).FontColor("#292A28"));
+                page.Content().Column(column =>
+                {
+                    column.Item().AlignCenter().Height(64).Image(_logo).FitArea();
+                    column.Item().PaddingTop(4).AlignCenter().Text("NK STYLE POINT").FontSize(18).Bold().FontColor("#8C6A38");
+                    column.Item().PaddingTop(4).AlignCenter().Text("COMPROBANTE DE VENTA").FontSize(11).SemiBold();
+                    column.Item().PaddingVertical(10).LineHorizontal(1).LineColor("#B89555");
+                    column.Item().Text($"Comprobante: V-{_idVenta:D6}");
+                    column.Item().Text($"Fecha: {_fecha:dd/MM/yyyy HH:mm}");
+                    column.Item().Text($"Cliente: {_cliente}");
+                    column.Item().Text($"Atendió: {_usuario}");
+                    column.Item().PaddingTop(12).Table(table =>
+                    {
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.RelativeColumn(4);
+                            columns.RelativeColumn(1);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
+                        });
+                        table.Header(header =>
+                        {
+                            header.Cell().Background("#3F4140").Padding(5).Text("Producto").FontColor(Colors.White).Bold();
+                            header.Cell().Background("#3F4140").Padding(5).AlignRight().Text("Cant.").FontColor(Colors.White).Bold();
+                            header.Cell().Background("#3F4140").Padding(5).AlignRight().Text("Precio").FontColor(Colors.White).Bold();
+                            header.Cell().Background("#3F4140").Padding(5).AlignRight().Text("Importe").FontColor(Colors.White).Bold();
+                        });
+                        foreach (var detalle in _detalles)
+                        {
+                            string producto = string.Join(" / ", new[] { detalle.Producto, detalle.Talla, detalle.Color }
+                                .Where(valor => !string.IsNullOrWhiteSpace(valor)));
+                            table.Cell().Padding(5).Text(producto);
+                            table.Cell().Padding(5).AlignRight().Text(detalle.Cantidad.ToString());
+                            table.Cell().Padding(5).AlignRight().Text($"C$ {detalle.PrecioUnitario:N2}");
+                            table.Cell().Padding(5).AlignRight().Text($"C$ {detalle.Subtotal:N2}");
+                        }
+                    });
+                    column.Item().PaddingTop(12).AlignRight().Text($"Subtotal: C$ {_subtotal:N2}");
+                    column.Item().AlignRight().Text($"Descuento: C$ {_descuento:N2}");
+                    column.Item().AlignRight().Text($"TOTAL: C$ {_total:N2}").FontSize(13).Bold();
+                    column.Item().PaddingTop(8).AlignRight().Text($"Recibido: C$ {_recibido:N2}");
+                    column.Item().AlignRight().Text($"Cambio: C$ {_cambio:N2}");
+                    column.Item().PaddingTop(18).AlignCenter().Text("¡Gracias por su compra!").Italic();
+                });
+            });
         }
     }
 

@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New.Presentacion.Autenticacion
+﻿namespace Nk_Colletion_New.Presentacion.Autenticacion
 {
     partial class Form_restablecer
     {
@@ -45,7 +45,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // panel1
             // 
-            panel1.BackColor = Color.White;
+            panel1.BackColor = Color.FromArgb(232, 221, 202);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btncontinuar);
             panel1.Controls.Add(label3);
@@ -71,8 +71,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // btncontinuar
             // 
-            btncontinuar.BackColor = Color.FromArgb(171, 84, 69);
-            btncontinuar.ForeColor = Color.White;
+            btncontinuar.ForeColor = Color.FromArgb(41, 41, 41);
             btncontinuar.Location = new Point(483, 393);
             btncontinuar.Name = "btncontinuar";
             btncontinuar.Size = new Size(112, 34);
@@ -84,7 +83,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.ForeColor = Color.Peru;
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(307, 469);
             label3.Name = "label3";
             label3.Size = new Size(230, 25);
@@ -93,7 +92,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // btncancelar
             // 
-            btncancelar.ForeColor = Color.FromArgb(171, 84, 69);
+            btncancelar.ForeColor = Color.FromArgb(41, 41, 41);
             btncancelar.Location = new Point(240, 393);
             btncancelar.Name = "btncancelar";
             btncancelar.Size = new Size(123, 34);
@@ -116,7 +115,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(171, 84, 69);
+            label1.ForeColor = Color.FromArgb(41, 41, 41);
             label1.Location = new Point(284, 166);
             label1.Name = "label1";
             label1.Size = new Size(283, 32);
@@ -153,8 +152,8 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(63, 65, 64);
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(864, 542);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -163,6 +162,10 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            textBox1.BackColor = Color.FromArgb(232, 221, 202);
+            textBox1.ForeColor = Color.FromArgb(41, 41, 41);
+            textBox2.BackColor = Color.FromArgb(232, 221, 202);
+            textBox2.ForeColor = Color.FromArgb(41, 41, 41);
             ResumeLayout(false);
         }
 
@@ -180,3 +183,5 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
         private TextBox textBox2;
     }
 }
+
+

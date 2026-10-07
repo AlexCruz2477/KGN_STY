@@ -2,8 +2,8 @@
 using Nk_Colletion_New.Negocios.Autenticacion;
 using Nk_Colletion_New.Negocios.Servicios.Principal;
 using Nk_Colletion_New.Negocios.Servicios.Caja;
+using Nk_Colletion_New.Presentacion.Helpers;
 using Nk_Colletion_New.Presentacion.Productos;
-using Nk_Colletion_New.Presentacion.Estilos;
 using System.Globalization;
 using System.Text;
 
@@ -25,7 +25,6 @@ public partial class Main : Form
     public Main(UsuarioSesion sesion, int idAperturaCaja)
     {
         InitializeComponent();
-        TemaNk.Aplicar(this);
         _sesion = sesion;
         _idAperturaCaja = idAperturaCaja;
 
@@ -122,13 +121,12 @@ public partial class Main : Form
     {
         string rol = NormalizarRol(_sesion.Rol);
         bool administrador = rol.Contains("admin") || rol.Contains("administrador");
-        bool gerencia = administrador || rol.Contains("gerente") || rol.Contains("supervisor");
 
         if (administrador)
         {
             _modulosPermitidos = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "*" };
         }
-        else if (gerencia)
+        else if (rol.Contains("gerente") || rol.Contains("gerencia") || rol.Contains("supervisor"))
         {
             _modulosPermitidos = new HashSet<string>(new[]
             {
@@ -136,25 +134,26 @@ public partial class Main : Form
                 "Clientes", "Proveedores", "Crédito", "Devolución", "Reporte", "Acerca de"
             }, StringComparer.OrdinalIgnoreCase);
         }
-        else if (rol.Contains("compra") || rol.Contains("proveedor"))
+        else if (rol.Contains("bodeguero") || rol.Contains("bodega") ||
+                 rol.Contains("inventario") || rol.Contains("almacen") || rol.Contains("almacenero"))
         {
             _modulosPermitidos = new HashSet<string>(new[]
             {
                 "Inicio", "Compras", "Productos", "Categoría", "Proveedores", "Reporte", "Acerca de"
             }, StringComparer.OrdinalIgnoreCase);
         }
-        else if (rol.Contains("inventario") || rol.Contains("bodega"))
-        {
-            _modulosPermitidos = new HashSet<string>(new[]
-            {
-                "Inicio", "Productos", "Categoría", "Reporte", "Acerca de"
-            }, StringComparer.OrdinalIgnoreCase);
-        }
-        else if (rol.Contains("venta") || rol.Contains("cajero") || rol.Contains("caja"))
+        else if (rol.Contains("cajero") || rol.Contains("caja") || rol.Contains("venta"))
         {
             _modulosPermitidos = new HashSet<string>(new[]
             {
                 "Inicio", "Caja", "Ventas", "Productos", "Clientes", "Crédito", "Devolución", "Acerca de"
+            }, StringComparer.OrdinalIgnoreCase);
+        }
+        else if (rol.Contains("compra") || rol.Contains("proveedor"))
+        {
+            _modulosPermitidos = new HashSet<string>(new[]
+            {
+                "Inicio", "Compras", "Productos", "Categoría", "Proveedores", "Reporte", "Acerca de"
             }, StringComparer.OrdinalIgnoreCase);
         }
         else
@@ -255,7 +254,7 @@ public partial class Main : Form
             btn_usuarios, btn_clientes, btnproveedores, btncategoria, btncompras,
             btnproductos, btncaja, btnventas, btndevolucion, btncredito,
             btnreporte, btnmantenimiento, btnacercade
-        }.Count(b => b.Visible && b.Enabled);
+        }.Count(b => b.Visible);
         int espacioDisponible = Math.Max(1, Panel_Padre.ClientSize.Height - inicioY - altoCerrar - margenInferior);
         int altoBoton = cantidadBotonesVisibles == 0 ? 42 : Math.Clamp(espacioDisponible / cantidadBotonesVisibles, 34, 48);
         bool necesitaScroll = altoBoton * cantidadBotonesVisibles > espacioDisponible;
@@ -267,9 +266,8 @@ public partial class Main : Form
 
         foreach (var boton in botones)
         {
-            if (!boton.Visible || !boton.Enabled)
+            if (!boton.Visible)
             {
-                boton.SetBounds(0, y, anchoInterior, altoBoton);
                 continue;
             }
 
@@ -305,13 +303,10 @@ public partial class Main : Form
 
         // Se captura primero la geometría original del Designer. Después el Dock
         // puede cambiar el tamaño y el adaptador recalcula todos los controles.
-        TemaNk.Aplicar(formulario);
-        AjustesPantallaNk.AplicarInicial(formulario);
-        DisenoResponsivoNk.Habilitar(formulario);
-
         formulario.TopLevel = false;
         formulario.FormBorderStyle = FormBorderStyle.None;
         formulario.Dock = DockStyle.Fill;
+        ResponsiveForms.Register(formulario);
 
         Panel_Hijo.Controls.Add(formulario);
         Panel_Hijo.Tag = formulario;
@@ -348,6 +343,7 @@ public partial class Main : Form
             () => { if (VerificarAcceso("Productos")) btnproductos_Click(this, EventArgs.Empty); },
             () => { if (VerificarAcceso("Clientes")) btn_clientes_Click_1(this, EventArgs.Empty); },
             () => { if (VerificarAcceso("Caja")) btncaja_Click(this, EventArgs.Empty); });
+        ResponsiveForms.Register(dashboard);
         Panel_Hijo.Controls.Add(dashboard);
         dashboard.BringToFront();
         await dashboard.CargarAsync();

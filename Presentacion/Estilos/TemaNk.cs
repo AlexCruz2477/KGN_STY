@@ -4,17 +4,18 @@ namespace Nk_Colletion_New.Presentacion.Estilos;
 
 internal static class TemaNk
 {
-    private static readonly Color Fondo = Color.FromArgb(245, 241, 232);
-    private static readonly Color Tarjeta = Color.FromArgb(235, 222, 208);
-    private static readonly Color Lateral = Color.FromArgb(63, 65, 64);
-    private static readonly Color Texto = Color.FromArgb(41, 42, 40);
-    private static readonly Color Secundario = Color.FromArgb(119, 116, 109);
-    private static readonly Color Principal = Color.FromArgb(184, 149, 85);
-    private static readonly Color Hover = Color.FromArgb(140, 106, 56);
-    private static readonly Color Complementario = Color.FromArgb(101, 112, 90);
-    private static readonly Color Error = Color.FromArgb(171, 84, 69);
-    private static readonly Color Borde = Color.FromArgb(214, 204, 190);
-    private static readonly Color Superficie = Color.FromArgb(253, 251, 247);
+    private static readonly Color Fondo = Color.FromArgb(250, 249, 246);
+    private static readonly Color Tarjeta = Color.FromArgb(232, 221, 202);
+    private static readonly Color Lateral = Color.FromArgb(74, 14, 24);
+    private static readonly Color Texto = Color.FromArgb(41, 41, 41);
+    private static readonly Color Secundario = Color.FromArgb(119, 119, 119);
+    private static readonly Color Principal = Color.FromArgb(74, 14, 24);
+    private static readonly Color Acento = Color.FromArgb(196, 154, 69);
+    private static readonly Color Hover = Color.FromArgb(107, 23, 37);
+    private static readonly Color Complementario = Color.FromArgb(107, 23, 37);
+    private static readonly Color Error = Color.FromArgb(74, 14, 24);
+    private static readonly Color Borde = Color.FromArgb(229, 227, 223);
+    private static readonly Color Superficie = Color.FromArgb(250, 249, 246);
 
     public static void Aplicar(Form formulario)
     {
@@ -30,11 +31,9 @@ internal static class TemaNk
         {
             if (control is Guna2Panel panel)
             {
-                panel.BackColor = Fondo;
-                if (EsBlanco(panel.FillColor))
-                {
-                    panel.FillColor = Tarjeta;
-                }
+                bool panelLateral = raiz.FindForm()?.Name == "Main" && panel.Name == "guna2Panel1";
+                panel.BackColor = panelLateral ? Lateral : Fondo;
+                panel.FillColor = panelLateral ? Lateral : MapearColor(panel.FillColor, Tarjeta);
 
                 panel.BorderRadius = Math.Max(panel.BorderRadius, 10);
                 panel.ShadowDecoration.Enabled = true;
@@ -45,16 +44,19 @@ internal static class TemaNk
                     panel.BorderColor = Borde;
                     panel.BorderThickness = 1;
                 }
+                else
+                {
+                    panel.BorderColor = Borde;
+                }
             }
             else if (control is Guna2ShadowPanel tarjeta)
             {
-                if (EsBlanco(tarjeta.FillColor))
-                {
-                    tarjeta.FillColor = Tarjeta;
-                }
+                bool tarjetaVino = tarjeta.FillColor.ToArgb() == Principal.ToArgb() ||
+                    tarjeta.FillColor.ToArgb() == Hover.ToArgb();
+                tarjeta.FillColor = tarjetaVino ? Principal : MapearColor(tarjeta.FillColor, Tarjeta);
 
-                tarjeta.ForeColor = Texto;
-                tarjeta.ShadowColor = Secundario;
+                tarjeta.ForeColor = tarjetaVino ? Fondo : Texto;
+                tarjeta.ShadowColor = Borde;
                 tarjeta.ShadowDepth = 16;
                 tarjeta.ShadowShift = 2;
             }
@@ -65,50 +67,31 @@ internal static class TemaNk
             else if (control is Guna2TextBox texto)
             {
                 texto.BorderRadius = Math.Max(texto.BorderRadius, 8);
-                texto.FillColor = Superficie;
+                texto.FillColor = MapearColor(texto.FillColor, Superficie);
                 texto.ForeColor = Texto;
-                if (EsColor(texto.BorderColor, 216, 216, 216) ||
-                    EsColor(texto.BorderColor, 214, 204, 190))
-                {
-                    texto.BorderColor = Borde;
-                }
-
-                if (EsAzul(texto.FocusedState.BorderColor) ||
-                    EsColor(texto.FocusedState.BorderColor, 140, 106, 56))
-                {
-                    texto.FocusedState.BorderColor = Principal;
-                }
-
-                if (EsAzul(texto.HoverState.BorderColor) ||
-                    EsColor(texto.HoverState.BorderColor, 140, 106, 56))
-                {
-                    texto.HoverState.BorderColor = Hover;
-                }
+                texto.BorderColor = Borde;
+                texto.BorderThickness = Math.Max(texto.BorderThickness, 1);
+                texto.FocusedState.BorderColor = Principal;
+                texto.HoverState.BorderColor = Hover;
+                texto.PlaceholderForeColor = Secundario;
             }
             else if (control is Guna2ComboBox combo)
             {
                 combo.BorderRadius = Math.Max(combo.BorderRadius, 8);
-                if (EsColor(combo.ForeColor, 68, 88, 112))
-                {
-                    combo.ForeColor = Texto;
-                }
-
-                if (EsAzul(combo.FocusedColor) || EsColor(combo.FocusedColor, 140, 106, 56))
-                {
-                    combo.FocusedColor = Principal;
-                }
-
-                if (EsAzul(combo.FocusedState.BorderColor) ||
-                    EsColor(combo.FocusedState.BorderColor, 140, 106, 56))
-                {
-                    combo.FocusedState.BorderColor = Principal;
-                }
+                combo.FillColor = MapearColor(combo.FillColor, Tarjeta);
+                combo.ForeColor = Texto;
+                combo.BorderColor = Borde;
+                combo.BorderThickness = Math.Max(combo.BorderThickness, 1);
+                combo.FocusedColor = Principal;
+                combo.FocusedState.BorderColor = Principal;
             }
             else if (control is Guna2DateTimePicker fecha)
             {
                 fecha.BorderRadius = Math.Max(fecha.BorderRadius, 8);
-                fecha.FillColor = Superficie;
+                fecha.FillColor = MapearColor(fecha.FillColor, Tarjeta);
                 fecha.ForeColor = Texto;
+                fecha.BorderColor = Borde;
+                fecha.BorderThickness = Math.Max(fecha.BorderThickness, 1);
             }
             else if (control is DataGridView grilla)
             {
@@ -116,13 +99,13 @@ internal static class TemaNk
             }
             else if (control is TextBox cajaTexto)
             {
-                cajaTexto.BackColor = Superficie;
+                cajaTexto.BackColor = MapearColor(cajaTexto.BackColor, Superficie);
                 cajaTexto.ForeColor = Texto;
                 cajaTexto.BorderStyle = BorderStyle.FixedSingle;
             }
             else if (control is ComboBox lista)
             {
-                lista.BackColor = Superficie;
+                lista.BackColor = MapearColor(lista.BackColor, Superficie);
                 lista.ForeColor = Texto;
                 lista.FlatStyle = FlatStyle.Flat;
             }
@@ -130,48 +113,40 @@ internal static class TemaNk
             {
                 botonNormal.FlatStyle = FlatStyle.Flat;
                 botonNormal.Cursor = Cursors.Hand;
-                botonNormal.FlatAppearance.BorderSize = 0;
-                if (EsColor(botonNormal.BackColor, 184, 149, 85) ||
-                    EsColor(botonNormal.BackColor, 171, 84, 69))
+                bool esVino = botonNormal.BackColor.ToArgb() == Principal.ToArgb() ||
+                    botonNormal.BackColor.ToArgb() == Hover.ToArgb() ||
+                    botonNormal.BackColor.ToArgb() == Error.ToArgb();
+                botonNormal.FlatAppearance.BorderSize = 1;
+                botonNormal.FlatAppearance.BorderColor = Borde;
+                if (esVino)
                 {
-                    botonNormal.ForeColor = Color.White;
+                    botonNormal.ForeColor = Fondo;
                     botonNormal.FlatAppearance.MouseOverBackColor = Hover;
                     botonNormal.FlatAppearance.MouseDownBackColor = Complementario;
                 }
                 else
                 {
-                    botonNormal.FlatAppearance.BorderSize = 1;
-                    botonNormal.FlatAppearance.BorderColor = Borde;
-                    botonNormal.BackColor = Tarjeta;
                     botonNormal.ForeColor = Texto;
+                    botonNormal.BackColor = EsColor(botonNormal.BackColor, 74, 14, 24) ||
+                        EsColor(botonNormal.BackColor, 107, 23, 37)
+                        ? Principal
+                        : MapearColor(botonNormal.BackColor, Tarjeta);
                     botonNormal.FlatAppearance.MouseOverBackColor = Borde;
                 }
             }
             else if (control is Panel panelNormal)
             {
-                if (EsColor(panelNormal.BackColor, 64, 0, 0))
-                {
-                    panelNormal.BackColor = Lateral;
-                }
-                else if (panelNormal.Name == "Panel_Padre")
-                {
-                    panelNormal.BackColor = Lateral;
-                }
+                bool esMenu = panelNormal.Name == "Panel_Padre" ||
+                    (raiz.FindForm()?.Name == "Main" && panelNormal.Name is "panel2" or "panel3" or "panel4" or "panel5");
+                panelNormal.BackColor = MapearColor(panelNormal.BackColor, esMenu ? Lateral : Fondo);
             }
             else if (control is Label etiqueta)
             {
                 bool eraSecundario = EsColor(etiqueta.ForeColor, 128, 128, 128) ||
                     EsColor(etiqueta.ForeColor, 119, 116, 109) ||
-                    EsColor(etiqueta.ForeColor, 205, 205, 205);
-                if (eraSecundario)
-                {
-                    etiqueta.ForeColor = Secundario;
-                }
-                else if (EsColor(etiqueta.ForeColor, 110, 18, 32) ||
-                         EsColor(etiqueta.ForeColor, 64, 0, 0))
-                {
-                    etiqueta.ForeColor = Texto;
-                }
+                    EsColor(etiqueta.ForeColor, 205, 205, 205) ||
+                    EsColor(etiqueta.ForeColor, 119, 116, 109);
+                etiqueta.ForeColor = eraSecundario ? Secundario : Texto;
 
                 if (etiqueta.Font.Size >= 18F)
                 {
@@ -196,61 +171,38 @@ internal static class TemaNk
         boton.BorderRadius = Math.Max(boton.BorderRadius, 8);
         boton.Cursor = Cursors.Hand;
         boton.Font = new Font("Segoe UI Semibold", Math.Max(9F, boton.Font.Size), FontStyle.Bold);
-        if (!esMenuPrincipal && ObtenerAcento(boton.Text, boton.Name) is Color acento)
+        if (ObtenerAcento(boton.Text, boton.Name) is Color acento)
         {
             boton.FillColor = acento;
-            boton.ForeColor = Color.White;
-            boton.BorderColor = acento;
+            boton.ForeColor = Fondo;
+            boton.BorderColor = Borde;
+            boton.BorderThickness = Math.Max(boton.BorderThickness, 1);
             boton.HoverState.FillColor = Oscurecer(acento);
-            boton.HoverState.ForeColor = Color.White;
+            boton.HoverState.ForeColor = Fondo;
+            boton.HoverState.BorderColor = Borde;
         }
-        else if (EsColor(boton.FillColor, 110, 18, 32))
-        {
-            boton.FillColor = Principal;
-            boton.BorderColor = Principal;
-            boton.HoverState.FillColor = Hover;
-            boton.HoverState.ForeColor = Color.White;
-        }
-        else if (esMenuPrincipal &&
-                 (EsBlanco(boton.FillColor) || EsColor(boton.FillColor, 235, 222, 208)))
+        else if (esMenuPrincipal)
         {
             boton.FillColor = Lateral;
-            boton.ForeColor = Tarjeta;
-            boton.HoverState.FillColor = Complementario;
-            boton.HoverState.ForeColor = Color.White;
+            boton.ForeColor = Fondo;
+            boton.BorderColor = Borde;
+            boton.BorderThickness = Math.Max(boton.BorderThickness, 1);
+            boton.HoverState.FillColor = Hover;
+            boton.HoverState.ForeColor = Fondo;
+            boton.HoverState.BorderColor = Borde;
         }
-        else if (EsColor(boton.FillColor, 184, 149, 85))
+        else
         {
+            boton.FillColor = MapearColor(boton.FillColor, Tarjeta);
+            boton.ForeColor = Texto;
+            boton.BorderColor = Borde;
+            boton.BorderThickness = Math.Max(boton.BorderThickness, 1);
             boton.HoverState.FillColor = Hover;
             boton.HoverState.ForeColor = Color.White;
-        }
-        else if (EsColor(boton.FillColor, 63, 65, 64))
-        {
-            boton.ForeColor = Tarjeta;
-            boton.HoverState.FillColor = Principal;
-            boton.HoverState.ForeColor = Color.White;
-        }
-        else if (EsBlanco(boton.FillColor))
-        {
-            boton.FillColor = Tarjeta;
-            boton.ForeColor = Texto;
-            boton.HoverState.FillColor = Borde;
-            boton.HoverState.ForeColor = Texto;
-            if (EsBlanco(boton.BorderColor))
-            {
-                boton.BorderColor = Borde;
-            }
+            boton.HoverState.BorderColor = Borde;
         }
 
-        if (EsColor(boton.FocusedColor, 110, 18, 32))
-        {
-            boton.FocusedColor = Principal;
-        }
-
-        if (EsColor(boton.BorderColor, 194, 154, 116))
-        {
-            boton.BorderColor = Error;
-        }
+        boton.FocusedColor = Principal;
     }
 
     private static void AplicarGrilla(DataGridView grilla)
@@ -263,14 +215,14 @@ internal static class TemaNk
         grilla.ColumnHeadersDefaultCellStyle.BackColor = Lateral;
         grilla.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         grilla.ColumnHeadersDefaultCellStyle.SelectionBackColor = Lateral;
-        grilla.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+        grilla.ColumnHeadersDefaultCellStyle.SelectionForeColor = Fondo;
         grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         grilla.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
         grilla.DefaultCellStyle.BackColor = Superficie;
         grilla.DefaultCellStyle.ForeColor = Texto;
         grilla.DefaultCellStyle.SelectionBackColor = Complementario;
-        grilla.DefaultCellStyle.SelectionForeColor = Color.White;
-        grilla.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 241, 232);
+        grilla.DefaultCellStyle.SelectionForeColor = Fondo;
+        grilla.AlternatingRowsDefaultCellStyle.BackColor = Fondo;
         grilla.ColumnHeadersHeight = Math.Max(grilla.ColumnHeadersHeight, 38);
         grilla.RowTemplate.Height = Math.Max(grilla.RowTemplate.Height, 34);
         grilla.DefaultCellStyle.Padding = new Padding(7, 3, 7, 3);
@@ -281,11 +233,11 @@ internal static class TemaNk
         if (grilla is Guna2DataGridView gunaGrilla)
         {
             gunaGrilla.ThemeStyle.HeaderStyle.BackColor = Lateral;
-            gunaGrilla.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            gunaGrilla.ThemeStyle.HeaderStyle.ForeColor = Fondo;
             gunaGrilla.ThemeStyle.RowsStyle.ForeColor = Texto;
             gunaGrilla.ThemeStyle.RowsStyle.SelectionBackColor = Complementario;
-            gunaGrilla.ThemeStyle.RowsStyle.SelectionForeColor = Color.White;
-            gunaGrilla.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(245, 241, 232);
+            gunaGrilla.ThemeStyle.RowsStyle.SelectionForeColor = Fondo;
+            gunaGrilla.ThemeStyle.AlternatingRowsStyle.BackColor = Fondo;
             gunaGrilla.ThemeStyle.GridColor = Borde;
         }
     }
@@ -295,18 +247,15 @@ internal static class TemaNk
         if (esEncabezado)
         {
             estilo.BackColor = Lateral;
-            estilo.ForeColor = Color.White;
+            estilo.ForeColor = Fondo;
         }
         else
         {
             estilo.ForeColor = Texto;
             estilo.SelectionBackColor = Complementario;
-            estilo.SelectionForeColor = Color.White;
+            estilo.SelectionForeColor = Fondo;
         }
     }
-
-    private static bool EsAzul(Color color) =>
-        EsColor(color, 94, 148, 255);
 
     private static Color? ObtenerAcento(string texto, string nombre)
     {
@@ -318,7 +267,7 @@ internal static class TemaNk
 
         if (clave.Contains("guardar") || clave.Contains("registrar") || clave.Contains("ingresar") || clave.Contains("confirmar") || clave.Contains("aceptar"))
         {
-            return Principal;
+            return Acento;
         }
 
         if (clave.Contains("buscar") || clave.Contains("actualizar") || clave.Contains("consultar") || clave.Contains("reintentar"))
@@ -337,4 +286,22 @@ internal static class TemaNk
 
     private static bool EsColor(Color color, int rojo, int verde, int azul) =>
         color.ToArgb() == Color.FromArgb(rojo, verde, azul).ToArgb();
+
+    private static Color MapearColor(Color color, Color predeterminado)
+    {
+        if (EsBlanco(color)) return Fondo;
+        if (EsColor(color, 245, 241, 232) || EsColor(color, 253, 251, 247) ||
+            EsColor(color, 255, 255, 255)) return Fondo;
+        if (EsColor(color, 235, 222, 208) || EsColor(color, 63, 65, 64) ||
+            EsColor(color, 41, 42, 40)) return Tarjeta;
+        if (EsColor(color, 184, 149, 85) || EsColor(color, 201, 154, 69)) return Acento;
+        if (EsColor(color, 140, 106, 56) || EsColor(color, 101, 112, 90) ||
+            EsColor(color, 100, 28, 45) || EsColor(color, 139, 38, 61)) return Principal;
+        if (EsColor(color, 214, 204, 190) || EsColor(color, 194, 154, 116) ||
+            EsColor(color, 70, 70, 70)) return Borde;
+        if (EsColor(color, 119, 116, 109)) return Secundario;
+        if (EsColor(color, 171, 84, 69) || EsColor(color, 64, 0, 0) ||
+            EsColor(color, 70, 18, 31)) return Error;
+        return predeterminado;
+    }
 }

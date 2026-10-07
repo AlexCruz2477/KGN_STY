@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New.Presentacion.Autenticacion
+﻿namespace Nk_Colletion_New.Presentacion.Autenticacion
 {
     partial class Frm_Login
     {
@@ -52,40 +52,40 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             guna2ContextMenuStrip1.ImageScalingSize = new Size(24, 24);
             guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
-            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(184, 149, 85);
-            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.FromArgb(214, 204, 190);
+            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(107, 23, 37);
+            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.FromArgb(229, 227, 223);
             guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
             guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
-            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(101, 112, 90);
-            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.FromArgb(250, 249, 246);
+            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(232, 221, 202);
+            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.FromArgb(250, 249, 246);
+            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.FromArgb(229, 227, 223);
             guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             guna2ContextMenuStrip1.Size = new Size(61, 4);
             // 
             // txt_Contrasena
             // 
-            txt_Contrasena.Location = new Point(3, 3);
+            txt_Contrasena.Location = new Point(1, 1);
             txt_Contrasena.AutoSize = false;
-            txt_Contrasena.BackColor = Color.FromArgb(253, 251, 247);
-            txt_Contrasena.BorderStyle = BorderStyle.FixedSingle;
+            txt_Contrasena.BackColor = Color.FromArgb(232, 221, 202);
+            txt_Contrasena.BorderStyle = BorderStyle.None;
             txt_Contrasena.Font = new Font("Segoe UI", 11F);
+            txt_Contrasena.ForeColor = Color.FromArgb(41, 41, 41);
             txt_Contrasena.Multiline = false;
             txt_Contrasena.Name = "txt_Contrasena";
             txt_Contrasena.PasswordChar = '●';
-            txt_Contrasena.Size = new Size(373, 63);
+            txt_Contrasena.Size = new Size(388, 40);
             txt_Contrasena.TabIndex = 1;
             // 
             // btn_Ingresar
             // 
-            btn_Ingresar.BackColor = Color.FromArgb(184, 149, 85);
-            btn_Ingresar.FlatAppearance.BorderColor = Color.FromArgb(140, 106, 56);
-            btn_Ingresar.FlatAppearance.BorderSize = 0;
+            btn_Ingresar.FlatAppearance.BorderColor = Color.Black;
+            btn_Ingresar.FlatAppearance.BorderSize = 2;
             btn_Ingresar.FlatStyle = FlatStyle.Flat;
             btn_Ingresar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btn_Ingresar.ForeColor = SystemColors.ControlLightLight;
             btn_Ingresar.Cursor = Cursors.Hand;
-            btn_Ingresar.Location = new Point(176, 391);
+            btn_Ingresar.Location = new Point(175, 373);
             btn_Ingresar.Name = "btn_Ingresar";
             btn_Ingresar.Size = new Size(158, 50);
             btn_Ingresar.TabIndex = 2;
@@ -96,8 +96,9 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("PMingLiU-ExtB", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(75, 167);
+            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(41, 41, 41);
+            label1.Location = new Point(64, 160);
             label1.Name = "label1";
             label1.Size = new Size(69, 18);
             label1.TabIndex = 3;
@@ -106,8 +107,9 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.FromArgb(63, 65, 64);
-            linkLabel1.Location = new Point(157, 470);
+            linkLabel1.LinkColor = Color.FromArgb(196, 154, 69);
+            linkLabel1.Font = new Font("Segoe UI", 9F);
+            linkLabel1.Location = new Point(147, 444);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(214, 25);
             linkLabel1.TabIndex = 4;
@@ -128,7 +130,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(235, 222, 208);
+            panel2.BackColor = Color.FromArgb(232, 221, 202);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(label2);
@@ -140,12 +142,12 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(335, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(511, 518);
+            panel2.Size = new Size(508, 518);
             panel2.TabIndex = 6;
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(63, 65, 64);
+            panel5.BackColor = Color.FromArgb(232, 221, 202);
             panel5.Dock = DockStyle.Left;
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
@@ -155,7 +157,7 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.imagen_circular_recortada1;
-            pictureBox1.Location = new Point(194, 21);
+            pictureBox1.Location = new Point(188, 20);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(131, 125);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -165,8 +167,9 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("PMingLiU-ExtB", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(75, 270);
+            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(41, 41, 41);
+            label2.Location = new Point(64, 254);
             label2.Name = "label2";
             label2.Size = new Size(96, 18);
             label2.TabIndex = 5;
@@ -174,40 +177,43 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(214, 204, 190);
+            panel3.BackColor = Color.Black;
             panel3.Controls.Add(txt_Contrasena);
-            panel3.Location = new Point(75, 286);
+            panel3.Location = new Point(64, 276);
             panel3.Name = "panel3";
-            panel3.Size = new Size(379, 44);
+            panel3.Size = new Size(390, 42);
             panel3.TabIndex = 6;
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(214, 204, 190);
+            panel4.BackColor = Color.Black;
             panel4.Controls.Add(txt_Usuario);
-            panel4.Location = new Point(75, 187);
+            panel4.Location = new Point(64, 182);
             panel4.Name = "panel4";
-            panel4.Size = new Size(379, 44);
+            panel4.Size = new Size(390, 42);
             panel4.TabIndex = 7;
             // 
             // txt_Usuario
             // 
-            txt_Usuario.Location = new Point(4, 4);
+            txt_Usuario.Location = new Point(1, 1);
             txt_Usuario.AutoSize = false;
-            txt_Usuario.BackColor = Color.FromArgb(253, 251, 247);
-            txt_Usuario.BorderStyle = BorderStyle.FixedSingle;
+            txt_Usuario.BackColor = Color.FromArgb(232, 221, 202);
+            txt_Usuario.BorderStyle = BorderStyle.None;
             txt_Usuario.Font = new Font("Segoe UI", 11F);
+            txt_Usuario.ForeColor = Color.FromArgb(41, 41, 41);
             txt_Usuario.Multiline = false;
             txt_Usuario.Name = "txt_Usuario";
-            txt_Usuario.Size = new Size(371, 36);
+            txt_Usuario.Size = new Size(388, 40);
             txt_Usuario.TabIndex = 4;
             // 
             // Frm_Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(846, 518);
+            Font = new Font("Segoe UI", 9.5F);
+            ForeColor = Color.FromArgb(41, 41, 41);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -222,6 +228,10 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            txt_Contrasena.BackColor = Color.FromArgb(232, 221, 202);
+            txt_Contrasena.ForeColor = Color.FromArgb(41, 41, 41);
+            txt_Usuario.BackColor = Color.FromArgb(232, 221, 202);
+            txt_Usuario.ForeColor = Color.FromArgb(41, 41, 41);
             ResumeLayout(false);
         }
 
@@ -242,3 +252,5 @@ namespace Nk_Colletion_New.Presentacion.Autenticacion
         private Panel panel5;
     }
 }
+
+

@@ -1,5 +1,4 @@
 using Nk_Colletion_New.Negocios.Autenticacion;
-using Nk_Colletion_New.Presentacion.Estilos;
 
 namespace Nk_Colletion_New.Presentacion.Autenticacion;
 
@@ -11,7 +10,6 @@ public partial class Frm_Login : Form
     public Frm_Login()
     {
         InitializeComponent();
-        TemaNk.Aplicar(this);
     }
 
     public Frm_Login(ServicioAuth servicioAuth, LoginServicio loginServicio) : this()

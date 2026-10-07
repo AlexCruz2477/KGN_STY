@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class Caja_premiun
     {
@@ -221,7 +221,7 @@ namespace Nk_Colletion_New
             label1.Name = "label1";
             label1.Size = new Size(308, 48);
             label1.TabIndex = 0;
-            label1.Text = "Gestión de Caja";
+            label1.Text = "Gesti├│n de Caja";
             // 
             // guna2ShadowPanel2
             // 
@@ -776,7 +776,7 @@ namespace Nk_Colletion_New
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             guna2ShadowPanel4.ResumeLayout(false);
             ResumeLayout(false);
-        }
+            }
 
         #endregion
 
@@ -822,3 +822,5 @@ namespace Nk_Colletion_New
         private Panel panel2;
     }
 }
+
+

@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class Form_clientes
     {
@@ -83,7 +83,7 @@ namespace Nk_Colletion_New
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(63, 65, 64);
+            panel1.BackColor = Color.FromArgb(232, 221, 202);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(1);
@@ -93,7 +93,7 @@ namespace Nk_Colletion_New
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(63, 65, 64);
+            panel2.BackColor = Color.FromArgb(232, 221, 202);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(1364, 6);
             panel2.Margin = new Padding(1);
@@ -103,7 +103,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(63, 65, 64);
+            panel4.BackColor = Color.FromArgb(232, 221, 202);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 857);
             panel4.Margin = new Padding(1);
@@ -113,7 +113,7 @@ namespace Nk_Colletion_New
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(63, 65, 64);
+            panel3.BackColor = Color.FromArgb(232, 221, 202);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 6);
             panel3.Margin = new Padding(1);
@@ -125,7 +125,7 @@ namespace Nk_Colletion_New
             // 
             label3.AutoSize = true;
             label3.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(63, 65, 64);
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(26, 160);
             label3.Margin = new Padding(1, 0, 1, 0);
             label3.Name = "label3";
@@ -135,16 +135,19 @@ namespace Nk_Colletion_New
             // 
             // guna2Button2
             // 
-            guna2Button2.BorderColor = Color.White;
+            guna2Button2.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button2.BorderRadius = 8;
             guna2Button2.CustomizableEdges = customizableEdges17;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button2.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button2.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button2.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button2.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button2.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button2.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button2.BorderThickness = 1;
+guna2Button2.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button2.Font = new Font("Segoe UI", 9F);
-            guna2Button2.ForeColor = Color.White;
+            guna2Button2.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button2.Location = new Point(463, 152);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges18;
@@ -154,16 +157,19 @@ namespace Nk_Colletion_New
             // 
             // guna2Button3
             // 
-            guna2Button3.BorderColor = Color.White;
+            guna2Button3.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button3.BorderRadius = 8;
             guna2Button3.CustomizableEdges = customizableEdges19;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button3.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button3.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button3.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button3.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button3.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button3.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button3.BorderThickness = 1;
+guna2Button3.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button3.Font = new Font("Segoe UI", 9F);
-            guna2Button3.ForeColor = Color.White;
+            guna2Button3.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button3.Location = new Point(626, 152);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -173,16 +179,16 @@ namespace Nk_Colletion_New
             // 
             // btnañadir
             // 
-            btnañadir.BorderColor = Color.White;
+            btnañadir.BorderColor = Color.FromArgb(229, 227, 223);
             btnañadir.BorderRadius = 8;
             btnañadir.CustomizableEdges = customizableEdges21;
-            btnañadir.DisabledState.BorderColor = Color.DarkGray;
-            btnañadir.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnañadir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnañadir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnañadir.FillColor = Color.FromArgb(184, 149, 85);
+            btnañadir.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            btnañadir.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            btnañadir.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            btnañadir.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            btnañadir.FillColor = Color.FromArgb(74, 14, 24);
             btnañadir.Font = new Font("Segoe UI", 9F);
-            btnañadir.ForeColor = Color.White;
+            btnañadir.ForeColor = Color.FromArgb(250, 249, 246);
             btnañadir.Location = new Point(26, 748);
             btnañadir.Name = "btnañadir";
             btnañadir.ShadowDecoration.CustomizableEdges = customizableEdges22;
@@ -193,16 +199,19 @@ namespace Nk_Colletion_New
             // 
             // guna2Button4
             // 
-            guna2Button4.BorderColor = Color.White;
+            guna2Button4.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button4.BorderRadius = 8;
             guna2Button4.CustomizableEdges = customizableEdges23;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button4.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button4.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button4.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button4.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button4.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button4.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button4.BorderThickness = 1;
+guna2Button4.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button4.Font = new Font("Segoe UI", 9F);
-            guna2Button4.ForeColor = Color.White;
+            guna2Button4.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button4.Location = new Point(805, 152);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges24;
@@ -216,8 +225,8 @@ namespace Nk_Colletion_New
             guna2ShadowPanel2.Controls.Add(guna2DataGridView1);
             guna2ShadowPanel2.Controls.Add(pictureBox2);
             guna2ShadowPanel2.Controls.Add(label1);
-            guna2ShadowPanel2.FillColor = Color.FromArgb(235, 222, 208);
-            guna2ShadowPanel2.ForeColor = Color.FromArgb(184, 149, 85);
+            guna2ShadowPanel2.FillColor = Color.FromArgb(232, 221, 202);
+            guna2ShadowPanel2.ForeColor = Color.FromArgb(41, 41, 41);
             guna2ShadowPanel2.Location = new Point(26, 209);
             guna2ShadowPanel2.Name = "guna2ShadowPanel2";
             guna2ShadowPanel2.Radius = 12;
@@ -227,12 +236,12 @@ namespace Nk_Colletion_New
             // 
             // guna2DataGridView1
             // 
-            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(232, 221, 202);
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(184, 149, 85);
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(232, 221, 202);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(41, 41, 41);
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
@@ -241,14 +250,14 @@ namespace Nk_Colletion_New
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, dataGridViewTextBoxColumn1, Column4, Column5, CLestado });
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(232, 221, 202);
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(184, 149, 85);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(101, 112, 90);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(41, 41, 41);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(232, 221, 202);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(250, 249, 246);
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
-            guna2DataGridView1.GridColor = Color.White;
+            guna2DataGridView1.GridColor = Color.FromArgb(229, 227, 223);
             guna2DataGridView1.Location = new Point(30, 87);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
@@ -256,13 +265,13 @@ namespace Nk_Colletion_New
             guna2DataGridView1.RowTemplate.Height = 22;
             guna2DataGridView1.Size = new Size(1260, 400);
             guna2DataGridView1.TabIndex = 55;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.GridColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(184, 149, 85);
+            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(232, 221, 202);
+            guna2DataGridView1.ThemeStyle.GridColor = Color.FromArgb(229, 227, 223);
+            guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(232, 221, 202);
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 27;
             guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(184, 149, 85);
+            guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(41, 41, 41);
             // 
             // Column1
             // 
@@ -325,14 +334,14 @@ namespace Nk_Colletion_New
             // 
             // guna2Panel1
             // 
-            guna2Panel1.BackColor = Color.FromArgb(244, 246, 249);
+            guna2Panel1.BackColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.Controls.Add(guna2CircleButton2);
             guna2Panel1.Controls.Add(guna2CirclePictureBox1);
             guna2Panel1.Controls.Add(label5);
             guna2Panel1.Controls.Add(label6);
             guna2Panel1.CustomizableEdges = customizableEdges27;
-            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
+            guna2Panel1.FillColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.Location = new Point(26, 12);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges28;
@@ -342,13 +351,16 @@ namespace Nk_Colletion_New
             // guna2CircleButton2
             // 
             guna2CircleButton2.BackColor = Color.Transparent;
-            guna2CircleButton2.DisabledState.BorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton2.FillColor = Color.FromArgb(235, 222, 208);
+            guna2CircleButton2.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2CircleButton2.FillColor = Color.FromArgb(74, 14, 24);
+guna2CircleButton2.BorderColor = Color.FromArgb(229, 227, 223);
+guna2CircleButton2.BorderThickness = 1;
+guna2CircleButton2.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2CircleButton2.Font = new Font("Segoe UI", 9F);
-            guna2CircleButton2.ForeColor = Color.White;
+            guna2CircleButton2.ForeColor = Color.FromArgb(250, 249, 246);
             guna2CircleButton2.Location = new Point(1285, 62);
             guna2CircleButton2.Name = "guna2CircleButton2";
             guna2CircleButton2.ShadowDecoration.CustomizableEdges = customizableEdges25;
@@ -374,7 +386,7 @@ namespace Nk_Colletion_New
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.ForeColor = Color.FromArgb(119, 116, 109);
+            label5.ForeColor = Color.FromArgb(41, 41, 41);
             label5.Location = new Point(92, 57);
             label5.Name = "label5";
             label5.Size = new Size(259, 25);
@@ -386,7 +398,7 @@ namespace Nk_Colletion_New
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Georgia", 21F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(184, 149, 85);
+            label6.ForeColor = Color.FromArgb(41, 41, 41);
             label6.Location = new Point(92, 9);
             label6.Name = "label6";
             label6.Size = new Size(316, 48);
@@ -397,13 +409,16 @@ namespace Nk_Colletion_New
             // 
             guna2Button6.BorderRadius = 8;
             guna2Button6.CustomizableEdges = customizableEdges29;
-            guna2Button6.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button6.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button6.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button6.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button6.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button6.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button6.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button6.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button6.BorderThickness = 1;
+guna2Button6.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button6.Font = new Font("Segoe UI", 9F);
-            guna2Button6.ForeColor = Color.White;
+            guna2Button6.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button6.Location = new Point(223, 748);
             guna2Button6.Margin = new Padding(2);
             guna2Button6.Name = "guna2Button6";
@@ -417,13 +432,15 @@ namespace Nk_Colletion_New
             // 
             txtbuscar.CustomizableEdges = customizableEdges31;
             txtbuscar.DefaultText = "";
-            txtbuscar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtbuscar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtbuscar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtbuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtbuscar.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtbuscar.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtbuscar.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtbuscar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtbuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtbuscar.Font = new Font("Segoe UI", 9F);
-            txtbuscar.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtbuscar.ForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtbuscar.Location = new Point(181, 160);
             txtbuscar.Margin = new Padding(4, 5, 4, 5);
             txtbuscar.Name = "txtbuscar";
@@ -436,8 +453,8 @@ namespace Nk_Colletion_New
             // Form_clientes
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(245, 241, 232);
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(1371, 863);
             Controls.Add(txtbuscar);
             Controls.Add(guna2Button6);
@@ -464,7 +481,16 @@ namespace Nk_Colletion_New
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
-            ResumeLayout(false);
+            txtbuscar.FillColor = Color.FromArgb(232, 221, 202);
+            txtbuscar.ForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtbuscar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtbuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtbuscar.BorderColor = Color.FromArgb(229, 227, 223);
+            txtbuscar.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtbuscar.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+        ResumeLayout(false);
             PerformLayout();
         }
 
@@ -499,3 +525,5 @@ namespace Nk_Colletion_New
         private Guna.UI2.WinForms.Guna2TextBox txtbuscar;
     }
 }
+
+

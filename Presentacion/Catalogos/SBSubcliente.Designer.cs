@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class SBSubcliente
     {
@@ -96,17 +96,19 @@ namespace Nk_Colletion_New
             // 
             // txtcedula
             // 
-            txtcedula.BorderColor = Color.FromArgb(214, 204, 190);
+            txtcedula.BorderColor = Color.FromArgb(229, 227, 223);
             txtcedula.BorderRadius = 8;
             txtcedula.CustomizableEdges = customizableEdges1;
             txtcedula.DefaultText = "";
-            txtcedula.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtcedula.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtcedula.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtcedula.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtcedula.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtcedula.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcedula.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtcedula.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtcedula.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtcedula.Font = new Font("Segoe UI", 9F);
-            txtcedula.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtcedula.ForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtcedula.Location = new Point(659, 87);
             txtcedula.Margin = new Padding(6, 8, 6, 8);
             txtcedula.Name = "txtcedula";
@@ -123,10 +125,10 @@ namespace Nk_Colletion_New
             CBestado.CustomizableEdges = customizableEdges3;
             CBestado.DrawMode = DrawMode.OwnerDrawFixed;
             CBestado.DropDownStyle = ComboBoxStyle.DropDownList;
-            CBestado.FocusedColor = Color.FromArgb(140, 106, 56);
-            CBestado.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            CBestado.FocusedColor = Color.FromArgb(74, 14, 24);
+            CBestado.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             CBestado.Font = new Font("Segoe UI", 10F);
-            CBestado.ForeColor = Color.FromArgb(68, 88, 112);
+            CBestado.ForeColor = Color.FromArgb(41, 41, 41);
             CBestado.ItemHeight = 30;
             CBestado.Location = new Point(905, 246);
             CBestado.Margin = new Padding(4, 5, 4, 5);
@@ -139,6 +141,7 @@ namespace Nk_Colletion_New
             // 
             label3.AutoSize = true;
             label3.Font = new Font("PMingLiU-ExtB", 10F);
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(839, 246);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
@@ -148,18 +151,21 @@ namespace Nk_Colletion_New
             // 
             // guna2Button3
             // 
-            guna2Button3.BorderColor = Color.FromArgb(171, 84, 69);
+            guna2Button3.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button3.BorderRadius = 8;
             guna2Button3.BorderThickness = 1;
             guna2Button3.CustomizableEdges = customizableEdges5;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.FromArgb(235, 222, 208);
-            guna2Button3.FocusedColor = Color.FromArgb(184, 149, 85);
+            guna2Button3.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button3.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button3.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button3.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button3.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button3.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button3.BorderThickness = 1;
+guna2Button3.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button3.FocusedColor = Color.FromArgb(74, 14, 24);
             guna2Button3.Font = new Font("Segoe UI", 9F);
-            guna2Button3.ForeColor = Color.Black;
+            guna2Button3.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button3.Image = Properties.Resources.icons8_cancelar_16__1_;
             guna2Button3.Location = new Point(232, 304);
             guna2Button3.Margin = new Padding(4, 5, 4, 5);
@@ -172,16 +178,16 @@ namespace Nk_Colletion_New
             // 
             // btnguardar
             // 
-            btnguardar.BorderColor = Color.White;
+            btnguardar.BorderColor = Color.FromArgb(229, 227, 223);
             btnguardar.BorderRadius = 8;
             btnguardar.CustomizableEdges = customizableEdges7;
-            btnguardar.DisabledState.BorderColor = Color.DarkGray;
-            btnguardar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnguardar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnguardar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnguardar.FillColor = Color.FromArgb(184, 149, 85);
+            btnguardar.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            btnguardar.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            btnguardar.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            btnguardar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            btnguardar.FillColor = Color.FromArgb(74, 14, 24);
             btnguardar.Font = new Font("Segoe UI", 9F);
-            btnguardar.ForeColor = Color.White;
+            btnguardar.ForeColor = Color.FromArgb(250, 249, 246);
             btnguardar.Image = Properties.Resources.icons8_guardar_24__1_;
             btnguardar.Location = new Point(55, 304);
             btnguardar.Margin = new Padding(4, 5, 4, 5);
@@ -196,6 +202,7 @@ namespace Nk_Colletion_New
             // 
             label11.AutoSize = true;
             label11.Font = new Font("PMingLiU-ExtB", 10F);
+            label11.ForeColor = Color.FromArgb(41, 41, 41);
             label11.Location = new Point(711, 152);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
@@ -207,6 +214,7 @@ namespace Nk_Colletion_New
             // 
             label14.AutoSize = true;
             label14.Font = new Font("PMingLiU-ExtB", 10F);
+            label14.ForeColor = Color.FromArgb(41, 41, 41);
             label14.Location = new Point(326, 152);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
@@ -218,6 +226,7 @@ namespace Nk_Colletion_New
             // 
             label15.AutoSize = true;
             label15.Font = new Font("PMingLiU-ExtB", 10F);
+            label15.ForeColor = Color.FromArgb(41, 41, 41);
             label15.Location = new Point(25, 152);
             label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
@@ -227,7 +236,7 @@ namespace Nk_Colletion_New
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(63, 65, 64);
+            panel2.BackColor = Color.FromArgb(232, 221, 202);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(1138, 10);
             panel2.Name = "panel2";
@@ -236,7 +245,7 @@ namespace Nk_Colletion_New
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(63, 65, 64);
+            panel1.BackColor = Color.FromArgb(232, 221, 202);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(10, 0);
             panel1.Name = "panel1";
@@ -247,6 +256,7 @@ namespace Nk_Colletion_New
             // 
             label16.AutoSize = true;
             label16.Font = new Font("PMingLiU-ExtB", 10F);
+            label16.ForeColor = Color.FromArgb(41, 41, 41);
             label16.Location = new Point(639, 59);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
@@ -258,6 +268,7 @@ namespace Nk_Colletion_New
             // 
             label17.AutoSize = true;
             label17.Font = new Font("PMingLiU-ExtB", 10F);
+            label17.ForeColor = Color.FromArgb(41, 41, 41);
             label17.Location = new Point(392, 59);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
@@ -269,6 +280,7 @@ namespace Nk_Colletion_New
             // 
             label18.AutoSize = true;
             label18.Font = new Font("PMingLiU-ExtB", 10F);
+            label18.ForeColor = Color.FromArgb(41, 41, 41);
             label18.Location = new Point(25, 59);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
@@ -278,17 +290,19 @@ namespace Nk_Colletion_New
             // 
             // txtdireccion
             // 
-            txtdireccion.BorderColor = Color.FromArgb(214, 204, 190);
+            txtdireccion.BorderColor = Color.FromArgb(229, 227, 223);
             txtdireccion.BorderRadius = 8;
             txtdireccion.CustomizableEdges = customizableEdges9;
             txtdireccion.DefaultText = "";
-            txtdireccion.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtdireccion.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtdireccion.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtdireccion.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtdireccion.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtdireccion.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtdireccion.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtdireccion.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtdireccion.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtdireccion.Font = new Font("Segoe UI", 9F);
-            txtdireccion.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtdireccion.ForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtdireccion.Location = new Point(715, 180);
             txtdireccion.Margin = new Padding(6, 8, 6, 8);
             txtdireccion.Name = "txtdireccion";
@@ -300,17 +314,19 @@ namespace Nk_Colletion_New
             // 
             // txtapellido
             // 
-            txtapellido.BorderColor = Color.FromArgb(214, 204, 190);
+            txtapellido.BorderColor = Color.FromArgb(229, 227, 223);
             txtapellido.BorderRadius = 8;
             txtapellido.CustomizableEdges = customizableEdges11;
             txtapellido.DefaultText = "";
-            txtapellido.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtapellido.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtapellido.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtapellido.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtapellido.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtapellido.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtapellido.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtapellido.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtapellido.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtapellido.Font = new Font("Segoe UI", 9F);
-            txtapellido.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtapellido.ForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtapellido.Location = new Point(392, 87);
             txtapellido.Margin = new Padding(6, 8, 6, 8);
             txtapellido.Name = "txtapellido";
@@ -322,17 +338,19 @@ namespace Nk_Colletion_New
             // 
             // txttelefono
             // 
-            txttelefono.BorderColor = Color.FromArgb(214, 204, 190);
+            txttelefono.BorderColor = Color.FromArgb(229, 227, 223);
             txttelefono.BorderRadius = 8;
             txttelefono.CustomizableEdges = customizableEdges13;
             txttelefono.DefaultText = "";
-            txttelefono.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txttelefono.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txttelefono.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txttelefono.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txttelefono.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txttelefono.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txttelefono.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txttelefono.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txttelefono.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txttelefono.Font = new Font("Segoe UI", 9F);
-            txttelefono.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txttelefono.ForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txttelefono.Location = new Point(30, 180);
             txttelefono.Margin = new Padding(6, 8, 6, 8);
             txttelefono.Name = "txttelefono";
@@ -344,17 +362,19 @@ namespace Nk_Colletion_New
             // 
             // txtcorreo
             // 
-            txtcorreo.BorderColor = Color.FromArgb(214, 204, 190);
+            txtcorreo.BorderColor = Color.FromArgb(229, 227, 223);
             txtcorreo.BorderRadius = 8;
             txtcorreo.CustomizableEdges = customizableEdges15;
             txtcorreo.DefaultText = "";
-            txtcorreo.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtcorreo.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtcorreo.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtcorreo.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtcorreo.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtcorreo.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcorreo.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtcorreo.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtcorreo.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtcorreo.Font = new Font("Segoe UI", 9F);
-            txtcorreo.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtcorreo.ForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtcorreo.Location = new Point(330, 180);
             txtcorreo.Margin = new Padding(6, 8, 6, 8);
             txtcorreo.Name = "txtcorreo";
@@ -366,17 +386,19 @@ namespace Nk_Colletion_New
             // 
             // txtnombre
             // 
-            txtnombre.BorderColor = Color.FromArgb(214, 204, 190);
+            txtnombre.BorderColor = Color.FromArgb(229, 227, 223);
             txtnombre.BorderRadius = 8;
             txtnombre.CustomizableEdges = customizableEdges17;
             txtnombre.DefaultText = "";
-            txtnombre.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtnombre.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtnombre.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtnombre.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtnombre.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtnombre.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtnombre.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtnombre.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtnombre.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtnombre.Font = new Font("Segoe UI", 9F);
-            txtnombre.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtnombre.ForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtnombre.Location = new Point(17, 89);
             txtnombre.Margin = new Padding(6, 8, 6, 8);
             txtnombre.Name = "txtnombre";
@@ -399,7 +421,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(63, 65, 64);
+            panel4.BackColor = Color.FromArgb(232, 221, 202);
             panel4.Controls.Add(panel3);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(10, 487);
@@ -409,7 +431,7 @@ namespace Nk_Colletion_New
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(63, 65, 64);
+            panel3.BackColor = Color.FromArgb(232, 221, 202);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
@@ -418,7 +440,7 @@ namespace Nk_Colletion_New
             // 
             // guna2Panel1
             // 
-            guna2Panel1.BackColor = Color.FromArgb(244, 246, 249);
+            guna2Panel1.BackColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.Controls.Add(guna2CircleButton2);
             guna2Panel1.Controls.Add(pictureBox3);
@@ -428,7 +450,7 @@ namespace Nk_Colletion_New
             guna2Panel1.Controls.Add(label5);
             guna2Panel1.Controls.Add(label6);
             guna2Panel1.CustomizableEdges = customizableEdges21;
-            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
+            guna2Panel1.FillColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.Location = new Point(18, 18);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -439,13 +461,16 @@ namespace Nk_Colletion_New
             // guna2CircleButton2
             // 
             guna2CircleButton2.BackColor = Color.Transparent;
-            guna2CircleButton2.DisabledState.BorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton2.FillColor = Color.FromArgb(235, 222, 208);
+            guna2CircleButton2.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2CircleButton2.FillColor = Color.FromArgb(74, 14, 24);
+guna2CircleButton2.BorderColor = Color.FromArgb(229, 227, 223);
+guna2CircleButton2.BorderThickness = 1;
+guna2CircleButton2.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2CircleButton2.Font = new Font("Segoe UI", 9F);
-            guna2CircleButton2.ForeColor = Color.White;
+            guna2CircleButton2.ForeColor = Color.FromArgb(250, 249, 246);
             guna2CircleButton2.Image = Properties.Resources.icons8_ayuda_24__2_;
             guna2CircleButton2.Location = new Point(1092, 43);
             guna2CircleButton2.Name = "guna2CircleButton2";
@@ -469,6 +494,7 @@ namespace Nk_Colletion_New
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("PMingLiU-ExtB", 10F);
+            label12.ForeColor = Color.FromArgb(41, 41, 41);
             label12.Location = new Point(853, 43);
             label12.Name = "label12";
             label12.Size = new Size(57, 20);
@@ -480,6 +506,7 @@ namespace Nk_Colletion_New
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("PMingLiU-ExtB", 10F);
+            label13.ForeColor = Color.FromArgb(41, 41, 41);
             label13.Location = new Point(853, 5);
             label13.Name = "label13";
             label13.Size = new Size(67, 20);
@@ -505,7 +532,7 @@ namespace Nk_Colletion_New
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.ForeColor = Color.FromArgb(119, 116, 109);
+            label5.ForeColor = Color.FromArgb(41, 41, 41);
             label5.Location = new Point(115, 46);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -518,7 +545,7 @@ namespace Nk_Colletion_New
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(184, 149, 85);
+            label6.ForeColor = Color.FromArgb(41, 41, 41);
             label6.Location = new Point(115, 5);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -528,7 +555,7 @@ namespace Nk_Colletion_New
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(63, 65, 64);
+            panel5.BackColor = Color.FromArgb(232, 221, 202);
             panel5.Dock = DockStyle.Left;
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
@@ -568,13 +595,13 @@ namespace Nk_Colletion_New
             guna2ShadowPanel1.Controls.Add(txtnombre);
             guna2ShadowPanel1.Controls.Add(pictureBox1);
             guna2ShadowPanel1.Controls.Add(label19);
-            guna2ShadowPanel1.FillColor = Color.FromArgb(235, 222, 208);
-            guna2ShadowPanel1.ForeColor = Color.FromArgb(184, 149, 85);
+            guna2ShadowPanel1.FillColor = Color.FromArgb(232, 221, 202);
+            guna2ShadowPanel1.ForeColor = Color.FromArgb(41, 41, 41);
             guna2ShadowPanel1.Location = new Point(15, 110);
             guna2ShadowPanel1.Margin = new Padding(4, 5, 4, 5);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             guna2ShadowPanel1.Radius = 12;
-            guna2ShadowPanel1.ShadowColor = Color.LightGray;
+            guna2ShadowPanel1.ShadowColor = Color.FromArgb(111, 76, 85);
             guna2ShadowPanel1.ShadowDepth = 20;
             guna2ShadowPanel1.ShadowShift = 3;
             guna2ShadowPanel1.Size = new Size(1122, 360);
@@ -596,7 +623,7 @@ namespace Nk_Colletion_New
             dtpFecha.CustomizableEdges = customizableEdges23;
             dtpFecha.FillColor = Color.Silver;
             dtpFecha.Font = new Font("Segoe UI", 9F);
-            dtpFecha.ForeColor = Color.Black;
+            dtpFecha.ForeColor = Color.FromArgb(41, 41, 41);
             dtpFecha.Format = DateTimePickerFormat.Long;
             dtpFecha.Location = new Point(437, 260);
             dtpFecha.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -611,7 +638,7 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(1148, 500);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -631,8 +658,72 @@ namespace Nk_Colletion_New
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             guna2ShadowPanel1.ResumeLayout(false);
             guna2ShadowPanel1.PerformLayout();
-            ResumeLayout(false);
-        }
+            txtcedula.FillColor = Color.FromArgb(232, 221, 202);
+            txtcedula.ForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtcedula.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtcedula.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcedula.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcedula.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcedula.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            CBestado.FillColor = Color.FromArgb(232, 221, 202);
+            CBestado.ForeColor = Color.FromArgb(41, 41, 41);
+            CBestado.BorderColor = Color.FromArgb(229, 227, 223);
+            CBestado.FocusedColor = Color.FromArgb(107, 23, 37);
+            CBestado.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtdireccion.FillColor = Color.FromArgb(232, 221, 202);
+            txtdireccion.ForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtdireccion.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtdireccion.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtdireccion.BorderColor = Color.FromArgb(229, 227, 223);
+            txtdireccion.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtdireccion.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtapellido.FillColor = Color.FromArgb(232, 221, 202);
+            txtapellido.ForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtapellido.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtapellido.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtapellido.BorderColor = Color.FromArgb(229, 227, 223);
+            txtapellido.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtapellido.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            txttelefono.FillColor = Color.FromArgb(232, 221, 202);
+            txttelefono.ForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txttelefono.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txttelefono.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txttelefono.BorderColor = Color.FromArgb(229, 227, 223);
+            txttelefono.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txttelefono.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcorreo.FillColor = Color.FromArgb(232, 221, 202);
+            txtcorreo.ForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtcorreo.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtcorreo.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtcorreo.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcorreo.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtcorreo.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtnombre.FillColor = Color.FromArgb(232, 221, 202);
+            txtnombre.ForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtnombre.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtnombre.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtnombre.BorderColor = Color.FromArgb(229, 227, 223);
+            txtnombre.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtnombre.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            dtpFecha.FillColor = Color.FromArgb(232, 221, 202);
+            dtpFecha.ForeColor = Color.FromArgb(41, 41, 41);
+            dtpFecha.BorderColor = Color.FromArgb(229, 227, 223);
+            dtpFecha.CheckedState.FillColor = Color.FromArgb(232, 221, 202);
+            dtpFecha.CheckedState.ForeColor = Color.FromArgb(41, 41, 41);
+        ResumeLayout(false);
+            }
 
         #endregion
 
@@ -672,3 +763,5 @@ namespace Nk_Colletion_New
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpFecha;
     }
 }
+
+

@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Datos.Modelos;
-using Nk_Colletion_New.Presentacion.Estilos;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -18,21 +17,33 @@ namespace Nk_Colletion_New
         public Form_reporte()
         {
             InitializeComponent();
-            TemaNk.Aplicar(this);
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             btn_Ventas.Click += async (_, _) => await GenerarVentasAsync();
             button1.Click += async (_, _) => await GenerarInventarioAsync();
             button2.Click += async (_, _) => await GenerarComprasAsync();
+            btnCajaGenerar.Click += async (_, _) => await GenerarCajaAsync();
+            btnActualizarHistorial.Click += async (_, _) => await CargarRegistrosAsync("Caja");
+            btnReportes.Click += async (_, _) => await CargarRegistrosAsync("Caja");
+            btnCaja.Click += async (_, _) => await CargarRegistrosAsync("Caja");
+            btnVentasModulo.Click += async (_, _) => await CargarRegistrosAsync("Ventas");
+            btnComprasModulo.Click += async (_, _) => await CargarRegistrosAsync("Compras");
+            btnInventarioModulo.Click += async (_, _) => await CargarRegistrosAsync("Inventario");
+            comboBox1.SelectedValueChanged += async (_, _) => await CargarRegistrosAsync("Ventas");
+            comboBox3.SelectedValueChanged += async (_, _) => await CargarRegistrosAsync("Compras");
+            dateTimePicker1.ValueChanged += async (_, _) => await ActualizarModuloSeleccionadoAsync();
+            dateTimePicker2.ValueChanged += async (_, _) => await ActualizarModuloSeleccionadoAsync();
+        }
+
+        private async Task ActualizarModuloSeleccionadoAsync()
+        {
+            string modulo = lblTituloReportes.Text.Split('·').LastOrDefault()?.Trim() ?? "Caja";
+            if (modulo is not ("Caja" or "Ventas" or "Compras" or "Inventario")) modulo = "Caja";
+            await CargarRegistrosAsync(modulo);
         }
 
         private async void Form_reporte_Load(object sender, EventArgs e)
         {
-            comboBox1.DataSource = null;
-            comboBox3.DataSource = null;
-            comboBox1.Items.Clear();
-            comboBox3.Items.Clear();
-
             if (AppConfig.DbOptions is null)
             {
                 MostrarErrorCarga("La conexión a la base de datos no está inicializada.");
@@ -42,23 +53,15 @@ namespace Nk_Colletion_New
             try
             {
                 await using var contexto = new NkCollectionContext(AppConfig.DbOptions);
-                var usuarios = await contexto.Usuarios
-                    .AsNoTracking()
-                    .OrderBy(usuario => usuario.Nombre)
-                    .ThenBy(usuario => usuario.Apellido)
-                    .Select(usuario => new OpcionReporte(
-                        usuario.IdUsuario,
-                        (usuario.Nombre + " " + usuario.Apellido).Trim() + " · " + usuario.Usuario1))
-                    .ToListAsync();
-
-                var proveedores = await contexto.Proveedors
-                    .AsNoTracking()
-                    .OrderBy(proveedor => proveedor.Nombre)
-                    .Select(proveedor => new OpcionReporte(proveedor.IdProveedor, proveedor.Nombre))
-                    .ToListAsync();
-
+                var usuarios = await contexto.Usuarios.AsNoTracking()
+                    .OrderBy(usuario => usuario.Nombre).ThenBy(usuario => usuario.Apellido)
+                    .Select(usuario => new OpcionReporte(usuario.IdUsuario,
+                        (usuario.Nombre + " " + usuario.Apellido).Trim() + " · " + usuario.Usuario1)).ToListAsync();
+                var proveedores = await contexto.Proveedors.AsNoTracking().OrderBy(proveedor => proveedor.Nombre)
+                    .Select(proveedor => new OpcionReporte(proveedor.IdProveedor, proveedor.Nombre)).ToListAsync();
                 EnlazarOpciones(comboBox1, usuarios, "Todos los usuarios");
                 EnlazarOpciones(comboBox3, proveedores, "Todos los proveedores");
+                await CargarRegistrosAsync("Caja");
             }
             catch (Exception ex)
             {
@@ -69,24 +72,118 @@ namespace Nk_Colletion_New
         private static void EnlazarOpciones(ComboBox combo, List<OpcionReporte> opciones, string textoTodos)
         {
             opciones.Insert(0, new OpcionReporte(0, textoTodos));
-            combo.BeginUpdate();
+            combo.DataSource = null;
+            combo.DisplayMember = nameof(OpcionReporte.Nombre);
+            combo.ValueMember = nameof(OpcionReporte.Id);
+            combo.DataSource = opciones;
+        }
+
+        private void MostrarErrorCarga(string mensaje) =>
+            MessageBox.Show(mensaje, "Filtros de reportes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        private async Task CargarRegistrosAsync(string modulo)
+        {
+            if (AppConfig.DbOptions is null || !IsHandleCreated) return;
             try
             {
-                combo.DataSource = null;
-                combo.DisplayMember = nameof(OpcionReporte.Nombre);
-                combo.ValueMember = nameof(OpcionReporte.Id);
-                combo.DataSource = opciones;
-                combo.SelectedIndex = 0;
+                await using var db = new NkCollectionContext(AppConfig.DbOptions);
+                dgvReportes.Rows.Clear();
+                DateTime desde = dateTimePicker1.Value.Date;
+                DateTime hasta = dateTimePicker2.Value.Date.AddDays(1);
+
+                if (modulo == "Caja")
+                {
+                    var aperturas = await db.AperturaCajas.AsNoTracking()
+                        .Include(a => a.IdCajaNavigation).ThenInclude(c => c.IdUsuarioNavigation)
+                        .Include(a => a.ArqueoCajas)
+                        .Where(a => a.FechaApertura >= desde && a.FechaApertura < hasta)
+                        .OrderByDescending(a => a.FechaApertura).ToListAsync();
+                    foreach (var apertura in aperturas)
+                    {
+                        var usuario = apertura.IdCajaNavigation.IdUsuarioNavigation;
+                        dgvReportes.Rows.Add("Caja", apertura.FechaApertura?.ToString("dd/MM/yyyy HH:mm") ?? "—",
+                            $"{usuario.Nombre} {usuario.Apellido}", "—",
+                            $"{apertura.IdCajaNavigation.NumeroCaja} · {apertura.ArqueoCajas.Count} arqueo(s)");
+                    }
+                }
+                else if (modulo == "Ventas")
+                {
+                    var consulta = db.Venta.AsNoTracking().Include(v => v.IdAperturaCajaNavigation)
+                        .ThenInclude(a => a.IdCajaNavigation).ThenInclude(c => c.IdUsuarioNavigation)
+                        .Where(v => v.FechaVenta >= desde && v.FechaVenta < hasta && v.Estado != false);
+                    if (comboBox1.SelectedValue is int idUsuario && idUsuario > 0)
+                        consulta = consulta.Where(v => v.IdAperturaCajaNavigation.IdCajaNavigation.IdUsuario == idUsuario);
+                    foreach (var venta in await consulta.OrderByDescending(v => v.FechaVenta).ToListAsync())
+                    {
+                        var usuario = venta.IdAperturaCajaNavigation.IdCajaNavigation.IdUsuarioNavigation;
+                        dgvReportes.Rows.Add("Ventas", venta.FechaVenta?.ToString("dd/MM/yyyy HH:mm") ?? "—",
+                            $"{usuario.Nombre} {usuario.Apellido}", "—", venta.NumeroComprobante ?? $"V-{venta.IdVenta:D6}");
+                    }
+                }
+                else if (modulo == "Compras")
+                {
+                    var consulta = db.Compras.AsNoTracking().Include(c => c.IdProveedorNavigation)
+                        .Include(c => c.IdUsuarioNavigation)
+                        .Where(c => c.FechaCompra >= desde && c.FechaCompra < hasta && c.Estado != false);
+                    if (comboBox3.SelectedValue is int idProveedor && idProveedor > 0)
+                        consulta = consulta.Where(c => c.IdProveedor == idProveedor);
+                    foreach (var compra in await consulta.OrderByDescending(c => c.FechaCompra).ToListAsync())
+                        dgvReportes.Rows.Add("Compras", compra.FechaCompra?.ToString("dd/MM/yyyy HH:mm") ?? "—",
+                            $"{compra.IdUsuarioNavigation.Nombre} {compra.IdUsuarioNavigation.Apellido}",
+                            compra.IdProveedorNavigation.Nombre, compra.NumeroFactura ?? $"C-{compra.IdCompra:D6}");
+                }
+                else
+                {
+                    var variantes = await db.ProductoVariantes.AsNoTracking().Include(v => v.IdProductoNavigation)
+                        .Where(v => v.Estado != false && v.IdProductoNavigation.Estado != false)
+                        .OrderBy(v => v.IdProductoNavigation.NombreProducto).ToListAsync();
+                    foreach (var variante in variantes)
+                        dgvReportes.Rows.Add("Inventario", DateTime.Now.ToString("dd/MM/yyyy"), "—", "—",
+                            $"{variante.IdProductoNavigation.NombreProducto} · Stock: {variante.StockActual}");
+                }
+
+                lblTituloReportes.Text = $"Reportes · {modulo}";
+                dgvReportes.ClearSelection();
             }
-            finally
+            catch (Exception ex)
             {
-                combo.EndUpdate();
+                MostrarErrorCarga($"No se pudieron cargar los registros de {modulo}. {ex.GetBaseException().Message}");
             }
         }
 
-        private void MostrarErrorCarga(string mensaje)
+        private async Task GenerarCajaAsync()
         {
-            MessageBox.Show(mensaje, "Filtros de reportes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!TryObtenerRango(dateTimePicker1.Value, dateTimePicker2.Value, out var desde, out var hasta)) return;
+            if (AppConfig.DbOptions is null) return;
+            try
+            {
+                await using var db = new NkCollectionContext(AppConfig.DbOptions);
+                var aperturas = await db.AperturaCajas.AsNoTracking()
+                    .Include(a => a.IdCajaNavigation).ThenInclude(c => c.IdUsuarioNavigation)
+                    .Include(a => a.ArqueoCajas).Include(a => a.Egresos)
+                    .Where(a => a.FechaApertura >= desde && a.FechaApertura < hasta)
+                    .OrderBy(a => a.FechaApertura).ToListAsync();
+                var filas = aperturas.Select(a => new FilaReporte(new[]
+                {
+                    a.IdCajaNavigation.NumeroCaja,
+                    a.FechaApertura?.ToString("dd/MM/yyyy HH:mm") ?? "—",
+                    a.FechaCierre?.ToString("dd/MM/yyyy HH:mm") ?? "Abierta",
+                    $"{a.IdCajaNavigation.IdUsuarioNavigation.Nombre} {a.IdCajaNavigation.IdUsuarioNavigation.Apellido}",
+                    (a.MontoApertura ?? 0m).ToString("C2", CulturaNicaragua),
+                    a.ArqueoCajas.Sum(arqueo => arqueo.TotalVentas).ToString("C2", CulturaNicaragua),
+                    a.Egresos.Sum(egreso => egreso.Monto).ToString("C2", CulturaNicaragua),
+                    a.ArqueoCajas.LastOrDefault()?.SaldoContado.ToString("C2", CulturaNicaragua) ?? "Sin arqueo"
+                })).ToList();
+                await CrearPdfAsync("Reporte de caja",
+                    new[] { "Caja", "Apertura", "Cierre", "Usuario", "Monto apertura", "Ventas", "Egresos", "Saldo contado" }, filas,
+                    new[] { ("Aperturas", aperturas.Count.ToString("N0", CulturaNicaragua)),
+                        ("Arqueos", aperturas.Sum(a => a.ArqueoCajas.Count).ToString("N0", CulturaNicaragua)),
+                        ("Total ventas", aperturas.Sum(a => a.ArqueoCajas.Sum(arqueo => arqueo.TotalVentas)).ToString("C2", CulturaNicaragua)),
+                        ("Total egresos", aperturas.Sum(a => a.Egresos.Sum(egreso => egreso.Monto)).ToString("C2", CulturaNicaragua)) },
+                    desde, hasta.AddDays(-1));
+                await CargarRegistrosAsync("Caja");
+            }
+            catch (Exception ex) { MostrarErrorReporte(ex); }
         }
 
         private async Task GenerarVentasAsync()
@@ -133,7 +230,7 @@ namespace Nk_Colletion_New
 
         private async Task GenerarComprasAsync()
         {
-            if (!TryObtenerRango(dateTimePicker6.Value, dateTimePicker5.Value, out var desde, out var hasta)) return;
+            if (!TryObtenerRango(dateTimePicker1.Value, dateTimePicker2.Value, out var desde, out var hasta)) return;
             if (AppConfig.DbOptions is null) return;
 
             try
@@ -215,6 +312,13 @@ namespace Nk_Colletion_New
         private async Task CrearPdfAsync(string titulo, string[] columnas, IReadOnlyCollection<FilaReporte> filas,
             IReadOnlyCollection<(string Etiqueta, string Valor)> resumen, DateTime? desde, DateTime? hasta)
         {
+            QuestPDF.Settings.License = LicenseType.Community;
+            using var logoStream = new MemoryStream();
+            Properties.Resources.imagen_circular_recortada.Save(logoStream, System.Drawing.Imaging.ImageFormat.Png);
+            var documento = new DocumentoReporte(titulo, DateTime.Now, columnas, filas, resumen, desde, hasta, logoStream.ToArray());
+            string archivoTemporal = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.pdf");
+            await Task.Run(() => documento.GeneratePdf(archivoTemporal));
+
             using var dialogo = new SaveFileDialog
             {
                 Title = "Guardar reporte PDF",
@@ -223,12 +327,30 @@ namespace Nk_Colletion_New
                 AddExtension = true,
                 FileName = $"{titulo.Replace(' ', '_')}_{DateTime.Now:yyyyMMdd_HHmm}.pdf"
             };
-            if (dialogo.ShowDialog(this) != DialogResult.OK) return;
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(archivoTemporal) { UseShellExecute = true });
+            if (MessageBox.Show(
+                    this,
+                    "Se abrió el reporte para revisarlo. ¿Desea guardar una copia del PDF?",
+                    "Revisar reporte",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
 
-            QuestPDF.Settings.License = LicenseType.Community;
-            var documento = new DocumentoReporte(titulo, DateTime.Now, columnas, filas, resumen, desde, hasta);
-            await Task.Run(() => documento.GeneratePdf(dialogo.FileName));
-            MessageBox.Show("El PDF se generó correctamente.", "Reporte generado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string archivoVista = dialogo.ShowDialog(this) == DialogResult.OK
+                ? GuardarCopiaPdf(archivoTemporal, dialogo.FileName)
+                : archivoTemporal;
+            if (archivoVista != archivoTemporal)
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(archivoVista) { UseShellExecute = true });
+            }
+        }
+
+        private static string GuardarCopiaPdf(string origen, string destino)
+        {
+            File.Copy(origen, destino, true);
+            return destino;
         }
 
         private static void MostrarErrorReporte(Exception ex) =>
@@ -243,9 +365,10 @@ namespace Nk_Colletion_New
             private readonly IReadOnlyCollection<(string Etiqueta, string Valor)> _resumen;
             private readonly DateTime? _desde;
             private readonly DateTime? _hasta;
+            private readonly byte[] _logo;
 
             public DocumentoReporte(string titulo, DateTime generado, string[] columnas, IReadOnlyCollection<FilaReporte> filas,
-                IReadOnlyCollection<(string Etiqueta, string Valor)> resumen, DateTime? desde, DateTime? hasta)
+                IReadOnlyCollection<(string Etiqueta, string Valor)> resumen, DateTime? desde, DateTime? hasta, byte[] logo)
             {
                 _titulo = titulo;
                 _generado = generado;
@@ -254,6 +377,7 @@ namespace Nk_Colletion_New
                 _resumen = resumen;
                 _desde = desde;
                 _hasta = hasta;
+                _logo = logo;
             }
 
             public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
@@ -270,6 +394,7 @@ namespace Nk_Colletion_New
                     {
                         column.Item().Row(row =>
                         {
+                            row.ConstantItem(58).Height(58).Image(_logo).FitArea();
                             row.RelativeItem().Column(title =>
                             {
                                 title.Item().Text("NK STYLE POINT").FontSize(10).SemiBold().FontColor("#8C6A38");

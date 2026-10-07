@@ -2,7 +2,6 @@ using Nk_Colletion_New.Datos;
 using Nk_Colletion_New.Negocios.Autenticacion;
 using Nk_Colletion_New.Negocios.Servicios.Caja;
 using Nk_Colletion_New.Negocios.Servicios.Cambio;
-using Nk_Colletion_New.Presentacion.Estilos;
 
 namespace Nk_Colletion_New;
 
@@ -21,7 +20,6 @@ public partial class Formapertura : Form
     public Formapertura(UsuarioSesion sesion)
     {
         InitializeComponent();
-        TemaNk.Aplicar(this);
         _sesion = sesion;
 
         if (AppConfig.DbOptions is not null)

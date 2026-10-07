@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New.Presentacion.Productos
+﻿namespace Nk_Colletion_New.Presentacion.Productos
 {
     partial class Frm_producto
     {
@@ -15,6 +15,9 @@ namespace Nk_Colletion_New.Presentacion.Productos
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnlEncabezado = new Panel();
             btnVerTodos = new Button();
             btnColores = new Button();
@@ -24,16 +27,18 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblSubtitulo = new Label();
             lblTitulo = new Label();
             pnlRegistro = new Panel();
+            btnAgregarVariante = new Button();
             btnGuardarProducto = new Button();
             btnLimpiar = new Button();
             pnlVariante = new Panel();
-            btnAgregarVariante = new Button();
             nudPrecioVenta = new NumericUpDown();
+            nudPrecioCompra = new NumericUpDown();
             nudStockMinimo = new NumericUpDown();
             nudStock = new NumericUpDown();
             cmbColor = new ComboBox();
             cmbTalla = new ComboBox();
             lblPrecioVenta = new Label();
+            lblPrecioCompra = new Label();
             lblStockMinimo = new Label();
             lblStock = new Label();
             lblColor = new Label();
@@ -49,6 +54,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblNombre = new Label();
             lblRegistrarAyuda = new Label();
             lblRegistrar = new Label();
+            btnAgregarVariantesExistente = new Button();
             pnlResumen = new Panel();
             txtBuscarResumen = new TextBox();
             cmbOrdenResumen = new ComboBox();
@@ -68,6 +74,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlRegistro.SuspendLayout();
             pnlVariante.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrecioVenta).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudStockMinimo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudStock).BeginInit();
             pnlResumen.SuspendLayout();
@@ -76,7 +83,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // pnlEncabezado
             // 
-            pnlEncabezado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlEncabezado.BackColor = Color.FromArgb(232, 221, 202);
             pnlEncabezado.Controls.Add(btnVerTodos);
             pnlEncabezado.Controls.Add(btnColores);
             pnlEncabezado.Controls.Add(btnTallas);
@@ -84,59 +91,100 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlEncabezado.Controls.Add(btnCategorias);
             pnlEncabezado.Controls.Add(lblSubtitulo);
             pnlEncabezado.Controls.Add(lblTitulo);
+            pnlEncabezado.Dock = DockStyle.Top;
             pnlEncabezado.Location = new Point(0, 0);
             pnlEncabezado.Name = "pnlEncabezado";
-            pnlEncabezado.Size = new Size(1556, 105);
+            pnlEncabezado.Size = new Size(1556, 112);
             pnlEncabezado.TabIndex = 2;
             // 
             // btnVerTodos
             // 
             btnVerTodos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnVerTodos.Location = new Point(1307, 34);
+            btnVerTodos.Cursor = Cursors.Hand;
+            btnVerTodos.FlatAppearance.BorderColor = Color.Black;
+            btnVerTodos.BackColor = Color.FromArgb(100, 28, 45);
+            btnVerTodos.ForeColor = Color.White;
+            btnVerTodos.FlatAppearance.MouseOverBackColor = Color.FromArgb(125, 35, 56);
+            btnVerTodos.FlatStyle = FlatStyle.Flat;
+            
+            btnVerTodos.Location = new Point(1314, 18);
             btnVerTodos.Name = "btnVerTodos";
-            btnVerTodos.Size = new Size(237, 45);
+            btnVerTodos.Size = new Size(230, 40);
             btnVerTodos.TabIndex = 0;
             btnVerTodos.Text = "Ver todos los productos";
+            btnVerTodos.UseVisualStyleBackColor = false;
             btnVerTodos.Click += btnVerTodos_Click;
             // 
             // btnColores
             // 
             btnColores.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnColores.Location = new Point(1169, 34);
+            btnColores.Cursor = Cursors.Hand;
+            btnColores.FlatAppearance.BorderColor = Color.Black;
+            btnColores.BackColor = Color.FromArgb(100, 28, 45);
+            btnColores.ForeColor = Color.White;
+            btnColores.FlatAppearance.MouseOverBackColor = Color.FromArgb(125, 35, 56);
+            btnColores.FlatStyle = FlatStyle.Flat;
+            
+            btnColores.Location = new Point(1172, 18);
             btnColores.Name = "btnColores";
-            btnColores.Size = new Size(132, 45);
+            btnColores.Size = new Size(134, 40);
             btnColores.TabIndex = 1;
             btnColores.Text = "Nuevo color";
+            btnColores.UseVisualStyleBackColor = false;
             btnColores.Click += btnColores_Click;
             // 
             // btnTallas
             // 
             btnTallas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTallas.Location = new Point(1037, 34);
+            btnTallas.Cursor = Cursors.Hand;
+            btnTallas.FlatAppearance.BorderColor = Color.Black;
+            btnTallas.BackColor = Color.FromArgb(100, 28, 45);
+            btnTallas.ForeColor = Color.White;
+            btnTallas.FlatAppearance.MouseOverBackColor = Color.FromArgb(125, 35, 56);
+            btnTallas.FlatStyle = FlatStyle.Flat;
+            
+            btnTallas.Location = new Point(1042, 18);
             btnTallas.Name = "btnTallas";
-            btnTallas.Size = new Size(126, 45);
+            btnTallas.Size = new Size(122, 40);
             btnTallas.TabIndex = 2;
             btnTallas.Text = "Nueva talla";
+            btnTallas.UseVisualStyleBackColor = false;
             btnTallas.Click += btnTallas_Click;
             // 
             // btnMarcas
             // 
             btnMarcas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMarcas.Location = new Point(873, 34);
+            btnMarcas.Cursor = Cursors.Hand;
+            btnMarcas.FlatAppearance.BorderColor = Color.Black;
+            btnMarcas.BackColor = Color.FromArgb(100, 28, 45);
+            btnMarcas.ForeColor = Color.White;
+            btnMarcas.FlatAppearance.MouseOverBackColor = Color.FromArgb(125, 35, 56);
+            btnMarcas.FlatStyle = FlatStyle.Flat;
+            
+            btnMarcas.Location = new Point(884, 18);
             btnMarcas.Name = "btnMarcas";
-            btnMarcas.Size = new Size(154, 45);
+            btnMarcas.Size = new Size(148, 40);
             btnMarcas.TabIndex = 3;
             btnMarcas.Text = "Nueva marca";
+            btnMarcas.UseVisualStyleBackColor = false;
             btnMarcas.Click += btnMarcas_Click;
             // 
             // btnCategorias
             // 
             btnCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCategorias.Location = new Point(689, 34);
+            btnCategorias.Cursor = Cursors.Hand;
+            btnCategorias.FlatAppearance.BorderColor = Color.Black;
+            btnCategorias.BackColor = Color.FromArgb(100, 28, 45);
+            btnCategorias.ForeColor = Color.White;
+            btnCategorias.FlatAppearance.MouseOverBackColor = Color.FromArgb(125, 35, 56);
+            btnCategorias.FlatStyle = FlatStyle.Flat;
+            
+            btnCategorias.Location = new Point(704, 18);
             btnCategorias.Name = "btnCategorias";
-            btnCategorias.Size = new Size(178, 45);
+            btnCategorias.Size = new Size(178, 40);
             btnCategorias.TabIndex = 4;
             btnCategorias.Text = "Nueva categoría";
+            btnCategorias.UseVisualStyleBackColor = false;
             btnCategorias.Click += btnCategorias_Click;
             // 
             // lblSubtitulo
@@ -160,6 +208,8 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // pnlRegistro
             // 
             pnlRegistro.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlRegistro.BackColor = Color.FromArgb(232, 221, 202);
+            pnlRegistro.Controls.Add(btnAgregarVariante);
             pnlRegistro.Controls.Add(btnGuardarProducto);
             pnlRegistro.Controls.Add(btnLimpiar);
             pnlRegistro.Controls.Add(pnlVariante);
@@ -173,41 +223,74 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlRegistro.Controls.Add(lblNombre);
             pnlRegistro.Controls.Add(lblRegistrarAyuda);
             pnlRegistro.Controls.Add(lblRegistrar);
-            pnlRegistro.Location = new Point(28, 110);
+            pnlRegistro.Location = new Point(28, 124);
             pnlRegistro.Name = "pnlRegistro";
-            pnlRegistro.Size = new Size(1500, 355);
+            pnlRegistro.Size = new Size(1500, 346);
             pnlRegistro.TabIndex = 1;
+            // 
+            // btnAgregarVariante
+            // 
+            btnAgregarVariante.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAgregarVariante.Cursor = Cursors.Hand;
+            btnAgregarVariante.FlatAppearance.BorderSize = 1;
+            btnAgregarVariante.FlatAppearance.MouseDownBackColor = Color.FromArgb(232, 221, 202);
+            btnAgregarVariante.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 221, 202);
+            btnAgregarVariante.FlatStyle = FlatStyle.Flat;
+            btnAgregarVariante.ForeColor = Color.FromArgb(41, 41, 41);
+            btnAgregarVariante.Location = new Point(904, 296);
+            btnAgregarVariante.Name = "btnAgregarVariante";
+            btnAgregarVariante.Size = new Size(174, 43);
+            btnAgregarVariante.TabIndex = 0;
+            btnAgregarVariante.Text = "+ Agregar variante";
+            btnAgregarVariante.UseVisualStyleBackColor = false;
+            btnAgregarVariante.Visible = false;
+            btnAgregarVariante.Click += btnAgregarVariante_Click;
             // 
             // btnGuardarProducto
             // 
             btnGuardarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnGuardarProducto.Location = new Point(1274, 297);
+            btnGuardarProducto.Cursor = Cursors.Hand;
+            btnGuardarProducto.FlatAppearance.BorderSize = 1;
+            btnGuardarProducto.FlatAppearance.MouseDownBackColor = Color.FromArgb(232, 221, 202);
+            btnGuardarProducto.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 221, 202);
+            btnGuardarProducto.FlatStyle = FlatStyle.Flat;
+            btnGuardarProducto.ForeColor = Color.FromArgb(41, 41, 41);
+            btnGuardarProducto.Location = new Point(1274, 296);
             btnGuardarProducto.Name = "btnGuardarProducto";
             btnGuardarProducto.Size = new Size(185, 42);
             btnGuardarProducto.TabIndex = 0;
             btnGuardarProducto.Text = "Guardar producto";
+            btnGuardarProducto.UseVisualStyleBackColor = false;
             btnGuardarProducto.Click += btnGuardarProducto_Click;
             // 
             // btnLimpiar
             // 
             btnLimpiar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnLimpiar.Location = new Point(1110, 297);
+            btnLimpiar.Cursor = Cursors.Hand;
+            btnLimpiar.FlatAppearance.BorderColor = Color.Black;
+            btnLimpiar.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 221, 202);
+            btnLimpiar.FlatStyle = FlatStyle.Flat;
+            btnLimpiar.ForeColor = Color.FromArgb(41, 41, 41);
+            btnLimpiar.Location = new Point(1110, 296);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(145, 42);
             btnLimpiar.TabIndex = 1;
             btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
             // pnlVariante
             // 
             pnlVariante.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlVariante.Controls.Add(btnAgregarVariante);
+            pnlVariante.BackColor = Color.FromArgb(232, 221, 202);
             pnlVariante.Controls.Add(nudPrecioVenta);
+            pnlVariante.Controls.Add(nudPrecioCompra);
             pnlVariante.Controls.Add(nudStockMinimo);
             pnlVariante.Controls.Add(nudStock);
             pnlVariante.Controls.Add(cmbColor);
             pnlVariante.Controls.Add(cmbTalla);
             pnlVariante.Controls.Add(lblPrecioVenta);
+            pnlVariante.Controls.Add(lblPrecioCompra);
             pnlVariante.Controls.Add(lblStockMinimo);
             pnlVariante.Controls.Add(lblStock);
             pnlVariante.Controls.Add(lblColor);
@@ -218,21 +301,12 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlVariante.Size = new Size(1428, 122);
             pnlVariante.TabIndex = 2;
             // 
-            // btnAgregarVariante
-            // 
-            btnAgregarVariante.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAgregarVariante.Location = new Point(1232, 60);
-            btnAgregarVariante.Name = "btnAgregarVariante";
-            btnAgregarVariante.Size = new Size(174, 43);
-            btnAgregarVariante.TabIndex = 0;
-            btnAgregarVariante.Text = "+ Agregar variante";
-            btnAgregarVariante.Visible = false;
-            btnAgregarVariante.Click += btnAgregarVariante_Click;
-            // 
             // nudPrecioVenta
             // 
+            nudPrecioVenta.BackColor = Color.FromArgb(232, 221, 202);
             nudPrecioVenta.BorderStyle = BorderStyle.FixedSingle;
             nudPrecioVenta.DecimalPlaces = 2;
+            nudPrecioVenta.ForeColor = Color.FromArgb(41, 41, 41);
             nudPrecioVenta.Location = new Point(939, 66);
             nudPrecioVenta.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             nudPrecioVenta.Name = "nudPrecioVenta";
@@ -240,9 +314,24 @@ namespace Nk_Colletion_New.Presentacion.Productos
             nudPrecioVenta.TabIndex = 1;
             nudPrecioVenta.ThousandsSeparator = true;
             // 
+            // nudPrecioCompra
+            // 
+            nudPrecioCompra.BackColor = Color.FromArgb(232, 221, 202);
+            nudPrecioCompra.BorderStyle = BorderStyle.FixedSingle;
+            nudPrecioCompra.DecimalPlaces = 2;
+            nudPrecioCompra.ForeColor = Color.FromArgb(41, 41, 41);
+            nudPrecioCompra.Location = new Point(1096, 66);
+            nudPrecioCompra.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
+            nudPrecioCompra.Name = "nudPrecioCompra";
+            nudPrecioCompra.Size = new Size(142, 31);
+            nudPrecioCompra.TabIndex = 2;
+            nudPrecioCompra.ThousandsSeparator = true;
+            // 
             // nudStockMinimo
             // 
+            nudStockMinimo.BackColor = Color.FromArgb(232, 221, 202);
             nudStockMinimo.BorderStyle = BorderStyle.FixedSingle;
+            nudStockMinimo.ForeColor = Color.FromArgb(41, 41, 41);
             nudStockMinimo.Location = new Point(766, 66);
             nudStockMinimo.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudStockMinimo.Name = "nudStockMinimo";
@@ -251,7 +340,9 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // nudStock
             // 
+            nudStock.BackColor = Color.FromArgb(232, 221, 202);
             nudStock.BorderStyle = BorderStyle.FixedSingle;
+            nudStock.ForeColor = Color.FromArgb(41, 41, 41);
             nudStock.Location = new Point(645, 66);
             nudStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudStock.Name = "nudStock";
@@ -260,7 +351,10 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // cmbColor
             // 
+            cmbColor.BackColor = Color.FromArgb(232, 221, 202);
             cmbColor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbColor.FlatStyle = FlatStyle.Flat;
+            cmbColor.ForeColor = Color.FromArgb(41, 41, 41);
             cmbColor.ItemHeight = 25;
             cmbColor.Location = new Point(316, 59);
             cmbColor.Name = "cmbColor";
@@ -269,7 +363,10 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // cmbTalla
             // 
+            cmbTalla.BackColor = Color.FromArgb(232, 221, 202);
             cmbTalla.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTalla.FlatStyle = FlatStyle.Flat;
+            cmbTalla.ForeColor = Color.FromArgb(41, 41, 41);
             cmbTalla.ItemHeight = 25;
             cmbTalla.Location = new Point(24, 59);
             cmbTalla.Name = "cmbTalla";
@@ -284,6 +381,15 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblPrecioVenta.Size = new Size(108, 25);
             lblPrecioVenta.TabIndex = 7;
             lblPrecioVenta.Text = "Precio venta";
+            // 
+            // lblPrecioCompra
+            // 
+            lblPrecioCompra.AutoSize = true;
+            lblPrecioCompra.Location = new Point(1096, 41);
+            lblPrecioCompra.Name = "lblPrecioCompra";
+            lblPrecioCompra.Size = new Size(126, 25);
+            lblPrecioCompra.TabIndex = 14;
+            lblPrecioCompra.Text = "Precio compra";
             // 
             // lblStockMinimo
             // 
@@ -368,6 +474,9 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // txtDescripcion
             // 
+            txtDescripcion.BackColor = Color.FromArgb(232, 221, 202);
+            txtDescripcion.BorderStyle = BorderStyle.FixedSingle;
+            txtDescripcion.ForeColor = Color.FromArgb(41, 41, 41);
             txtDescripcion.Location = new Point(391, 110);
             txtDescripcion.Margin = new Padding(4, 5, 4, 5);
             txtDescripcion.Name = "txtDescripcion";
@@ -386,6 +495,9 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             // txtNombre
             // 
+            txtNombre.BackColor = Color.FromArgb(232, 221, 202);
+            txtNombre.BorderStyle = BorderStyle.FixedSingle;
+            txtNombre.ForeColor = Color.FromArgb(41, 41, 41);
             txtNombre.Location = new Point(31, 110);
             txtNombre.Margin = new Padding(4, 5, 4, 5);
             txtNombre.Name = "txtNombre";
@@ -420,24 +532,45 @@ namespace Nk_Colletion_New.Presentacion.Productos
             lblRegistrar.TabIndex = 12;
             lblRegistrar.Text = "Registrar producto";
             // 
+            // btnAgregarVariantesExistente
+            // 
+            btnAgregarVariantesExistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAgregarVariantesExistente.Cursor = Cursors.Hand;
+            btnAgregarVariantesExistente.Enabled = false;
+            btnAgregarVariantesExistente.FlatAppearance.BorderSize = 1;
+            btnAgregarVariantesExistente.FlatStyle = FlatStyle.Flat;
+            btnAgregarVariantesExistente.ForeColor = Color.FromArgb(41, 41, 41);
+            btnAgregarVariantesExistente.Location = new Point(1221, 19);
+            btnAgregarVariantesExistente.Name = "btnAgregarVariantesExistente";
+            btnAgregarVariantesExistente.Size = new Size(210, 42);
+            btnAgregarVariantesExistente.TabIndex = 8;
+            btnAgregarVariantesExistente.Text = "+ Variantes al producto";
+            btnAgregarVariantesExistente.UseVisualStyleBackColor = false;
+            btnAgregarVariantesExistente.Click += btnAgregarVariantesExistente_Click;
+            // 
             // pnlResumen
             // 
             pnlResumen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlResumen.BackColor = Color.FromArgb(232, 221, 202);
             pnlResumen.Controls.Add(txtBuscarResumen);
             pnlResumen.Controls.Add(cmbOrdenResumen);
             pnlResumen.Controls.Add(lblOrdenResumen);
             pnlResumen.Controls.Add(lblResumenTotal);
             pnlResumen.Controls.Add(lblResumen);
             pnlResumen.Controls.Add(dgvResumen);
-            pnlResumen.Location = new Point(28, 478);
+            pnlResumen.Controls.Add(btnAgregarVariantesExistente);
+            pnlResumen.Location = new Point(28, 484);
             pnlResumen.Name = "pnlResumen";
-            pnlResumen.Size = new Size(1500, 363);
+            pnlResumen.Size = new Size(1500, 357);
             pnlResumen.TabIndex = 0;
             // 
             // txtBuscarResumen
             // 
             txtBuscarResumen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtBuscarResumen.Location = new Point(1043, 22);
+            txtBuscarResumen.BackColor = Color.FromArgb(232, 221, 202);
+            txtBuscarResumen.BorderStyle = BorderStyle.FixedSingle;
+            txtBuscarResumen.ForeColor = Color.FromArgb(41, 41, 41);
+            txtBuscarResumen.Location = new Point(782, 26);
             txtBuscarResumen.Margin = new Padding(4, 5, 4, 5);
             txtBuscarResumen.Name = "txtBuscarResumen";
             txtBuscarResumen.PlaceholderText = "Buscar producto...";
@@ -448,9 +581,12 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // cmbOrdenResumen
             // 
             cmbOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cmbOrdenResumen.BackColor = Color.FromArgb(232, 221, 202);
             cmbOrdenResumen.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbOrdenResumen.FlatStyle = FlatStyle.Flat;
+            cmbOrdenResumen.ForeColor = Color.FromArgb(41, 41, 41);
             cmbOrdenResumen.ItemHeight = 25;
-            cmbOrdenResumen.Location = new Point(860, 30);
+            cmbOrdenResumen.Location = new Point(615, 25);
             cmbOrdenResumen.Name = "cmbOrdenResumen";
             cmbOrdenResumen.Size = new Size(160, 33);
             cmbOrdenResumen.TabIndex = 2;
@@ -460,7 +596,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             lblOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblOrdenResumen.AutoSize = true;
-            lblOrdenResumen.Location = new Point(860, 8);
+            lblOrdenResumen.Location = new Point(615, 3);
             lblOrdenResumen.Name = "lblOrdenResumen";
             lblOrdenResumen.Size = new Size(62, 25);
             lblOrdenResumen.TabIndex = 3;
@@ -490,10 +626,32 @@ namespace Nk_Colletion_New.Presentacion.Productos
             dgvResumen.AllowUserToAddRows = false;
             dgvResumen.AllowUserToDeleteRows = false;
             dgvResumen.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(232, 221, 202);
+            dgvResumen.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvResumen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvResumen.BackgroundColor = Color.FromArgb(232, 221, 202);
+            dgvResumen.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(232, 221, 202);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(41, 41, 41);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(232, 221, 202);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(250, 249, 246);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvResumen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvResumen.ColumnHeadersHeight = 40;
             dgvResumen.Columns.AddRange(new DataGridViewColumn[] { colIdProducto, colProducto, colMarcaResumen, colCategoriaResumen, colVariantesResumen, colStockResumen, colPrecioResumen, colEstadoResumen });
-            dgvResumen.GridColor = Color.FromArgb(239, 226, 229);
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(232, 221, 202);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(41, 41, 41);
+            dataGridViewCellStyle6.Padding = new Padding(7, 3, 7, 3);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(232, 221, 202);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(250, 249, 246);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvResumen.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvResumen.EnableHeadersVisualStyles = false;
+            dgvResumen.GridColor = Color.FromArgb(229, 227, 223);
             dgvResumen.Location = new Point(31, 82);
             dgvResumen.MultiSelect = false;
             dgvResumen.Name = "dgvResumen";
@@ -501,7 +659,7 @@ namespace Nk_Colletion_New.Presentacion.Productos
             dgvResumen.RowHeadersVisible = false;
             dgvResumen.RowHeadersWidth = 62;
             dgvResumen.RowTemplate.Height = 36;
-            dgvResumen.Size = new Size(1429, 232);
+            dgvResumen.Size = new Size(1429, 240);
             dgvResumen.TabIndex = 7;
             dgvResumen.CellDoubleClick += dgvResumen_CellDoubleClick;
             dgvResumen.SelectionChanged += dgvResumen_SelectionChanged;
@@ -575,12 +733,14 @@ namespace Nk_Colletion_New.Presentacion.Productos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(1556, 867);
             Controls.Add(pnlResumen);
             Controls.Add(pnlRegistro);
             Controls.Add(pnlEncabezado);
-            FormBorderStyle = FormBorderStyle.None;
+            Font = new Font("Segoe UI", 9F);
+            ForeColor = Color.FromArgb(41, 41, 41);
+            MinimumSize = new Size(1100, 700);
             Name = "Frm_producto";
             Text = "Productos";
             Load += Frm_producto_Load;
@@ -591,14 +751,38 @@ namespace Nk_Colletion_New.Presentacion.Productos
             pnlVariante.ResumeLayout(false);
             pnlVariante.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrecioVenta).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioCompra).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudStockMinimo).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudStock).EndInit();
             pnlResumen.ResumeLayout(false);
             pnlResumen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResumen).EndInit();
+            nudPrecioCompra.BackColor = Color.FromArgb(232, 221, 202);
+            nudPrecioCompra.ForeColor = Color.FromArgb(41, 41, 41);
+            nudPrecioVenta.BackColor = Color.FromArgb(232, 221, 202);
+            nudPrecioVenta.ForeColor = Color.FromArgb(41, 41, 41);
+            nudStockMinimo.BackColor = Color.FromArgb(232, 221, 202);
+            nudStockMinimo.ForeColor = Color.FromArgb(41, 41, 41);
+            nudStock.BackColor = Color.FromArgb(232, 221, 202);
+            nudStock.ForeColor = Color.FromArgb(41, 41, 41);
+            cmbColor.BackColor = Color.FromArgb(232, 221, 202);
+            cmbColor.ForeColor = Color.FromArgb(41, 41, 41);
+            cmbTalla.BackColor = Color.FromArgb(232, 221, 202);
+            cmbTalla.ForeColor = Color.FromArgb(41, 41, 41);
+            cmbMarca.BackColor = Color.FromArgb(232, 221, 202);
+            cmbMarca.ForeColor = Color.FromArgb(41, 41, 41);
+            cmbCategoria.BackColor = Color.FromArgb(232, 221, 202);
+            cmbCategoria.ForeColor = Color.FromArgb(41, 41, 41);
+            txtDescripcion.BackColor = Color.FromArgb(232, 221, 202);
+            txtDescripcion.ForeColor = Color.FromArgb(41, 41, 41);
+            txtNombre.BackColor = Color.FromArgb(232, 221, 202);
+            txtNombre.ForeColor = Color.FromArgb(41, 41, 41);
+            txtBuscarResumen.BackColor = Color.FromArgb(232, 221, 202);
+            txtBuscarResumen.ForeColor = Color.FromArgb(41, 41, 41);
+            cmbOrdenResumen.BackColor = Color.FromArgb(232, 221, 202);
+            cmbOrdenResumen.ForeColor = Color.FromArgb(41, 41, 41);
             ResumeLayout(false);
         }
-
 
         #endregion
 
@@ -615,12 +799,15 @@ namespace Nk_Colletion_New.Presentacion.Productos
         private Button btnColores;
         private Button btnTallas;
         private Button btnAgregarVariante;
+        private Button btnAgregarVariantesExistente;
+        private NumericUpDown nudPrecioCompra;
         private NumericUpDown nudPrecioVenta;
         private NumericUpDown nudStockMinimo;
         private NumericUpDown nudStock;
         private ComboBox cmbColor;
         private ComboBox cmbTalla;
         private Label lblPrecioVenta;
+        private Label lblPrecioCompra;
         private Label lblStockMinimo;
         private Label lblStock;
         private Label lblColor;
@@ -653,3 +840,5 @@ namespace Nk_Colletion_New.Presentacion.Productos
         private DataGridViewTextBoxColumn colEstadoResumen;
     }
 }
+
+

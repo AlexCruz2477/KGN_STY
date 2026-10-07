@@ -29,12 +29,6 @@ namespace Nk_Colletion_New.Presentacion.Productos
         public Frm_producto()
         {
             InitializeComponent();
-            // El estilo dinámico solo se aplica al ejecutar. En el Designer se usan
-            // las propiedades ya guardadas en InitializeComponent para que sea editable.
-            if (System.ComponentModel.LicenseManager.UsageMode != System.ComponentModel.LicenseUsageMode.Designtime)
-            {
-}
-
             cmbOrdenResumen.Items.Clear();
             cmbOrdenResumen.Items.AddRange(new object[] { "A - Z", "Z - A" });
             cmbOrdenResumen.SelectedIndex = 0;

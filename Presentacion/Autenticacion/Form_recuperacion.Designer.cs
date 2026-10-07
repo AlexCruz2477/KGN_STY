@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class Form_recuperacion
     {
@@ -82,8 +82,7 @@ namespace Nk_Colletion_New
             // 
             // btn_continuar
             // 
-            btn_continuar.BackColor = Color.FromArgb(171, 84, 69);
-            btn_continuar.ForeColor = Color.White;
+            btn_continuar.ForeColor = Color.FromArgb(41, 41, 41);
             btn_continuar.Location = new Point(479, 382);
             btn_continuar.Name = "btn_continuar";
             btn_continuar.Size = new Size(112, 34);
@@ -96,7 +95,7 @@ namespace Nk_Colletion_New
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.ForeColor = Color.Peru;
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(307, 469);
             label3.Name = "label3";
             label3.Size = new Size(230, 25);
@@ -105,7 +104,7 @@ namespace Nk_Colletion_New
             // 
             // btncancelar
             // 
-            btncancelar.ForeColor = Color.FromArgb(171, 84, 69);
+            btncancelar.ForeColor = Color.FromArgb(41, 41, 41);
             btncancelar.Location = new Point(238, 382);
             btncancelar.Name = "btncancelar";
             btncancelar.Size = new Size(123, 34);
@@ -128,7 +127,7 @@ namespace Nk_Colletion_New
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(171, 84, 69);
+            label1.ForeColor = Color.FromArgb(41, 41, 41);
             label1.Location = new Point(282, 184);
             label1.Name = "label1";
             label1.Size = new Size(266, 32);
@@ -156,8 +155,8 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(63, 65, 64);
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(864, 542);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -168,6 +167,8 @@ namespace Nk_Colletion_New
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            txt_correo.BackColor = Color.FromArgb(232, 221, 202);
+            txt_correo.ForeColor = Color.FromArgb(41, 41, 41);
             ResumeLayout(false);
         }
 
@@ -185,3 +186,5 @@ namespace Nk_Colletion_New
         private TextBox txt_correo;
     }
 }
+
+

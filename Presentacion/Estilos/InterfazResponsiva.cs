@@ -34,12 +34,8 @@ internal static class InterfazResponsiva
         {
             Preparados.Add(formulario, new object());
 
-            if (formulario is not Main)
-            {
-                TemaNk.Aplicar(formulario);
-                AjustesPantallaNk.AplicarInicial(formulario);
-                DisenoResponsivoNk.Habilitar(formulario);
-            }
+            AjustesPantallaNk.AplicarInicial(formulario);
+            DisenoResponsivoNk.Habilitar(formulario);
         }
 
         foreach (Control hijo in raiz.Controls)

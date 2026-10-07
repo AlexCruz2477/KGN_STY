@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class Form_cierre_caja
     {
@@ -89,7 +89,7 @@ namespace Nk_Colletion_New
             // 
             // groupBox2
             // 
-            groupBox2.BackColor = Color.White;
+            groupBox2.BackColor = Color.FromArgb(232, 221, 202);
             groupBox2.Controls.Add(guna2Button1);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label4);
@@ -106,7 +106,7 @@ namespace Nk_Colletion_New
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(txtArqueodecaja);
             groupBox2.Font = new Font("PMingLiU-ExtB", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.ForeColor = Color.FromArgb(63, 65, 64);
+            groupBox2.ForeColor = Color.FromArgb(41, 41, 41);
             groupBox2.Location = new Point(105, 474);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
@@ -117,16 +117,19 @@ namespace Nk_Colletion_New
             // 
             // guna2Button1
             // 
-            guna2Button1.BorderColor = Color.White;
+            guna2Button1.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button1.BorderRadius = 8;
             guna2Button1.CustomizableEdges = customizableEdges1;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button1.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button1.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button1.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button1.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button1.BorderThickness = 1;
+guna2Button1.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.White;
+            guna2Button1.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button1.Image = Properties.Resources.icons8_guardar_24__1_;
             guna2Button1.Location = new Point(271, 197);
             guna2Button1.Margin = new Padding(4, 5, 4, 5);
@@ -140,6 +143,7 @@ namespace Nk_Colletion_New
             // 
             label9.AutoSize = true;
             label9.Font = new Font("PMingLiU-ExtB", 10F);
+            label9.ForeColor = Color.FromArgb(41, 41, 41);
             label9.Location = new Point(32, 207);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
@@ -151,6 +155,7 @@ namespace Nk_Colletion_New
             // 
             label4.AutoSize = true;
             label4.Font = new Font("PMingLiU-ExtB", 10F);
+            label4.ForeColor = Color.FromArgb(41, 41, 41);
             label4.Location = new Point(264, 149);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
@@ -161,6 +166,7 @@ namespace Nk_Colletion_New
             // txtEfectivodolar
             // 
             txtEfectivodolar.Font = new Font("PMingLiU-ExtB", 9F);
+            txtEfectivodolar.ForeColor = Color.FromArgb(41, 41, 41);
             txtEfectivodolar.Location = new Point(151, 206);
             txtEfectivodolar.Margin = new Padding(2);
             txtEfectivodolar.Name = "txtEfectivodolar";
@@ -170,6 +176,7 @@ namespace Nk_Colletion_New
             // txtEfectivocordoba
             // 
             txtEfectivocordoba.Font = new Font("PMingLiU-ExtB", 9F);
+            txtEfectivocordoba.ForeColor = Color.FromArgb(41, 41, 41);
             txtEfectivocordoba.Location = new Point(427, 149);
             txtEfectivocordoba.Margin = new Padding(2);
             txtEfectivocordoba.Name = "txtEfectivocordoba";
@@ -179,6 +186,7 @@ namespace Nk_Colletion_New
             // txtMontotarjeta
             // 
             txtMontotarjeta.Font = new Font("PMingLiU-ExtB", 9F);
+            txtMontotarjeta.ForeColor = Color.FromArgb(41, 41, 41);
             txtMontotarjeta.Location = new Point(151, 148);
             txtMontotarjeta.Margin = new Padding(2);
             txtMontotarjeta.Name = "txtMontotarjeta";
@@ -188,6 +196,7 @@ namespace Nk_Colletion_New
             // txtSaldosobrante
             // 
             txtSaldosobrante.Font = new Font("PMingLiU-ExtB", 9F);
+            txtSaldosobrante.ForeColor = Color.FromArgb(41, 41, 41);
             txtSaldosobrante.Location = new Point(427, 88);
             txtSaldosobrante.Margin = new Padding(2);
             txtSaldosobrante.Name = "txtSaldosobrante";
@@ -198,6 +207,7 @@ namespace Nk_Colletion_New
             // 
             label30.AutoSize = true;
             label30.Font = new Font("PMingLiU-ExtB", 10F);
+            label30.ForeColor = Color.FromArgb(41, 41, 41);
             label30.Location = new Point(264, 89);
             label30.Margin = new Padding(2, 0, 2, 0);
             label30.Name = "label30";
@@ -209,6 +219,7 @@ namespace Nk_Colletion_New
             // 
             label29.AutoSize = true;
             label29.Font = new Font("PMingLiU-ExtB", 10F);
+            label29.ForeColor = Color.FromArgb(41, 41, 41);
             label29.Location = new Point(264, 34);
             label29.Margin = new Padding(2, 0, 2, 0);
             label29.Name = "label29";
@@ -219,6 +230,7 @@ namespace Nk_Colletion_New
             // txtSaldofaltante
             // 
             txtSaldofaltante.Font = new Font("PMingLiU-ExtB", 9F);
+            txtSaldofaltante.ForeColor = Color.FromArgb(41, 41, 41);
             txtSaldofaltante.Location = new Point(151, 88);
             txtSaldofaltante.Margin = new Padding(2);
             txtSaldofaltante.Name = "txtSaldofaltante";
@@ -230,6 +242,7 @@ namespace Nk_Colletion_New
             // 
             label28.AutoSize = true;
             label28.Font = new Font("PMingLiU-ExtB", 10F);
+            label28.ForeColor = Color.FromArgb(41, 41, 41);
             label28.Location = new Point(32, 149);
             label28.Margin = new Padding(2, 0, 2, 0);
             label28.Name = "label28";
@@ -240,6 +253,7 @@ namespace Nk_Colletion_New
             // txtSaldofinal
             // 
             txtSaldofinal.Font = new Font("PMingLiU-ExtB", 9F);
+            txtSaldofinal.ForeColor = Color.FromArgb(41, 41, 41);
             txtSaldofinal.Location = new Point(427, 33);
             txtSaldofinal.Margin = new Padding(2);
             txtSaldofinal.Name = "txtSaldofinal";
@@ -250,6 +264,7 @@ namespace Nk_Colletion_New
             // 
             label27.AutoSize = true;
             label27.Font = new Font("PMingLiU-ExtB", 10F);
+            label27.ForeColor = Color.FromArgb(41, 41, 41);
             label27.Location = new Point(21, 35);
             label27.Margin = new Padding(2, 0, 2, 0);
             label27.Name = "label27";
@@ -262,6 +277,7 @@ namespace Nk_Colletion_New
             // 
             label3.AutoSize = true;
             label3.Font = new Font("PMingLiU-ExtB", 10F);
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(32, 89);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
@@ -272,6 +288,7 @@ namespace Nk_Colletion_New
             // txtArqueodecaja
             // 
             txtArqueodecaja.Font = new Font("PMingLiU-ExtB", 9F);
+            txtArqueodecaja.ForeColor = Color.FromArgb(41, 41, 41);
             txtArqueodecaja.Location = new Point(154, 34);
             txtArqueodecaja.Margin = new Padding(2);
             txtArqueodecaja.Name = "txtArqueodecaja";
@@ -280,7 +297,7 @@ namespace Nk_Colletion_New
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.White;
+            groupBox1.BackColor = Color.FromArgb(232, 221, 202);
             groupBox1.Controls.Add(txtSaldoinicial);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(txtPagos);
@@ -296,7 +313,7 @@ namespace Nk_Colletion_New
             groupBox1.Controls.Add(txtventas);
             groupBox1.Controls.Add(label8);
             groupBox1.Font = new Font("PMingLiU-ExtB", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = Color.FromArgb(63, 65, 64);
+            groupBox1.ForeColor = Color.FromArgb(41, 41, 41);
             groupBox1.Location = new Point(88, 176);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
@@ -308,6 +325,7 @@ namespace Nk_Colletion_New
             // txtSaldoinicial
             // 
             txtSaldoinicial.Font = new Font("PMingLiU-ExtB", 9F);
+            txtSaldoinicial.ForeColor = Color.FromArgb(41, 41, 41);
             txtSaldoinicial.Location = new Point(151, 28);
             txtSaldoinicial.Margin = new Padding(2);
             txtSaldoinicial.Name = "txtSaldoinicial";
@@ -318,7 +336,7 @@ namespace Nk_Colletion_New
             // 
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(63, 65, 64);
+            label7.ForeColor = Color.FromArgb(41, 41, 41);
             label7.Location = new Point(48, 62);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
@@ -329,6 +347,7 @@ namespace Nk_Colletion_New
             // txtPagos
             // 
             txtPagos.Font = new Font("PMingLiU-ExtB", 9F);
+            txtPagos.ForeColor = Color.FromArgb(41, 41, 41);
             txtPagos.Location = new Point(920, 190);
             txtPagos.Margin = new Padding(2);
             txtPagos.Name = "txtPagos";
@@ -339,7 +358,7 @@ namespace Nk_Colletion_New
             // 
             label2.AutoSize = true;
             label2.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(63, 65, 64);
+            label2.ForeColor = Color.FromArgb(41, 41, 41);
             label2.Location = new Point(811, 104);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
@@ -351,7 +370,7 @@ namespace Nk_Colletion_New
             // 
             label1.AutoSize = true;
             label1.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(63, 65, 64);
+            label1.ForeColor = Color.FromArgb(41, 41, 41);
             label1.Location = new Point(161, 105);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -362,6 +381,7 @@ namespace Nk_Colletion_New
             // txtAbonos
             // 
             txtAbonos.Font = new Font("PMingLiU-ExtB", 9F);
+            txtAbonos.ForeColor = Color.FromArgb(41, 41, 41);
             txtAbonos.Location = new Point(342, 191);
             txtAbonos.Margin = new Padding(2);
             txtAbonos.Name = "txtAbonos";
@@ -372,7 +392,7 @@ namespace Nk_Colletion_New
             // 
             label22.AutoSize = true;
             label22.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.FromArgb(63, 65, 64);
+            label22.ForeColor = Color.FromArgb(41, 41, 41);
             label22.Location = new Point(21, 37);
             label22.Margin = new Padding(2, 0, 2, 0);
             label22.Name = "label22";
@@ -383,6 +403,7 @@ namespace Nk_Colletion_New
             // txtCompras
             // 
             txtCompras.Font = new Font("PMingLiU-ExtB", 9F);
+            txtCompras.ForeColor = Color.FromArgb(41, 41, 41);
             txtCompras.Location = new Point(920, 146);
             txtCompras.Margin = new Padding(2);
             txtCompras.Name = "txtCompras";
@@ -393,7 +414,7 @@ namespace Nk_Colletion_New
             // 
             label21.AutoSize = true;
             label21.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label21.ForeColor = Color.FromArgb(63, 65, 64);
+            label21.ForeColor = Color.FromArgb(41, 41, 41);
             label21.Location = new Point(161, 156);
             label21.Margin = new Padding(2, 0, 2, 0);
             label21.Name = "label21";
@@ -405,7 +426,7 @@ namespace Nk_Colletion_New
             // 
             label19.AutoSize = true;
             label19.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.FromArgb(63, 65, 64);
+            label19.ForeColor = Color.FromArgb(41, 41, 41);
             label19.Location = new Point(811, 155);
             label19.Margin = new Padding(2, 0, 2, 0);
             label19.Name = "label19";
@@ -417,7 +438,7 @@ namespace Nk_Colletion_New
             // 
             label18.AutoSize = true;
             label18.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.FromArgb(63, 65, 64);
+            label18.ForeColor = Color.FromArgb(41, 41, 41);
             label18.Location = new Point(161, 200);
             label18.Margin = new Padding(2, 0, 2, 0);
             label18.Name = "label18";
@@ -429,7 +450,7 @@ namespace Nk_Colletion_New
             // 
             label17.AutoSize = true;
             label17.Font = new Font("PMingLiU-ExtB", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(63, 65, 64);
+            label17.ForeColor = Color.FromArgb(41, 41, 41);
             label17.Location = new Point(811, 199);
             label17.Margin = new Padding(2, 0, 2, 0);
             label17.Name = "label17";
@@ -440,6 +461,7 @@ namespace Nk_Colletion_New
             // txtventas
             // 
             txtventas.Font = new Font("PMingLiU-ExtB", 9F);
+            txtventas.ForeColor = Color.FromArgb(41, 41, 41);
             txtventas.Location = new Point(271, 147);
             txtventas.Margin = new Padding(2);
             txtventas.Name = "txtventas";
@@ -450,7 +472,7 @@ namespace Nk_Colletion_New
             // 
             label8.AutoSize = true;
             label8.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(63, 65, 64);
+            label8.ForeColor = Color.FromArgb(41, 41, 41);
             label8.Location = new Point(48, 209);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
@@ -461,7 +483,7 @@ namespace Nk_Colletion_New
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(63, 65, 64);
+            panel2.BackColor = Color.FromArgb(232, 221, 202);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(1361, 0);
             panel2.Name = "panel2";
@@ -470,7 +492,7 @@ namespace Nk_Colletion_New
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(63, 65, 64);
+            panel1.BackColor = Color.FromArgb(232, 221, 202);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -479,7 +501,7 @@ namespace Nk_Colletion_New
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(63, 65, 64);
+            panel3.BackColor = Color.FromArgb(232, 221, 202);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 10);
             panel3.Name = "panel3";
@@ -488,7 +510,7 @@ namespace Nk_Colletion_New
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(63, 65, 64);
+            panel4.BackColor = Color.FromArgb(232, 221, 202);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(10, 853);
             panel4.Name = "panel4";
@@ -497,7 +519,7 @@ namespace Nk_Colletion_New
             // 
             // guna2Panel1
             // 
-            guna2Panel1.BackColor = Color.FromArgb(244, 246, 249);
+            guna2Panel1.BackColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.BorderRadius = 15;
             guna2Panel1.Controls.Add(label10);
             guna2Panel1.Controls.Add(guna2CircleButton2);
@@ -507,7 +529,7 @@ namespace Nk_Colletion_New
             guna2Panel1.Controls.Add(label5);
             guna2Panel1.Controls.Add(label6);
             guna2Panel1.CustomizableEdges = customizableEdges5;
-            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
+            guna2Panel1.FillColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.Location = new Point(26, 28);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -534,7 +556,7 @@ namespace Nk_Colletion_New
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.ForeColor = Color.FromArgb(119, 116, 109);
+            label5.ForeColor = Color.FromArgb(41, 41, 41);
             label5.Location = new Point(129, 66);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
@@ -547,7 +569,7 @@ namespace Nk_Colletion_New
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Georgia", 21F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(184, 149, 85);
+            label6.ForeColor = Color.FromArgb(41, 41, 41);
             label6.Location = new Point(129, 18);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -557,16 +579,19 @@ namespace Nk_Colletion_New
             // 
             // guna2Button2
             // 
-            guna2Button2.BorderColor = Color.White;
+            guna2Button2.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button2.BorderRadius = 8;
             guna2Button2.CustomizableEdges = customizableEdges7;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.FromArgb(184, 149, 85);
+            guna2Button2.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button2.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2Button2.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2Button2.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2Button2.FillColor = Color.FromArgb(74, 14, 24);
+guna2Button2.BorderColor = Color.FromArgb(229, 227, 223);
+guna2Button2.BorderThickness = 1;
+guna2Button2.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Button2.Font = new Font("Segoe UI", 9F);
-            guna2Button2.ForeColor = Color.White;
+            guna2Button2.ForeColor = Color.FromArgb(250, 249, 246);
             guna2Button2.Location = new Point(779, 586);
             guna2Button2.Margin = new Padding(4, 5, 4, 5);
             guna2Button2.Name = "guna2Button2";
@@ -580,6 +605,7 @@ namespace Nk_Colletion_New
             label10.AutoSize = true;
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("PMingLiU-ExtB", 10F);
+            label10.ForeColor = Color.FromArgb(41, 41, 41);
             label10.Location = new Point(1105, 62);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
@@ -590,13 +616,16 @@ namespace Nk_Colletion_New
             // guna2CircleButton2
             // 
             guna2CircleButton2.BackColor = Color.Transparent;
-            guna2CircleButton2.DisabledState.BorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton2.FillColor = Color.FromArgb(235, 222, 208);
+            guna2CircleButton2.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            guna2CircleButton2.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            guna2CircleButton2.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            guna2CircleButton2.FillColor = Color.FromArgb(74, 14, 24);
+guna2CircleButton2.BorderColor = Color.FromArgb(229, 227, 223);
+guna2CircleButton2.BorderThickness = 1;
+guna2CircleButton2.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             guna2CircleButton2.Font = new Font("Segoe UI", 9F);
-            guna2CircleButton2.ForeColor = Color.White;
+            guna2CircleButton2.ForeColor = Color.FromArgb(250, 249, 246);
             guna2CircleButton2.Image = Properties.Resources.icons8_ayuda_24__2_;
             guna2CircleButton2.Location = new Point(1260, 71);
             guna2CircleButton2.Margin = new Padding(4, 5, 4, 5);
@@ -622,6 +651,7 @@ namespace Nk_Colletion_New
             label11.AutoSize = true;
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("PMingLiU-ExtB", 10F);
+            label11.ForeColor = Color.FromArgb(41, 41, 41);
             label11.Location = new Point(1105, 30);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
@@ -633,8 +663,8 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 241, 232);
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(1371, 863);
             Controls.Add(guna2Button2);
             Controls.Add(guna2Panel1);
@@ -656,8 +686,32 @@ namespace Nk_Colletion_New
             guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ResumeLayout(false);
-        }
+            txtEfectivodolar.BackColor = Color.FromArgb(232, 221, 202);
+            txtEfectivodolar.ForeColor = Color.FromArgb(41, 41, 41);
+            txtEfectivocordoba.BackColor = Color.FromArgb(232, 221, 202);
+            txtEfectivocordoba.ForeColor = Color.FromArgb(41, 41, 41);
+            txtMontotarjeta.BackColor = Color.FromArgb(232, 221, 202);
+            txtMontotarjeta.ForeColor = Color.FromArgb(41, 41, 41);
+            txtSaldosobrante.BackColor = Color.FromArgb(232, 221, 202);
+            txtSaldosobrante.ForeColor = Color.FromArgb(41, 41, 41);
+            txtSaldofaltante.BackColor = Color.FromArgb(232, 221, 202);
+            txtSaldofaltante.ForeColor = Color.FromArgb(41, 41, 41);
+            txtSaldofinal.BackColor = Color.FromArgb(232, 221, 202);
+            txtSaldofinal.ForeColor = Color.FromArgb(41, 41, 41);
+            txtArqueodecaja.BackColor = Color.FromArgb(232, 221, 202);
+            txtArqueodecaja.ForeColor = Color.FromArgb(41, 41, 41);
+            txtSaldoinicial.BackColor = Color.FromArgb(232, 221, 202);
+            txtSaldoinicial.ForeColor = Color.FromArgb(41, 41, 41);
+            txtPagos.BackColor = Color.FromArgb(232, 221, 202);
+            txtPagos.ForeColor = Color.FromArgb(41, 41, 41);
+            txtAbonos.BackColor = Color.FromArgb(232, 221, 202);
+            txtAbonos.ForeColor = Color.FromArgb(41, 41, 41);
+            txtCompras.BackColor = Color.FromArgb(232, 221, 202);
+            txtCompras.ForeColor = Color.FromArgb(41, 41, 41);
+            txtventas.BackColor = Color.FromArgb(232, 221, 202);
+            txtventas.ForeColor = Color.FromArgb(41, 41, 41);
+        ResumeLayout(false);
+            }
 
         #endregion
         private GroupBox groupBox2;
@@ -706,3 +760,5 @@ namespace Nk_Colletion_New
         private Label label11;
     }
 }
+
+

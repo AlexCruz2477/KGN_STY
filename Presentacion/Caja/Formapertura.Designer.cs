@@ -1,4 +1,4 @@
-namespace Nk_Colletion_New
+﻿namespace Nk_Colletion_New
 {
     partial class Formapertura
     {
@@ -86,7 +86,7 @@ namespace Nk_Colletion_New
             // 
             guna2Panel1.BackColor = Color.Transparent;
             guna2Panel1.BackgroundImageLayout = ImageLayout.None;
-            guna2Panel1.BorderColor = Color.DarkRed;
+            guna2Panel1.BorderColor = Color.FromArgb(229, 227, 223);
             guna2Panel1.Controls.Add(btn_regresar);
             guna2Panel1.Controls.Add(guna2HtmlLabel3);
             guna2Panel1.Controls.Add(guna2ShadowPanel1);
@@ -94,7 +94,7 @@ namespace Nk_Colletion_New
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.CustomizableEdges = customizableEdges17;
-            guna2Panel1.FillColor = Color.FromArgb(235, 222, 208);
+            guna2Panel1.FillColor = Color.FromArgb(232, 221, 202);
             guna2Panel1.Location = new Point(13, 13);
             guna2Panel1.Margin = new Padding(4, 5, 4, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -107,13 +107,13 @@ namespace Nk_Colletion_New
             // 
             btn_regresar.BorderRadius = 15;
             btn_regresar.CustomizableEdges = customizableEdges1;
-            btn_regresar.DisabledState.BorderColor = Color.DarkGray;
-            btn_regresar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btn_regresar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btn_regresar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_regresar.FillColor = Color.FromArgb(184, 149, 85);
+            btn_regresar.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            btn_regresar.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            btn_regresar.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            btn_regresar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            btn_regresar.FillColor = Color.FromArgb(74, 14, 24);
             btn_regresar.Font = new Font("Segoe UI", 9F);
-            btn_regresar.ForeColor = Color.White;
+            btn_regresar.ForeColor = Color.FromArgb(250, 249, 246);
             btn_regresar.Location = new Point(426, 543);
             btn_regresar.Margin = new Padding(4, 5, 4, 5);
             btn_regresar.Name = "btn_regresar";
@@ -127,6 +127,7 @@ namespace Nk_Colletion_New
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
             guna2HtmlLabel3.Font = new Font("Georgia", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel3.ForeColor = Color.FromArgb(41, 41, 41);
             guna2HtmlLabel3.Location = new Point(183, 122);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             guna2HtmlLabel3.Size = new Size(727, 34);
@@ -148,13 +149,13 @@ namespace Nk_Colletion_New
             guna2ShadowPanel1.Controls.Add(btn_aperturar);
             guna2ShadowPanel1.Controls.Add(label4);
             guna2ShadowPanel1.Controls.Add(txtvalordolar);
-            guna2ShadowPanel1.FillColor = Color.FromArgb(235, 222, 208);
-            guna2ShadowPanel1.ForeColor = Color.FromArgb(184, 149, 85);
+            guna2ShadowPanel1.FillColor = Color.FromArgb(232, 221, 202);
+            guna2ShadowPanel1.ForeColor = Color.FromArgb(41, 41, 41);
             guna2ShadowPanel1.Location = new Point(130, 183);
             guna2ShadowPanel1.Margin = new Padding(4, 5, 4, 5);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             guna2ShadowPanel1.Radius = 12;
-            guna2ShadowPanel1.ShadowColor = Color.LightGray;
+            guna2ShadowPanel1.ShadowColor = Color.FromArgb(111, 76, 85);
             guna2ShadowPanel1.ShadowDepth = 20;
             guna2ShadowPanel1.ShadowShift = 3;
             guna2ShadowPanel1.Size = new Size(826, 350);
@@ -164,7 +165,7 @@ namespace Nk_Colletion_New
             // 
             label2.AutoSize = true;
             label2.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(63, 65, 64);
+            label2.ForeColor = Color.FromArgb(41, 41, 41);
             label2.Location = new Point(69, 22);
             label2.Margin = new Padding(1, 0, 1, 0);
             label2.Name = "label2";
@@ -176,7 +177,7 @@ namespace Nk_Colletion_New
             // 
             label7.AutoSize = true;
             label7.Font = new Font("PMingLiU-ExtB", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(63, 65, 64);
+            label7.ForeColor = Color.FromArgb(41, 41, 41);
             label7.Location = new Point(534, 22);
             label7.Margin = new Padding(1, 0, 1, 0);
             label7.Name = "label7";
@@ -188,6 +189,7 @@ namespace Nk_Colletion_New
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
             guna2HtmlLabel5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel5.ForeColor = Color.FromArgb(41, 41, 41);
             guna2HtmlLabel5.Location = new Point(351, 35);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(178, 31);
@@ -196,7 +198,7 @@ namespace Nk_Colletion_New
             // 
             // guna2PictureBox3
             // 
-            guna2PictureBox3.BackColor = Color.White;
+            guna2PictureBox3.BackColor = Color.FromArgb(232, 221, 202);
             guna2PictureBox3.CustomizableEdges = customizableEdges3;
             guna2PictureBox3.Image = (Image)resources.GetObject("guna2PictureBox3.Image");
             guna2PictureBox3.ImageRotate = 0F;
@@ -210,7 +212,7 @@ namespace Nk_Colletion_New
             // 
             // guna2PictureBox4
             // 
-            guna2PictureBox4.BackColor = Color.White;
+            guna2PictureBox4.BackColor = Color.FromArgb(232, 221, 202);
             guna2PictureBox4.CustomizableEdges = customizableEdges5;
             guna2PictureBox4.Image = (Image)resources.GetObject("guna2PictureBox4.Image");
             guna2PictureBox4.ImageRotate = 0F;
@@ -225,7 +227,7 @@ namespace Nk_Colletion_New
             // 
             // guna2PictureBox2
             // 
-            guna2PictureBox2.BackColor = Color.White;
+            guna2PictureBox2.BackColor = Color.FromArgb(232, 221, 202);
             guna2PictureBox2.CustomizableEdges = customizableEdges7;
             guna2PictureBox2.Image = Properties.Resources.dinero;
             guna2PictureBox2.ImageRotate = 0F;
@@ -240,7 +242,7 @@ namespace Nk_Colletion_New
             // 
             // guna2Separator2
             // 
-            guna2Separator2.FillColor = Color.FromArgb(171, 84, 69);
+            guna2Separator2.FillColor = Color.FromArgb(232, 221, 202);
             guna2Separator2.Location = new Point(-29, 472);
             guna2Separator2.Margin = new Padding(4, 5, 4, 5);
             guna2Separator2.Name = "guna2Separator2";
@@ -252,7 +254,7 @@ namespace Nk_Colletion_New
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Georgia", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Black;
+            label3.ForeColor = Color.FromArgb(41, 41, 41);
             label3.Location = new Point(153, 75);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
@@ -267,13 +269,15 @@ namespace Nk_Colletion_New
             txtsaldoinicial.BorderRadius = 10;
             txtsaldoinicial.CustomizableEdges = customizableEdges9;
             txtsaldoinicial.DefaultText = "";
-            txtsaldoinicial.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtsaldoinicial.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtsaldoinicial.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtsaldoinicial.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtsaldoinicial.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtsaldoinicial.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtsaldoinicial.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtsaldoinicial.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtsaldoinicial.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtsaldoinicial.Font = new Font("Segoe UI", 9F);
-            txtsaldoinicial.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtsaldoinicial.ForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtsaldoinicial.IconLeft = Properties.Resources.dolar;
             txtsaldoinicial.Location = new Point(153, 102);
             txtsaldoinicial.Margin = new Padding(6, 8, 6, 8);
@@ -287,16 +291,16 @@ namespace Nk_Colletion_New
             // btn_aperturar
             // 
             btn_aperturar.AutoRoundedCorners = true;
-            btn_aperturar.BorderColor = Color.White;
+            btn_aperturar.BorderColor = Color.FromArgb(229, 227, 223);
             btn_aperturar.BorderRadius = 25;
             btn_aperturar.CustomizableEdges = customizableEdges11;
-            btn_aperturar.DisabledState.BorderColor = Color.DarkGray;
-            btn_aperturar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btn_aperturar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btn_aperturar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_aperturar.FillColor = Color.FromArgb(184, 149, 85);
+            btn_aperturar.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            btn_aperturar.DisabledState.CustomBorderColor = Color.FromArgb(229, 227, 223);
+            btn_aperturar.DisabledState.FillColor = Color.FromArgb(74, 14, 24);
+            btn_aperturar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            btn_aperturar.FillColor = Color.FromArgb(74, 14, 24);
             btn_aperturar.Font = new Font("Segoe UI", 9F);
-            btn_aperturar.ForeColor = Color.White;
+            btn_aperturar.ForeColor = Color.FromArgb(250, 249, 246);
             btn_aperturar.Location = new Point(71, 275);
             btn_aperturar.Margin = new Padding(4, 5, 4, 5);
             btn_aperturar.Name = "btn_aperturar";
@@ -311,7 +315,7 @@ namespace Nk_Colletion_New
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Georgia", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Black;
+            label4.ForeColor = Color.FromArgb(41, 41, 41);
             label4.Location = new Point(150, 177);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
@@ -325,13 +329,15 @@ namespace Nk_Colletion_New
             txtvalordolar.BorderRadius = 10;
             txtvalordolar.CustomizableEdges = customizableEdges13;
             txtvalordolar.DefaultText = "";
-            txtvalordolar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtvalordolar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtvalordolar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtvalordolar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtvalordolar.FocusedState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtvalordolar.DisabledState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtvalordolar.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtvalordolar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtvalordolar.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
             txtvalordolar.Font = new Font("Segoe UI", 9F);
-            txtvalordolar.HoverState.BorderColor = Color.FromArgb(140, 106, 56);
+            txtvalordolar.ForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
             txtvalordolar.IconLeft = Properties.Resources.dolar;
             txtvalordolar.Location = new Point(153, 202);
             txtvalordolar.Margin = new Padding(6, 8, 6, 8);
@@ -344,7 +350,7 @@ namespace Nk_Colletion_New
             // 
             // guna2PictureBox1
             // 
-            guna2PictureBox1.BackColor = Color.White;
+            guna2PictureBox1.BackColor = Color.FromArgb(232, 221, 202);
             guna2PictureBox1.CustomizableEdges = customizableEdges15;
             guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
@@ -372,7 +378,7 @@ namespace Nk_Colletion_New
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Georgia", 24F);
-            label1.ForeColor = Color.FromArgb(128, 0, 32);
+            label1.ForeColor = Color.FromArgb(41, 41, 41);
             label1.Location = new Point(236, 28);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -384,14 +390,14 @@ namespace Nk_Colletion_New
             // 
             guna2ContextMenuStrip1.ImageScalingSize = new Size(24, 24);
             guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
-            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
-            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(74, 14, 24);
+            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.FromArgb(229, 227, 223);
             guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
             guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
-            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
-            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.FromArgb(250, 249, 246);
+            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(232, 221, 202);
+            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.FromArgb(250, 249, 246);
+            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.FromArgb(229, 227, 223);
             guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             guna2ContextMenuStrip1.Size = new Size(61, 4);
             // 
@@ -406,7 +412,7 @@ namespace Nk_Colletion_New
             lblFecha.AutoSize = true;
             lblFecha.BackColor = Color.Transparent;
             lblFecha.Font = new Font("PMingLiU-ExtB", 10F);
-            lblFecha.ForeColor = Color.White;
+            lblFecha.ForeColor = Color.FromArgb(41, 41, 41);
             lblFecha.Location = new Point(974, 688);
             lblFecha.Margin = new Padding(4, 0, 4, 0);
             lblFecha.Name = "lblFecha";
@@ -430,7 +436,7 @@ namespace Nk_Colletion_New
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("PMingLiU-ExtB", 10F);
-            lblUsuario.ForeColor = Color.White;
+            lblUsuario.ForeColor = Color.FromArgb(41, 41, 41);
             lblUsuario.Location = new Point(143, 688);
             lblUsuario.Margin = new Padding(4, 0, 4, 0);
             lblUsuario.Name = "lblUsuario";
@@ -442,7 +448,7 @@ namespace Nk_Colletion_New
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 241, 232);
+            BackColor = Color.FromArgb(250, 249, 246);
             ClientSize = new Size(1169, 750);
             Controls.Add(lblFecha);
             Controls.Add(pictureBox3);
@@ -462,7 +468,25 @@ namespace Nk_Colletion_New
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ResumeLayout(false);
+            txtvalordolar.FillColor = Color.FromArgb(232, 221, 202);
+            txtvalordolar.ForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtvalordolar.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtvalordolar.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtvalordolar.BorderColor = Color.FromArgb(229, 227, 223);
+            txtvalordolar.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtvalordolar.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtsaldoinicial.FillColor = Color.FromArgb(232, 221, 202);
+            txtsaldoinicial.ForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.DisabledState.FillColor = Color.FromArgb(232, 221, 202);
+            txtsaldoinicial.DisabledState.ForeColor = Color.FromArgb(250, 249, 246);
+            txtsaldoinicial.DisabledState.PlaceholderForeColor = Color.FromArgb(41, 41, 41);
+            txtsaldoinicial.BorderColor = Color.FromArgb(229, 227, 223);
+            txtsaldoinicial.FocusedState.BorderColor = Color.FromArgb(229, 227, 223);
+            txtsaldoinicial.HoverState.BorderColor = Color.FromArgb(229, 227, 223);
+        ResumeLayout(false);
             PerformLayout();
         }
 
@@ -495,3 +519,5 @@ namespace Nk_Colletion_New
         private Guna.UI2.WinForms.Guna2Button btn_regresar;
     }
 }
+
+
